@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="title">
+    ログイン
+</div>
+
+<div class="account-form">
+    <form method="post">
+        
+        {% csrf_token %}
+
+        <div class="input-elements">
+            <div class="input-element">
+                <div class="input-title">
+                    メールアドレス
+                </div>
+                {{ form.username }}
+            </div>
+    
+            <div class="input-element">
+                <div class="input-title">
+                    パスワード
+                </div>
+                {{ form.password }}
+            </div>
+        </div>
+        
+        <button type="submit">ログイン</button>
+
+    </form>
+</div>
+
+{% if form.non_field_errors %}
+<div class="error-message">
+    <div>
+        メールアドレス または パスワード が間違っています
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="title">
+    アカウント情報変更
+</div>
+
+<div class="account-form">
+    <form method="post">
+        
+        {% csrf_token %}
+
+        <div class="input-elements">
+            <div class="input-element">
+                <div class="input-title">
+                    ユーザー名
+                </div>
+                {{ form.name }}
+            </div>
+    
+            <div class="input-element">
+                <div class="input-title">
+                    メールアドレス
+                </div>
+                {{ form.email }}
+            </div>
+        </div>
+        
+        <button type="submit">変更</button>
+
+    </form>
+</div>
+
+{% if form.non_field_errors %}
+    <div class="error-message">
+        予期せぬエラーが発生しました。
+        お手数ですが、管理人までお問い合わせください。
+    </div>
+{% elif form.name.errors %}
+    <div class="error-message">
+        ユーザー名変更に失敗しました。
+        お手数ですが、管理人までお問い合わせください。
+    </div class="error-message">
+{% elif form.email.errors %}
+    <div class="error-message">
+        {{ form.email.errors }}
+        入力されたメールアドレスは既に登録されています。
+    </div>
+{% endif %}
+
+
+{% endblock %}

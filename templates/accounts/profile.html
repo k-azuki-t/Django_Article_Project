@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
+
+    <div class="title">
+        アカウント情報
+    </div>
+
+    <div class="account-control-pannel">
+
+        <div class="account-info">
+
+            <div class="account-icon">
+                {% if user.is_authenticated %}
+                    <i class="bi bi-person-fill-check"></i>
+                {% else %}
+                <i class="bi bi-person-fill-exclamation"></i></i>
+                {% endif %}
+            </div>
+    
+            <div class="account-name">
+                {% if user.is_authenticated %}
+                    {{ user.name }}
+                {% else %}
+                    ゲスト
+                {% endif %}
+            </div>
+
+            <div class="account-mail">
+                mail: 
+                {% if user.is_authenticated %}
+                    {{ user.email }}
+                {% else %}
+                    -
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="account-control-buttons">
+
+            {% if user.is_authenticated %}
+            <form action="{% url 'accounts:profile_change' %}" method="get">
+                <!-- {% csrf_token %} -->
+                <div class="account-control-button">
+                    <button>ユーザー情報変更</button>
+                </div>
+            </form>
+
+            <form action="{% url 'accounts:logout' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <button>ログアウト</button>
+                </div>
+            </form>
+
+            <form action="">
+                {% csrf_token %}
+                <div>
+                    <button>アカウント削除</button>
+                </div>
+            </form>
+            {% else %}
+            <form action="{% url 'accounts:login' %}">
+                <div class="account-control-button">
+                    <button>ログイン</button>
+                </div>
+            </form>
+
+            <form action="{% url 'accounts:signup' %}">
+
+                <div>
+                    <button>アカウント登録</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="articles">
+        <div class="category-title">
+            お気に入りの記事
+        </div>
+    </div>
+
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+
+{% endblock %}

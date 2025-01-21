@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdownx Test</title>
+    <!-- Markdownx CSS -->
+    <link rel="stylesheet" href="{% static 'markdownx/admin/css/markdownx.css' %}">
+</head>
+<body>
+    <h1>Markdownx Test</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <!-- Markdownx JavaScript -->
+    <script src="{% static 'markdownx/js/markdownx.js' %}"></script>
+</body>
+</html>

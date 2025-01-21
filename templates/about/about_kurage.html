@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
+
+    <div class="title">
+        「くらげ」について
+    </div>
+
+    <div class="icons">
+
+        <div class="admin-icon">
+            <img src="{% static 'img/about-icons/admin-icon.jpg' %}" alt="くらげ 管理人 アイコン">
+        </div>
+
+        <div class="admin-name">
+            管理人「くらげ」
+        </div>
+
+        <div class="icons-with-link">
+            <div>
+                <a href="https://x.com/k_azuki_24424" target="_blank">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+            </div>
+            <div>
+                <a href="https://github.com/k-azuki-t" target="_blank">
+                    <i class="bi bi-github"></i>
+                </a>
+            </div>
+            <div>
+                <a href="">
+                    <i class="bi bi-envelope-at-fill"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
