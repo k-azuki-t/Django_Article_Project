@@ -28,7 +28,7 @@ class CustomLoginView(LoginView):
 
 
 class CustomLogutView(LogoutView):
-    template_name = 'accounts/logout.html'
+    template_name = 'accounts/profile.html'
 
 
 class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -36,7 +36,7 @@ class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = 'accounts/profile_change.html'
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('accounts:profile')
-    success_message = "登録が完了しました！ログインしてください。"
+    success_message = "登録が完了しました！"
 
 
     # Generic detail view CustomUserUpdateView must be called with either an object pk or a slug in the URLconf.

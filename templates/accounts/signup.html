@@ -44,17 +44,28 @@
         {% if form.errors %}
         <div class="error-message">
             {% if form.name.errors %}
+            <div>
                 ユーザー名登録に失敗しました。
                 お手数ですが、管理人までお問い合わせください。
+            </div>
             {% endif %}
+
             {% for error in form.email.errors %}
+            <div>
                 {{ error }}
+            </div>
             {% endfor %}
+
             {% for error in form.password1.errors %}
-                {{ error }}
+            <div>
+                {{ error }}     
+            </div>
             {% endfor %}
+
             {% for error in form.password2.errors %}
+            <div>
                 {{ error }}
+            </div>
             {% endfor %}
         </div>
         {% endif %}
