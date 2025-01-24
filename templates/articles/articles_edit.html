@@ -1,21 +1,19 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdownx Test</title>
-    <!-- Markdownx CSS -->
-    <link rel="stylesheet" href="{% static 'markdownx/admin/css/markdownx.css' %}">
-</head>
-<body>
-    <h1>Markdownx Test</h1>
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
+
+    <div class="title">
+        記事編集
+    </div>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-    <!-- Markdownx JavaScript -->
-    <script src="{% static 'markdownx/js/markdownx.js' %}"></script>
-</body>
-</html>
+
+
+
+{% endblock %}

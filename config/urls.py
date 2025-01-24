@@ -25,5 +25,6 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('accounts/', include('accounts.urls')),
     path('product/', include('product.urls')),
+    path('articles/', include('articles.urls')),
     path('markdownx/', include('markdownx.urls')),
 ]

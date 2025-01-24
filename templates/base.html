@@ -9,6 +9,8 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'markdownx/admin/css/markdownx.css' %}">
+    <script src="{% static 'markdownx/js/markdownx.js' %}"></script>
 </head>
 
 <body>
@@ -30,7 +32,7 @@
             
             <div class="navbar-body">
 
-                <form action="" method="get">
+                <form action="{% url 'articles:top' %}" method="get">
                     <div class="navbar-content">
                         <i class="bi bi-file-text"></i>
                         <button>記事・ブログ</button>
