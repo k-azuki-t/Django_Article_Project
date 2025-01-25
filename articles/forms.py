@@ -23,7 +23,7 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '記事のタイトルを入力してください'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '記事の内容を入力してください'}),
-            'category': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'カテゴリを入力してください'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
             'header_img_url': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
         labels = {
