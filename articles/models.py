@@ -26,7 +26,7 @@ from accounts.models import *
 
 class Article(models.Model):
     article_id     = models.IntegerField(verbose_name='記事ID', primary_key=True, auto_created=True)
-    author         = models.OneToOneField(ServiceUser, on_delete=models.CASCADE, related_name='article')
+    author         = models.ForeignKey(ServiceUser, on_delete=models.CASCADE, related_name='article')
     title          = models.CharField(verbose_name='タイトル', max_length=200)
     category       = models.CharField(verbose_name='カテゴリ', max_length=200)
     content        = MarkdownxField(verbose_name='コンテンツ')

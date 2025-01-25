@@ -17,6 +17,8 @@ class CustomUserCreationForm(UserCreationForm):
     
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
+        if not password1:
+            raise ValidationError('確認用パスワードを入力してください。')
         if len(password1) < 8:
             raise ValidationError('パスワードは8文字以上で設定してください。')
         return password1
@@ -24,9 +26,10 @@ class CustomUserCreationForm(UserCreationForm):
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
-        if not password1:
-            raise ValidationError('')
-        if password1 != password2:
+        print(password1, password2)
+        if not password2:
+            raise ValidationError('確認用パスワードを入力してください。')
+        if password1 is not None and password1 != password2:
             raise ValidationError('パスワードが一致しません。')
         return password2
     
