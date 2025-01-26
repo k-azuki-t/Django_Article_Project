@@ -33,7 +33,10 @@
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <!-- {{ form.as_p }} -->
+        {{ form.title }}
+        {{ form.content }}
+        {{ form.category }}
         <input type="hidden" name="header_img_url" id="header_img_url">
         <button type="submit">Submit</button>
     </form>

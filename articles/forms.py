@@ -25,7 +25,7 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '記事の内容を入力してください'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             # 'header_img_url': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'header_img_url': forms.HiddenInput(),  # Dropzone.jsが担当するためHiddenに変更
+            'header_img_url': forms.Textarea(),  # Dropzone.jsが担当するためHiddenに変更
         }
         labels = {
             'title': 'タイトル',
