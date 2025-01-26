@@ -11,7 +11,6 @@ CATEGORY_CHOICES = [
     ('PSYCHOLOGY', '心理学'),
     ('BEHAVIORAL_ECONOMICS', '行動経済学'),
     ('BRAIN_SCIENCE', '脳科学'),
-    ('HUMAN_BODY', '人体'),
     ('OTHER', 'その他'),
 ]
 
@@ -21,7 +20,7 @@ class Article(models.Model):
     title          = models.CharField(verbose_name='タイトル', max_length=200)
     category       = models.CharField(verbose_name='カテゴリ', max_length=200, choices=CATEGORY_CHOICES, default='TECH')
     content        = MarkdownxField(verbose_name='コンテンツ')
-    header_img_url = models.ImageField(verbose_name='ヘッダー画像格納先')
+    header_img_url = models.CharField(verbose_name='ヘッダー画像格納先', max_length=1000)
     viewed_count   = models.IntegerField(verbose_name='ビュー回数', default=0)
     created_at     = models.DateField(verbose_name='作成日', auto_now_add=True)
     updated_at     = models.DateField(verbose_name='更新日', auto_now=True)
