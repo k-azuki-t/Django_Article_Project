@@ -4,13 +4,37 @@
 
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
 
+    <script>
+        Dropzone.options.headerImageDropzone = {
+            paramName: 'file', // サーバーに送信されるフォームフィールド名
+            maxFiles: 1, // アップロードできるファイル数
+            acceptedFiles: 'image/*', // アップロード可能なファイルタイプ
+            init: function () {
+                this.on("success", function (file, response) {
+                    // アップロード後に取得したURLをフォームのhiddenフィールドにセット
+                    const hiddenInput = document.querySelector('input[name="header_img_url"]');
+                    console.log(response.file_url);
+                    console.log(response);
+                    hiddenInput.value = response.file_url;
+                });
+            }
+        };
+    </script>
+    
+
     <div class="title">
         記事編集
     </div>
 
+    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone">
+        {% csrf_token %}
+    </form>
+    
+
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        <input type="hidden" name="header_img_url" id="header_img_url">
         <button type="submit">Submit</button>
     </form>
 

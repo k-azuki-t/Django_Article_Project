@@ -29,6 +29,7 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('articles/', include('articles.urls')),
     path('markdownx/', include('markdownx.urls')),
+    path('upload-image/', upload_image, name='upload_image'),
 ]
 
 # Add static file serving in debug mode

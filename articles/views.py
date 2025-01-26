@@ -3,7 +3,9 @@ from django.views.generic import TemplateView, CreateView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import default_storage
 
 # Create your views here.
 
@@ -21,3 +23,14 @@ class ArticleEditView(CreateView):
         # フォームの初期化時に author を設定
         form.instance.author = self.request.user
         return form
+    
+
+@csrf_exempt
+def upload_image(request):
+    if request.method == 'POST' and request.FILES['file']:
+        file = request.FILES['file']
+        file_name = default_storage.save(f'uploads/{file.name}', file)
+        file_url = default_storage.url(file_name)
+        return JsonResponse({'file_url': file_url})
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
