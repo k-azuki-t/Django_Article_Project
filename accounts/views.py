@@ -17,6 +17,7 @@ class SignUpView(CreateView):
     template_name = 'accounts/signup.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('accounts:login')
+    success_message = "アカウント登録が完了しました！"
 
     def form_invalid(self, form):
         # エラーをテンプレートに渡す
@@ -36,8 +37,7 @@ class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = 'accounts/profile_change.html'
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('accounts:profile')
-    success_message = "登録が完了しました！"
-
+    success_message = "アカウント情報の変更が完了しました！"
 
     # Generic detail view CustomUserUpdateView must be called with either an object pk or a slug in the URLconf.
     def get_object(self):
@@ -56,6 +56,7 @@ class CustomPasswordChangeView(LoginRequiredMixin, UpdateView):
     template_name = 'accounts/password_change.html'
     form_class = CustomPasswordChangeForm
     success_url = reverse_lazy('accounts:profile')
+    success_message = "パスワード変更が完了しました！"
 
     def get_object(self):
         return self.request.user
