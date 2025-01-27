@@ -21,7 +21,7 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
         model = Article
         fields = ['title', 'content', 'category', 'header_img_url']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '記事のタイトルを入力してください'}),
+            'title': forms.TextInput(attrs={'class': 'article_title', 'placeholder': '記事タイトル'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '記事の内容を入力してください'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             # 'header_img_url': forms.ClearableFileInput(attrs={'class': 'form-control'}),

@@ -13,8 +13,6 @@
                 this.on("success", function (file, response) {
                     // アップロード後に取得したURLをフォームのhiddenフィールドにセット
                     const hiddenInput = document.querySelector('input[name="header_img_url"]');
-                    console.log(response.file_url);
-                    console.log(response);
                     hiddenInput.value = response.file_url;
                 });
             }
@@ -26,20 +24,51 @@
         記事編集
     </div>
 
-    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone">
+    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone" style="width: 80%; margin: 0 auto;">
         {% csrf_token %}
     </form>
     
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" style="width: 80%; margin: 0 auto;">
         {% csrf_token %}
-        <!-- {{ form.as_p }} -->
-        {{ form.title }}
-        {{ form.content }}
-        {{ form.category }}
+        <div>
+            <!-- <div>記事タイトル</div> -->
+            {{ form.title }}
+        </div>
+        <div style="display: flex;">
+            <div>
+                <div>カテゴリ</div>
+                {{ form.category }}
+            </div>
+            <div>
+                <div>タグ</div>
+            </div>
+        </div>
+        <div>
+            <div>本文</div>
+            {{ form.content }}
+        </div>
         <input type="hidden" name="header_img_url" id="header_img_url">
-        <button type="submit">Submit</button>
+        <button type="submit">作成</button>
     </form>
+
+    <style>
+        .article_title {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            border: none;
+        }
+        .markdownx {
+            display: flex;
+        }
+        .markdownx textarea {
+            resize: none;
+            height: 500px;
+            overflow: scroll;
+            min-height: 500px
+        }
+    </style>
 
 
 
