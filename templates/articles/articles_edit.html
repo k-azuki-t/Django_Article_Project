@@ -9,6 +9,8 @@
             paramName: 'file', // サーバーに送信されるフォームフィールド名
             maxFiles: 1, // アップロードできるファイル数
             acceptedFiles: 'image/*', // アップロード可能なファイルタイプ
+            addRemoveLinks: true, // リセットボタンを有効化
+            dictRemoveFile: '<i class="bi bi-trash-fill"></i>', // 削除ボタンに表示するテキスト
             init: function () {
                 this.on("success", function (file, response) {
                     // アップロード後に取得したURLをフォームのhiddenフィールドにセット
@@ -24,12 +26,12 @@
         記事編集
     </div>
 
-    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone" style="width: 80%; margin: 0 auto;">
+    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone" style="width: 90%; margin: 0 auto;">
         {% csrf_token %}
     </form>
     
 
-    <form method="post" enctype="multipart/form-data" style="width: 80%; margin: 0 auto;">
+    <form method="post" enctype="multipart/form-data" style="width: 90%; margin: 0 auto;">
         {% csrf_token %}
         <div>
             <!-- <div>記事タイトル</div> -->
@@ -61,12 +63,24 @@
         }
         .markdownx {
             display: flex;
+            width: 100%;
+            flex-direction: row;
         }
-        .markdownx textarea {
+        .markdownx .markdownx-editor {
             resize: none;
             height: 500px;
-            overflow: scroll;
-            min-height: 500px
+            /* overflow: scroll; */
+            min-height: 500px;
+            width: 50%;
+        }
+        .markdownx .markdownx-preview {
+            width: 50%;
+            height: 500px;
+            /* overflow: scroll; */
+            min-height: 500px;
+        }
+        .dropzone .dz-preview {
+            margin: 0;
         }
     </style>
 

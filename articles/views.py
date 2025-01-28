@@ -29,7 +29,7 @@ class ArticleEditView(CreateView):
 def upload_image(request):
     if request.method == 'POST' and request.FILES['file']:
         file = request.FILES['file']
-        file_name = default_storage.save(f'uploads/{file.name}', file)
+        file_name = default_storage.save(f'header_img/{file.name}', file)
         file_url = default_storage.url(file_name)
         return JsonResponse({'file_url': file_url})
 
