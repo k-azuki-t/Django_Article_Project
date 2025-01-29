@@ -5,13 +5,25 @@
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
 
     <script>
+        // Dropzone.autoDiscover = false;
         Dropzone.options.headerImageDropzone = {
-            paramName: 'file', // サーバーに送信されるフォームフィールド名
-            maxFiles: 1, // アップロードできるファイル数
-            acceptedFiles: 'image/*', // アップロード可能なファイルタイプ
-            addRemoveLinks: true, // リセットボタンを有効化
+            url: "{% url 'upload_image' %}",                    // ファイルアップロード先のURL
+            paramName: 'header_img_url',                       // サーバーに送信されるフォームフィールド名
+            maxFiles: 1,                                        // アップロードできるファイル数
+            acceptedFiles: 'image/*',                           // アップロード可能なファイルタイプ
+            addRemoveLinks: true,                               // リセットボタンを有効化
             dictRemoveFile: '<i class="bi bi-trash-fill"></i>', // 削除ボタンに表示するテキスト
+            dictDefaultMessage: "ここに画像をドラッグ＆ドロップ",  // デフォルトメッセージ
+            autoprocessQueue: true,                            // ファイルをアップロードするかどうか
+                   
             init: function () {
+                this.on("addedfile", function (file) {
+                    console.log("ファイルが追加されました:", file);
+                    return;
+                });
+                this.on("error", function (file, message) {
+                    console.error("エラーが発生しました:", message);
+                });
                 this.on("success", function (file, response) {
                     // アップロード後に取得したURLをフォームのhiddenフィールドにセット
                     const hiddenInput = document.querySelector('input[name="header_img_url"]');
@@ -19,6 +31,7 @@
                 });
             }
         };
+
     </script>
     
 
@@ -26,17 +39,24 @@
         記事編集
     </div>
 
-    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone" style="width: 90%; margin: 0 auto;">
+    <!-- <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone" style="width: 90%; margin: 0 auto;">
         {% csrf_token %}
-    </form>
+    </form> -->
     
 
-    <form method="post" enctype="multipart/form-data" style="width: 90%; margin: 0 auto;">
+    <form method="post" enctype="multipart/form-data" style="width: 90%; margin: 0 auto;" action="{% url 'articles:edit' %}">
         {% csrf_token %}
+        <div class="dropzone" id="headerImageDropzone">
+            <div class="fallback">
+                {{ form.header_img_url }}
+            </div>
+        </div>
+
         <div>
             <!-- <div>記事タイトル</div> -->
             {{ form.title }}
         </div>
+
         <div style="display: flex;">
             <div>
                 <div>カテゴリ</div>
@@ -46,11 +66,12 @@
                 <div>タグ</div>
             </div>
         </div>
+
         <div>
             <div>本文</div>
             {{ form.content }}
         </div>
-        <input type="hidden" name="header_img_url" id="header_img_url">
+        <!-- <input type="hidden" name="header_img_url" id="header_img_url"> -->
         <button type="submit">作成</button>
     </form>
 
