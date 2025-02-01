@@ -3,53 +3,34 @@
 {% block content %}
 
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
-
-    <script>
-        // Dropzone.autoDiscover = false;
-        Dropzone.options.headerImageDropzone = {
-            url: "{% url 'upload_image' %}",                    // ファイルアップロード先のURL
-            paramName: 'header_img_url',                       // サーバーに送信されるフォームフィールド名
-            maxFiles: 1,                                        // アップロードできるファイル数
-            acceptedFiles: 'image/*',                           // アップロード可能なファイルタイプ
-            addRemoveLinks: true,                               // リセットボタンを有効化
-            dictRemoveFile: '<i class="bi bi-trash-fill"></i>', // 削除ボタンに表示するテキスト
-            dictDefaultMessage: "ここに画像をドラッグ＆ドロップ",  // デフォルトメッセージ
-            autoprocessQueue: true,                            // ファイルをアップロードするかどうか
-                   
-            init: function () {
-                this.on("addedfile", function (file) {
-                    console.log("ファイルが追加されました:", file);
-                    return;
-                });
-                this.on("error", function (file, message) {
-                    console.error("エラーが発生しました:", message);
-                });
-                this.on("success", function (file, response) {
-                    // アップロード後に取得したURLをフォームのhiddenフィールドにセット
-                    const hiddenInput = document.querySelector('input[name="header_img_url"]');
-                    hiddenInput.value = response.file_url;
-                });
-            }
-        };
-
-    </script>
     
 
     <div class="title">
         記事編集
     </div>
-
-    <!-- <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data" class="dropzone" id="header-image-dropzone" style="width: 90%; margin: 0 auto;">
-        {% csrf_token %}
-    </form> -->
     
+    {% if form.errors %}
+        <div style="color: red;">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+    {% if messages %}
+        <div style="color: rgb(123, 0, 255);">
+            {{ messages }}
+        </div>
+    {% endif %}
+    {% if form.non_field_errors %}
+        <div style="color: rgb(0, 0, 0);">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
 
-    <form method="post" enctype="multipart/form-data" style="width: 90%; margin: 0 auto;" action="{% url 'articles:edit' %}">
+    <form method="post" enctype="multipart/form-data" style="width: 80%; margin: 0 auto;" action="{% url 'articles:edit' %}">
         {% csrf_token %}
-        <div class="dropzone" id="headerImageDropzone">
-            <div class="fallback">
-                {{ form.header_img_url }}
-            </div>
+        <div style="width: 100%; background-color: aliceblue; border:3px solid black; border-radius: 10px; height: 200px; display: flex; flex-direction: column; align-items: center;" id="drop-area">
+            <div style="margin-top: auto;"><i class="bi bi-image"></i></div>
+            <div style="margin-bottom: auto;" class="img-form-message">画像をアップロード</div>
+            {{ form.header_img_url }}
         </div>
 
         <div>
@@ -71,7 +52,6 @@
             <div>本文</div>
             {{ form.content }}
         </div>
-        <!-- <input type="hidden" name="header_img_url" id="header_img_url"> -->
         <button type="submit">作成</button>
     </form>
 
@@ -100,10 +80,68 @@
             /* overflow: scroll; */
             min-height: 500px;
         }
-        .dropzone .dz-preview {
-            margin: 0;
+        #drop-area input {
+            opacity: 0;
         }
     </style>
+
+    <script>
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('id_header_img_url');
+
+        // 添付した画像ファイルを表示する関数
+        function handleFile(imgFIle) {
+            const reader = new FileReader();
+
+            reader.readAsDataURL(imgFIle);
+            reader.onload = (e) => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Uploaded Image';
+                img.style.height = '100%';
+                dropArea.appendChild(img);
+                dropArea.querySelector('.img-form-message').style.display = 'none';
+            }
+
+            // 画像フォーム内の要素を非表示にする
+            dropArea.querySelector('.bi-image').style.display = 'none';
+            dropArea.querySelector('#id_header_img_url').style.display = 'none';
+        }
+
+        // エクスプローラーでのファイル選択時の処理
+        fileInput.addEventListener('change', (e) => {
+            const imgFile = e.target.files[0];
+            if (imgFile && imgFile.type.startsWith('image/')) {
+                handleFile(imgFile);
+            } else {
+                fileInput.value = '';
+                alert('画像ファイルを選択してください');
+            }
+        });
+
+        // ドラッグ&ドロップ時の処理
+        dropArea.addEventListener('drop', (e) => {
+ 
+            // input要素にファイルをセットするためのDataTransferオブジェクトを作成
+            const imgFile = e.dataTransfer.files[0];
+            const dataTransfer = new DataTransfer();
+
+            // 選択したファイルが画像ファイルかどうかを判定
+            if (imgFile && imgFile.type.startsWith('image/')) {
+                // input要素にファイルをセット
+                dataTransfer.items.add(imgFile);
+                fileInput.files = dataTransfer.files;
+                handleFile(imgFile);
+            } else {
+                alert('画像ファイルを選択してください');
+            }
+        }) 
+
+        dropArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+    </script>
 
 
 

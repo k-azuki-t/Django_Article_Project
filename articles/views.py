@@ -18,6 +18,7 @@ class ArticleEditView(CreateView):
     form_class = ContentForm
     success_url = reverse_lazy('articles:top')
 
+    # フォームの初期化時に author を設定
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)
         # フォームの初期化時に author を設定

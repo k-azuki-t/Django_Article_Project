@@ -24,7 +24,7 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
             'title': forms.TextInput(attrs={'class': 'article_title', 'placeholder': '記事タイトル'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '記事の内容を入力してください'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
-            'header_img_url': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'header_img_url': forms.FileInput(attrs={'class': 'form-control'}),
             # 'header_img_url': forms.Textarea(),  # Dropzone.jsが担当するためHiddenに変更
         }
         labels = {
@@ -33,6 +33,12 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
             'category': 'カテゴリ',
             'header_img_url': 'ヘッダー画像',
         }
+    
+    def clean_header_img_url(self):
+        header_img_url = self.cleaned_data.get('header_img_url')
+        if not header_img_url:
+            raise forms.ValidationError('ヘッダー画像をアップロードしてください。')
+        return header_img_url
 
     #【kurage_check】form_validの役割
     #【kurage_check】viewのform_validメソッドは、フォームのバリデーションが成功した場合に呼び出されます。
