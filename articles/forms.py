@@ -2,29 +2,17 @@ from django import forms
 from .models import Article
 from markdownx.fields import MarkdownxFormField
 from django.contrib.auth.mixins import LoginRequiredMixin  # ログイン必須にするミックスイン
-
-
-# class ContentForm(forms.ModelForm):
-#     content = MarkdownxFormField()
-
-#     class Meta:
-#         model = Article
-#         fields = ['title', 'content', 'category', 'header_img_url']
-
-#     def clean_category(self):
-#         category = self.cleaned_data['category']
-#         print(category)
     
-        
+       
 class ContentForm(forms.ModelForm, LoginRequiredMixin):
     class Meta:
         model = Article
         fields = ['title', 'content', 'category', 'header_img_url']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '記事のタイトルを入力してください'}),
+            'title': forms.TextInput(attrs={'class': 'article_title', 'placeholder': '記事タイトルを入力'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'placeholder': '記事の内容を入力してください'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
-            'header_img_url': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'header_img_url': forms.FileInput(attrs={'class': 'form-control'}),
         }
         labels = {
             'title': 'タイトル',
@@ -32,6 +20,12 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
             'category': 'カテゴリ',
             'header_img_url': 'ヘッダー画像',
         }
+    
+    def clean_header_img_url(self):
+        header_img_url = self.cleaned_data.get('header_img_url')
+        if not header_img_url:
+            raise forms.ValidationError('ヘッダー画像をアップロードしてください。')
+        return header_img_url
 
     #【kurage_check】form_validの役割
     #【kurage_check】viewのform_validメソッドは、フォームのバリデーションが成功した場合に呼び出されます。
