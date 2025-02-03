@@ -27,24 +27,24 @@
 
     <form method="post" enctype="multipart/form-data" style="width: 80%; margin: 0 auto;" action="{% url 'articles:edit' %}">
         {% csrf_token %}
-        <div style="width: 100%; background-color: aliceblue; border:3px solid black; border-radius: 10px; height: 200px; display: flex; flex-direction: column; align-items: center;" id="drop-area">
-            <div style="margin-top: auto;"><i class="bi bi-image"></i></div>
-            <div style="margin-bottom: auto;" class="img-form-message">画像をアップロード</div>
+        <div style="width: 100%; background-color: aliceblue; border:3px solid black; border-radius: 10px; height: 300px; display: flex; flex-direction: column; align-items: center; overflow: hidden;" id="drop-area">
+            <div style="margin-top: auto; font-size: 40px; font-weight: bold;">
+                <i class="bi bi-image"></i>
+            </div>
+            <div style="margin-bottom: auto; font-size: 20px; font-weight: bold;" class="img-form-message">
+                ヘッダー画像をアップロード
+            </div>
             {{ form.header_img_url }}
         </div>
 
-        <div>
-            <!-- <div>記事タイトル</div> -->
-            {{ form.title }}
-        </div>
-
-        <div style="display: flex;">
-            <div>
-                <div>カテゴリ</div>
-                {{ form.category }}
+        <div style="display: flex; width: 100%;">
+            <div style="width: 70%;">
+                <div style="font-size: 30px; font-weight: bold;">記事タイトル</div>
+                {{ form.title }}
             </div>
-            <div>
-                <div>タグ</div>
+            <div style="width: 30%;">
+                <div style="font-size: 30px; font-weight: bold;">カテゴリ</div>
+                {{ form.category }}
             </div>
         </div>
 
@@ -57,10 +57,11 @@
 
     <style>
         .article_title {
-            font-size: 20px;
+            font-size: 30px;
             font-weight: bold;
             font-family: 'M PLUS Rounded 1c', sans-serif;
             border: none;
+            width: 90%;
         }
         .markdownx {
             display: flex;
@@ -70,14 +71,12 @@
         .markdownx .markdownx-editor {
             resize: none;
             height: 500px;
-            /* overflow: scroll; */
             min-height: 500px;
             width: 50%;
         }
         .markdownx .markdownx-preview {
             width: 50%;
             height: 500px;
-            /* overflow: scroll; */
             min-height: 500px;
         }
         #drop-area input {
@@ -95,10 +94,15 @@
 
             reader.readAsDataURL(imgFIle);
             reader.onload = (e) => {
+                // 画像がすでに表示されている場合は削除
+                if (dropArea.querySelector('img')) {
+                    dropArea.querySelector('img').remove();
+                }
+                // フォームに選択した画像を表示
                 const img = document.createElement('img');
                 img.src = e.target.result;
                 img.alt = 'Uploaded Image';
-                img.style.height = '100%';
+                img.style.objectFit = 'covoer';
                 dropArea.appendChild(img);
                 dropArea.querySelector('.img-form-message').style.display = 'none';
             }
@@ -135,7 +139,7 @@
             } else {
                 alert('画像ファイルを選択してください');
             }
-        }) 
+        });
 
         dropArea.addEventListener('click', () => {
             fileInput.click();
