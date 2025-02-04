@@ -15,7 +15,7 @@ body {
 }
 
 .navbar {
-    width: 250px;
+    width: 20%;
     background-color: #333;
     color: white;
     height: 100vh;
@@ -98,7 +98,7 @@ body {
 /* side-navbar end */
 
 .main-content {
-    margin-left: 250px;
+    margin-left: 20%;
     width: 100%;
     display: flex;
     flex-direction: column;
