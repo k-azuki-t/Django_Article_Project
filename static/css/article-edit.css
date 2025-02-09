@@ -1,0 +1,91 @@
+.article-edit-form {
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+}
+.drop-area {
+    width: 100%;
+    height: 30%;
+    margin-bottom: 30px;
+    background-color: aliceblue;
+    border:3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.drop-area input {
+    opacity: 0; /* inputタグ自体の表示は無くしつつ、HTMLデフォルトのアラート表示は出す */
+}
+.drop-area .article-icon {
+    margin-top: auto;
+    font-size: 40px;
+    font-weight: bold;
+}
+.drop-area .img-form-message {
+    margin-bottom: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+.text-items {
+    display: flex;
+}
+.article-item {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.article-item .text-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.article-title {
+    width: 80%;
+}
+.article_title {
+    height: 60px;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    border: none;
+    width: 100%;
+}
+.article_category {
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    border: none;
+}
+
+.submit-button-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding-bottom: 50px;
+}
+.submit-button-container .button {
+    width: 80%;
+}
+
+/* markdownx */
+.markdownx {
+    display: flex !important;
+    width: 100%;
+    flex-direction: row;
+}
+.markdownx .markdownx-editor {
+    resize: none;
+    height: 700px;
+    min-height: 700px;
+    width: 50% !important;
+}
+.markdownx .markdownx-preview {
+    width: 50% !important;
+    height: 700px;
+    min-height: 700px;
+}
+.markdownx textarea {
+    font-size: 20px;
+}

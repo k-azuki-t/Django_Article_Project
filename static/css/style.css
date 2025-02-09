@@ -344,4 +344,14 @@ body {
     right: 0;
     width: 20%;
 }
+
+.button {
+    font-size: 30px;
+    height: 50px;
+    border-radius: 25px;
+    font-weight: bold; 
+    font-family: 'M PLUS Rounded 1c', sans-serif; 
+}
 /* coomon style end */
+
+/* small parts */
