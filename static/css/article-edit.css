@@ -49,14 +49,18 @@
     font-weight: bold;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     border: none;
+    border-radius: 30px;
+    padding: 0 20px;
     width: 100%;
 }
 .article_category {
     height: 60px;
     font-size: 20px;
+    padding: 0 10px;
     font-weight: bold;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     border: none;
+    border-radius: 30px;
 }
 
 .submit-button-container {
@@ -79,12 +83,18 @@
     resize: none;
     height: 700px;
     min-height: 700px;
-    width: 50% !important;
+    max-height: 700px;
+    width: 100% !important;
+    border-radius: 10px;
 }
 .markdownx .markdownx-preview {
-    width: 50% !important;
+    width: 100% !important;
     height: 700px;
     min-height: 700px;
+    max-height: 700px;
+    border-radius: 10px;
+    border-color: rgb(95, 95, 95);
+    border-style: solid;
 }
 .markdownx textarea {
     font-size: 20px;

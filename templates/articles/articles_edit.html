@@ -36,7 +36,11 @@
             </div>
         </div>
 
-        <div class="article-item">
+        <div class="article-item" onload="changeDisplayStatus('edit');">
+            <div>
+                <button onclick="changeDisplayStatus('edit'); event.preventDefault()">edit</button>
+                <button onclick="changeDisplayStatus('preview'); event.preventDefault()">preview</button>
+            </div>
             {{ form.content }}
         </div>
 

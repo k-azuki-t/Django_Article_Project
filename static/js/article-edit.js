@@ -61,8 +61,28 @@ dropArea.addEventListener('drop', (e) => {
     }
 });
 
+// ドロップエリアのクリック時の処理
 dropArea.addEventListener('click', () => {
     if (window.location.pathname == '/articles/edit/') {
         fileInput.click();
     }
 });
+
+// 記事本文の記載する領域とプレビュー領域を出し分ける関数
+function changeDisplayStatus(status) {
+
+    if (window.location.pathname !== '/articles/edit/' ) {
+        return;
+    }
+
+    if (status === 'edit') {
+        document.querySelector('.markdownx-editor').style.display = '';
+        document.querySelector('.markdownx-preview').style.display = 'None';
+    } else if (status === 'preview') {
+        document.querySelector('.markdownx-editor').style.display = 'None';
+        document.querySelector('.markdownx-preview').style.display = '';
+    }
+}
+
+// 初期状態は記事を記載する領域を出すように指定WW
+document.addEventListener("DOMContentLoaded", changeDisplayStatus('edit'));
