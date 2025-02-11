@@ -22,7 +22,7 @@
             {{ form.header_img_url }}
         </div>
 
-        <div class="text-items"  style="display: flex;">
+        <div class="text-item-containor"  style="display: flex;">
             <div class="article-item article-title">
                 <div class="text-item">
                     {{ form.title }}
@@ -36,17 +36,18 @@
             </div>
         </div>
 
-        <div class="article-item" onload="changeDisplayStatus('edit');">
-            <div>
-                <button onclick="changeDisplayStatus('edit'); event.preventDefault()">edit</button>
-                <button onclick="changeDisplayStatus('preview'); event.preventDefault()">preview</button>
+        <div class="article-item">
+            <div class="article-edit-button-containor">
+                <button class="article-edit-button" onclick="changeDisplayStatus('edit'); event.preventDefault()">edit</button>
+                <button class="article-edit-button" onclick="changeDisplayStatus('preview'); event.preventDefault()">preview</button>
+                <button class="article-edit-button submit-button">投稿</button>
             </div>
             {{ form.content }}
         </div>
 
-        <div class="submit-button-container">
+        <!-- <div class="submit-button-container">
             <button type="submit" class="button">作成</button>
-        </div>
+        </div> -->
     </form>
 
 {% endblock %}

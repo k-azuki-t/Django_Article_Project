@@ -10,7 +10,7 @@ body {
 /* side-navbar start */
 .container {
     display: flex; /* 参考：https://qiita.com/sinke_123/items/1c2765662e84c37e1562 */
-    height: 100vh;
+    height: 100%;
     flex-direction: row;
 }
 
@@ -100,7 +100,7 @@ body {
 .main-content {
     margin-left: 250px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
