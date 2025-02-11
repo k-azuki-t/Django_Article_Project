@@ -5,7 +5,7 @@
 }
 .drop-area {
     width: 100%;
-    height: 30%;
+    height: 300px;
     margin-bottom: 30px;
     background-color: aliceblue;
     border:3px solid black;
@@ -27,7 +27,7 @@
     font-size: 20px;
     font-weight: bold;
 }
-.text-items {
+.text-item-containor {
     display: flex;
 }
 .article-item {
@@ -63,6 +63,24 @@
     border-radius: 30px;
 }
 
+.article-edit-button-containor {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.article-edit-button-containor .article-edit-button {
+    margin: 0 10px;
+    font-size: 20px;
+    height: 40px;
+    width: 100px;
+    border-radius: 25px;
+    font-weight: bold; 
+    font-family: 'M PLUS Rounded 1c', sans-serif; 
+}
+.article-edit-button-containor .submit-button {
+    margin-left: auto;
+}
+
 .submit-button-container {
     display: flex; 
     align-items: center; 
@@ -81,20 +99,23 @@
 }
 .markdownx .markdownx-editor {
     resize: none;
-    height: 700px;
-    min-height: 700px;
-    max-height: 700px;
+    height: 630px;
+    min-height: 630px;
+    max-height: 630px;
     width: 100% !important;
     border-radius: 10px;
+    padding: 20px;
 }
 .markdownx .markdownx-preview {
     width: 100% !important;
-    height: 700px;
-    min-height: 700px;
-    max-height: 700px;
-    border-radius: 10px;
-    border-color: rgb(95, 95, 95);
-    border-style: solid;
+    height: 630px;
+    min-height: 630px;
+    max-height: 630px;
+    font-size: 20px;
+    /* border-radius: 10px; */
+    /* border-color: rgb(95, 95, 95); */
+    /* border-style: solid; */
+    padding: 20px;
 }
 .markdownx textarea {
     font-size: 20px;
