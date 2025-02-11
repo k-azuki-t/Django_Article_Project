@@ -7,12 +7,13 @@
     width: 100%;
     height: 300px;
     margin-bottom: 30px;
-    background-color: aliceblue;
-    border:3px solid black;
+    background-color: white;
+    border:3px dotted black;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 .drop-area input {
     opacity: 0; /* inputタグ自体の表示は無くしつつ、HTMLデフォルトのアラート表示は出す */
@@ -61,6 +62,7 @@
     font-family: 'M PLUS Rounded 1c', sans-serif;
     border: none;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .article-edit-button-containor {
@@ -69,19 +71,22 @@
     flex-direction: row;
 }
 .article-edit-button-containor .article-edit-button {
-    margin: 0 10px;
+    margin: 0 5px;
     font-size: 20px;
     height: 40px;
     width: 100px;
     border-radius: 25px;
     font-weight: bold; 
     font-family: 'M PLUS Rounded 1c', sans-serif; 
+    border-style: none;
+    cursor: pointer;
 }
 .article-edit-button-containor .submit-button {
     margin-left: auto;
+    background-color: rgb(184, 184, 184);
 }
 
-.submit-button-container {
+/* .submit-button-container {
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -89,7 +94,8 @@
 }
 .submit-button-container .button {
     width: 80%;
-}
+    border-style: none;
+} */
 
 /* markdownx */
 .markdownx {
@@ -111,7 +117,6 @@
     height: 630px;
     min-height: 630px;
     max-height: 630px;
-    font-size: 20px;
     /* border-radius: 10px; */
     /* border-color: rgb(95, 95, 95); */
     /* border-style: solid; */

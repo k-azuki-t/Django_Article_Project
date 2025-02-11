@@ -20,6 +20,7 @@ function handleFile(imgFIle) {
         img.style.height = '100%';
         dropArea.appendChild(img);
         dropArea.querySelector('.img-form-message').style.display = 'none';
+        dropArea.style.borderStyle = 'none'
     }
 
     // 画像フォーム内の要素を非表示にする
@@ -68,19 +69,33 @@ dropArea.addEventListener('click', () => {
     }
 });
 
-// 記事本文の記載する領域とプレビュー領域を出し分ける関数
+// 記事本文の記載するフィールドとプレビューフィールドを出し分ける関数
 function changeDisplayStatus(status) {
 
+    // 記事編集画面でのみ実行されるよう指定
     if (window.location.pathname !== '/articles/edit/' ) {
         return;
     }
 
     if (status === 'edit') {
+        // 編集フィールドを表示
         document.querySelector('.markdownx-editor').style.display = '';
         document.querySelector('.markdownx-preview').style.display = 'None';
+        // ボタンの色を変更
+        document.getElementById('edit').style.backgroundColor = '#575757';
+        document.getElementById('edit').style.color = 'white';
+        document.getElementById('preview').style.backgroundColor = 'white';
+        document.getElementById('preview').style.color = 'black';
+
     } else if (status === 'preview') {
+        // プレビューを表示
         document.querySelector('.markdownx-editor').style.display = 'None';
         document.querySelector('.markdownx-preview').style.display = '';
+        // ボタンの色を変更
+        document.getElementById('edit').style.backgroundColor = 'white';
+        document.getElementById('edit').style.color = 'black';
+        document.getElementById('preview').style.backgroundColor = '#575757';
+        document.getElementById('preview').style.color = 'white';
     }
 }
 
