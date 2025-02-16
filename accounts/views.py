@@ -13,6 +13,7 @@ class ProfileView(TemplateView):
     template_name = 'accounts/profile.html'
 
 
+# アカウント登録ビュー
 class SignUpView(CreateView):
     template_name = 'accounts/signup.html'
     form_class = CustomUserCreationForm
@@ -24,14 +25,17 @@ class SignUpView(CreateView):
         return render(self.request, self.template_name, {'form': form})
 
 
+# ログインビュー
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
 
 
+# ログアウトビュー
 class CustomLogutView(LogoutView):
     template_name = 'accounts/profile.html'
 
 
+# ユーザ情報変更ビュー
 class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = ServiceUser
     template_name = 'accounts/profile_change.html'
@@ -51,6 +55,7 @@ class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return initial
 
 
+# パスワード変更ビュー
 class CustomPasswordChangeView(LoginRequiredMixin, UpdateView):
     model = ServiceUser
     template_name = 'accounts/password_change.html'

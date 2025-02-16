@@ -20,7 +20,6 @@ function handleFile(imgFIle) {
         img.style.height = '100%';
         dropArea.appendChild(img);
         dropArea.querySelector('.img-form-message').style.display = 'none';
-        dropArea.style.borderStyle = 'none'
     }
 
     // 画像フォーム内の要素を非表示にする
