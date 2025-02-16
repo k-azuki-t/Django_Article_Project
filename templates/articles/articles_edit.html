@@ -3,150 +3,51 @@
 {% block content %}
 
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
+    <script src="{% static 'markdownx/js/markdownx.js' %}"></script>
     
 
     <div class="title">
         記事編集
     </div>
-    
-    {% if form.errors %}
-        <div style="color: red;">
-            {{ form.errors }}
-        </div>
-    {% endif %}
-    {% if messages %}
-        <div style="color: rgb(123, 0, 255);">
-            {{ messages }}
-        </div>
-    {% endif %}
-    {% if form.non_field_errors %}
-        <div style="color: rgb(0, 0, 0);">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
 
-    <form method="post" enctype="multipart/form-data" style="width: 80%; margin: 0 auto;" action="{% url 'articles:edit' %}">
+    <form method="post" enctype="multipart/form-data" class="article-edit-form" action="{% url 'articles:edit' %}">
         {% csrf_token %}
-        <div style="width: 100%; background-color: aliceblue; border:3px solid black; border-radius: 10px; height: 300px; display: flex; flex-direction: column; align-items: center; overflow: hidden;" id="drop-area">
-            <div style="margin-top: auto; font-size: 40px; font-weight: bold;">
+        <div class="drop-area">
+            <div class="article-icon">
                 <i class="bi bi-image"></i>
             </div>
-            <div style="margin-bottom: auto; font-size: 20px; font-weight: bold;" class="img-form-message">
+            <div class="img-form-message">
                 ヘッダー画像をアップロード
             </div>
             {{ form.header_img_url }}
         </div>
 
-        <div style="display: flex; width: 100%;">
-            <div style="width: 70%;">
-                <div style="font-size: 30px; font-weight: bold;">記事タイトル</div>
-                {{ form.title }}
+        <div class="text-item-containor"  style="display: flex;">
+            <div class="article-item article-title">
+                <div class="text-item">
+                    {{ form.title }}
+                </div>
             </div>
-            <div style="width: 30%;">
-                <div style="font-size: 30px; font-weight: bold;">カテゴリ</div>
-                {{ form.category }}
+    
+            <div class="article-item" style="margin-left: auto;">
+                <div class="text-item">
+                    {{ form.category }}
+                </div>
             </div>
         </div>
 
-        <div>
-            <div>本文</div>
+        <div class="article-item">
+            <div class="article-edit-button-containor">
+                <button id="edit" class="article-edit-button" onclick="changeDisplayStatus('edit'); event.preventDefault()">edit</button>
+                <button id="preview" class="article-edit-button" onclick="changeDisplayStatus('preview'); event.preventDefault()">preview</button>
+                <button class="article-edit-button submit-button">投稿</button>
+            </div>
             {{ form.content }}
         </div>
-        <button type="submit">作成</button>
+
+        <!-- <div class="submit-button-container">
+            <button type="submit" class="button">作成</button>
+        </div> -->
     </form>
-
-    <style>
-        .article_title {
-            font-size: 30px;
-            font-weight: bold;
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            border: none;
-            width: 90%;
-        }
-        .markdownx {
-            display: flex;
-            width: 100%;
-            flex-direction: row;
-        }
-        .markdownx .markdownx-editor {
-            resize: none;
-            height: 500px;
-            min-height: 500px;
-            width: 50%;
-        }
-        .markdownx .markdownx-preview {
-            width: 50%;
-            height: 500px;
-            min-height: 500px;
-        }
-        #drop-area input {
-            opacity: 0;
-        }
-    </style>
-
-    <script>
-        const dropArea = document.getElementById('drop-area');
-        const fileInput = document.getElementById('id_header_img_url');
-
-        // 添付した画像ファイルを表示する関数
-        function handleFile(imgFIle) {
-            const reader = new FileReader();
-
-            reader.readAsDataURL(imgFIle);
-            reader.onload = (e) => {
-                // 画像がすでに表示されている場合は削除
-                if (dropArea.querySelector('img')) {
-                    dropArea.querySelector('img').remove();
-                }
-                // フォームに選択した画像を表示
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.alt = 'Uploaded Image';
-                img.style.objectFit = 'covoer';
-                dropArea.appendChild(img);
-                dropArea.querySelector('.img-form-message').style.display = 'none';
-            }
-
-            // 画像フォーム内の要素を非表示にする
-            dropArea.querySelector('.bi-image').style.display = 'none';
-            dropArea.querySelector('#id_header_img_url').style.display = 'none';
-        }
-
-        // エクスプローラーでのファイル選択時の処理
-        fileInput.addEventListener('change', (e) => {
-            const imgFile = e.target.files[0];
-            if (imgFile && imgFile.type.startsWith('image/')) {
-                handleFile(imgFile);
-            } else {
-                fileInput.value = '';
-                alert('画像ファイルを選択してください');
-            }
-        });
-
-        // ドラッグ&ドロップ時の処理
-        dropArea.addEventListener('drop', (e) => {
- 
-            // input要素にファイルをセットするためのDataTransferオブジェクトを作成
-            const imgFile = e.dataTransfer.files[0];
-            const dataTransfer = new DataTransfer();
-
-            // 選択したファイルが画像ファイルかどうかを判定
-            if (imgFile && imgFile.type.startsWith('image/')) {
-                // input要素にファイルをセット
-                dataTransfer.items.add(imgFile);
-                fileInput.files = dataTransfer.files;
-                handleFile(imgFile);
-            } else {
-                alert('画像ファイルを選択してください');
-            }
-        });
-
-        dropArea.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-    </script>
-
-
 
 {% endblock %}
