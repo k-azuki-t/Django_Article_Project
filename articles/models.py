@@ -1,6 +1,8 @@
 from django.db import models
-from markdownx.models import MarkdownxField
+from django.utils.safestring import mark_safe
 from django.contrib.auth.hashers import make_password
+from markdownx.utils import markdownify
+from markdownx.models import MarkdownxField
 from accounts.models import *
 
 CATEGORY_CHOICES = [
@@ -30,6 +32,9 @@ class Article(models.Model):
     class Meta:
         verbose_name = '記事マスタ'
         verbose_name_plural = '記事マスタ'
+    
+    def get_text_markdownx(self):
+        return mark_safe(markdownify(self.text))
 
 
 class UploadedFileUrl(models.Model):
