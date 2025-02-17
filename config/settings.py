@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'top.apps.TopConfig',
     'product.apps.ProductConfig',
     'markdownx',
+    'markdownx.widgets',
 ]
 
 MIDDLEWARE = [

@@ -33,8 +33,8 @@ class Article(models.Model):
         verbose_name = '記事マスタ'
         verbose_name_plural = '記事マスタ'
     
-    def get_text_markdownx(self):
-        return mark_safe(markdownify(self.text))
+    def get_markdownx_content(self):
+        return mark_safe(markdownify(self.content))
 
 
 class UploadedFileUrl(models.Model):

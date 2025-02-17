@@ -6,6 +6,6 @@
 
     {{ article.title }}
     {{ article.category }}
-    {{ article.content }}
+    {{ article.get_markdownx_content|safe }}
 
 {% endblock %}
