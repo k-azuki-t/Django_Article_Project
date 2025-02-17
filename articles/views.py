@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article
@@ -25,6 +25,10 @@ class ArticleEditView(CreateView):
         form.instance.author = self.request.user
         return form
     
+class ArticleDetailView(DetailView):
+    model=Article
+    template_name = 'articles/articles_detail.html'
+
 
 @csrf_exempt
 def upload_image(request):

@@ -1,6 +1,8 @@
 const dropArea = document.querySelector('.drop-area');
 const fileInput = document.getElementById('id_header_img_url');
+const elements = document.getElementsByClassName('markdownx');
 
+// dropArea関連の関数（ここから）
 // 添付した画像ファイルを表示する関数
 function handleFile(imgFIle) {
     const reader = new FileReader();
@@ -98,5 +100,16 @@ function changeDisplayStatus(status) {
     }
 }
 
-// 初期状態は記事を記載する領域を出すように指定WW
+// 初期状態は記事を記載する領域を出すように指定
 document.addEventListener("DOMContentLoaded", changeDisplayStatus('edit'));
+// dropArea関連の関数（ここまで）
+
+
+// コードブロックに色を付ける処理（highlight.js）
+for (let element of elements) {
+    element.addEventListener('markdownx.update', event => {
+        for (let block of document.querySelectorAll('pre code')) {
+            hljs.highlightElement(block);
+        }
+    });
+}
