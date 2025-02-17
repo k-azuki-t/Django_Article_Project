@@ -147,3 +147,10 @@ AUTH_USER_MODEL = 'accounts.ServiceUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# markdownx
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra',
+    'markdown.extensions.codehilite',
+    'markdown.extensions.toc',
+]
