@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
+    <div style="width: 80%; margin: 0 auto;">
+        <div class="drop-area" style="margin-top: 50px;">
+            <img src="{{ article.header_img_url.url }}" alt="" style="object-fit: cover; width: 100%; height:100%;">
+        </div>
+        <h1 style="text-align: center;">{{ article.title }}</h1>
+        <h3 style="text-align: center;">{{ article.get_category_display }}</h3>
+        <p style="text-align: right; display: block;">
+            creataed: {{ article.created_at }}
+            <br>
+            updated: {{ article.updated_at }}
+            <br>
+            {{ article.viewed_count}} views
+        </p>
+        {{ article.get_markdownx_content|safe }}
+    </div>
 
-    {{ article.title }}
-    {{ article.category }}
-    {{ article.get_markdownx_content|safe }}
+    {{is_favorited}}
+    
 
 {% endblock %}

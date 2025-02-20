@@ -3,8 +3,10 @@ body {
     margin: 0;
     background-color: rgb(220, 220, 220);
     font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
     height: 100%;
     position: relative;
+    font-size: 18px;
 }
 
 /* side-navbar start */
@@ -139,6 +141,10 @@ body {
     font-weight: bold;
     opacity: 0;
     animation: fadeIn 3s ease 1s forwards;
+}
+.explanation p {
+    text-align: center;
+    display: block;
 }
 
 @keyframes fadeIn {

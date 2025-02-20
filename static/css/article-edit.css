@@ -134,3 +134,29 @@
 .markdownx textarea {
     font-size: 20px;
 }
+
+
+/* プレビュー時の不自然な文字の大きさを修正 */
+.markdownx .markdownx-preview h1 {
+    font-size: 2em !important;
+}
+.markdownx .markdownx-preview h2 {
+font-size: 1.5em !important;
+}
+.markdownx .markdownx-preview h3 {
+font-size: 1.17em !important;
+}
+.markdownx .markdownx-preview h4 {
+font-size: 1em !important;
+}
+.markdownx .markdownx-preview h5 {
+font-size: .9em !important;
+}
+.markdownx .markdownx-preview h6 {
+font-size: .8em !important;
+}
+
+.markdownx .markdownx-preview * {
+    line-height: 0.2 !important;
+}
+
