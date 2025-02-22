@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'markdownx',
     'markdownx.widgets',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +156,7 @@ MARKDOWNX_MARKDOWN_EXTENSIONS = [
     'markdown.extensions.codehilite',
     'markdown.extensions.toc',
 ]
+MARKDOWNX_IMAGE_MAX_SIZE = {
+    'size': (600, 400),
+    'quality': 90
+}
