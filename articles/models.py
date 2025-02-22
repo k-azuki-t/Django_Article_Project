@@ -65,3 +65,9 @@ class Favorite(models.Model):
     class Meta:
         verbose_name = 'お気に入りマスタ'
         verbose_name_plural = 'お気に入りマスタ'
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "article"],
+                name="favorite_unique"
+            ),
+        ]

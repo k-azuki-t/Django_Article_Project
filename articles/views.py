@@ -3,7 +3,8 @@ from django.views.generic import TemplateView, CreateView, DetailView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article, Favorite
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -45,14 +46,46 @@ class ArticleDetailView(DetailView):
         else:
             context["is_favorited"] = False
         return context
-            
 
-@csrf_exempt
-def upload_image(request):
-    if request.method == 'POST' and request.FILES['header_img_url']:
-        file = request.FILES['header_img_url']
-        file_name = default_storage.save(f'header_img/{file.name}', file)
-        file_url = default_storage.url(file_name)
-        return JsonResponse({'file_url': file_url})
 
-    return JsonResponse({'error': 'Invalid request'}, status=400)
+# お気に入り登録用API
+def registerFavorite(request, article_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'redirect_url': '/accounts/profile/'}, status=401)
+
+    if request.method == 'POST':
+        user = request.user
+        article = Article.objects.get(article_id=article_id)
+        is_favorited = Favorite.objects.filter(user=user, article=article).exists()
+        
+        if is_favorited:
+            # お気に入り登録解除
+            Favorite.objects.filter(user=user, article=article).delete()
+            return JsonResponse({'is_favorited': False})
+        else:
+            # お気に入り登録
+            Favorite.objects.create(user=user, article=article)
+            return JsonResponse({'is_favorited': True})
+        
+    return JsonResponse({'redirect_url': '/'}, status=400)
+
+
+# 記事のビュー回数を増やすAPI
+def addViewedCount(request, article_id):
+    if request.method == 'POST':
+        article = Article.objects.get(article_id=article_id)
+        article.viewed_count += 1
+        article.save()
+        return HttpResponse(status=200)
+    
+    return JsonResponse({'redirect_url': '/'}, status=400)
+
+# @csrf_exempt
+# def upload_image(request):
+#     if request.method == 'POST' and request.FILES['header_img_url']:
+#         file = request.FILES['header_img_url']
+#         file_name = default_storage.save(f'header_img/{file.name}', file)
+#         file_url = default_storage.url(file_name)
+#         return JsonResponse({'file_url': file_url})
+
+#     return JsonResponse({'error': 'Invalid request'}, status=400)
