@@ -126,6 +126,7 @@
     /* border-color: rgb(95, 95, 95); */
     /* border-style: solid; */
     padding: 20px;
+    font-size: 20px !important;
 }
 .markdownx textarea {
     font-size: 20px;
@@ -135,24 +136,30 @@
 /* プレビュー時の不自然な文字の大きさを修正 */
 .markdownx .markdownx-preview h1 {
     font-size: 2em !important;
+    font-weight: bold !important;
 }
 .markdownx .markdownx-preview h2 {
-font-size: 1.5em !important;
+    font-size: 1.5em !important;
+    font-weight: bold !important;
 }
 .markdownx .markdownx-preview h3 {
-font-size: 1.17em !important;
+    font-size: 1.17em !important;
+    font-weight: bold !important;
 }
 .markdownx .markdownx-preview h4 {
-font-size: 1em !important;
+    font-size: 1em !important;
+    font-weight: bold !important;
 }
 .markdownx .markdownx-preview h5 {
-font-size: .9em !important;
+    font-size: .9em !important;
+    font-weight: bold !important;
 }
 .markdownx .markdownx-preview h6 {
-font-size: .8em !important;
+    font-size: .8em !important;
+    font-weight: bold !important;
 }
 
-.markdownx .markdownx-preview * {
+/* .markdownx .markdownx-preview * {
     line-height: 0.2 !important;
-}
+} */
 
