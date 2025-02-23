@@ -1,20 +1,15 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article, Favorite
 from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from django.core.files.storage import default_storage
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models import Q
 
 
 # Create your views here.
-
-class ArticleTopView(TemplateView):
-    template_name = 'articles/articles_top.html'
-
 
 class ArticleEditView(CreateView):
     model = Article
@@ -48,6 +43,46 @@ class ArticleDetailView(DetailView):
         return context
 
 
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'articles/articles_list.html'
+    ordering = ['-created_at']
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Article._meta.get_field('category').choices
+
+        # # 1週間以内に作成された記事を取得
+        # one_week_ago = timezone.now() - timedelta(days=7)
+        # context['articles_ordered_by_viewed_count'] = Article.objects.filter(created_at__gte=one_week_ago).order_by('-viewed_count')[:5]
+
+        # # お気に入り記事を取得
+        # if self.request.user.is_authenticated:
+        #     user = self.request.user
+        #     favorited_article = Favorite.objects.filter(user=user).values('article_id')
+        #     context["favorited_article"] = Article.objects.filter(article_id__in=favorited_article)
+
+        return context
+    
+    # 検索機能
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        query = self.request.GET.get('q')  # クエリパラメータから検索ワードを取得
+        category = self.request.GET.get('category')  # クエリパラメータからカテゴリを取得
+        favorite = self.request.GET.get('favorite')  # クエリパラメータからお気に入り記事を取得
+        favorited_article = Favorite.objects.filter(user=user).values('article_id')
+
+        # 検索ワードまたはカテゴリが指定されている場合、フィルタリング
+        if query or category or favorite:
+            queryset = queryset.filter(
+                Q(content__icontains=query) &  # content に部分一致するもの
+                Q(category__icontains=category) &  # category に部分一致するもの
+                Q(article_id__in=favorited_article)  # お気に入り記事のみ
+            )
+
+        return queryset
+
 # お気に入り登録用API
 def registerFavorite(request, article_id):
     if not request.user.is_authenticated:
@@ -79,13 +114,3 @@ def addViewedCount(request, article_id):
         return HttpResponse(status=200)
     
     return JsonResponse({'redirect_url': '/'}, status=400)
-
-# @csrf_exempt
-# def upload_image(request):
-#     if request.method == 'POST' and request.FILES['header_img_url']:
-#         file = request.FILES['header_img_url']
-#         file_name = default_storage.save(f'header_img/{file.name}', file)
-#         file_url = default_storage.url(file_name)
-#         return JsonResponse({'file_url': file_url})
-
-#     return JsonResponse({'error': 'Invalid request'}, status=400)

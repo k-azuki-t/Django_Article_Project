@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
+
+    <div class="title">
+        記事一覧
+    </div>
+
+    <div style="margin: 20px auto; max-width: 80%;">
+        <div class="article-list-name">
+            最新の記事
+        </div>
+        <div class="article-list">
+            {% for article in object_list %}
+            <div class="article">
+                <img src="{{ article.header_img_url.url }}" alt="">
+                <div class="article-label article-upper-label">
+                    <div class="article-upper-label-element">
+                        {{ article.get_category_display }}
+                    </div>
+                    <div class="article-upper-label-element">
+                        <i class="bi bi-clock"></i>
+                        {{ article.created_at | date:"Y-m-d" }}
+                    </div>
+                </div>
+                <div class="article-label article-downer-label">
+                    {{ article.title }}
+                </div>
+                <a href="{% url 'articles:detail' article.pk %}" style="display: none;"></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div style="margin: 20px auto; max-width: 80%;">
+        <div class="article-list-name">
+            最近よく見られている記事
+        </div>
+        <div class="article-list">
+            {% for article in articles_ordered_by_viewed_count %}
+            <div class="article">
+                <img src="{{ article.header_img_url.url }}" alt="">
+                <div class="article-label article-upper-label">
+                    <div class="article-upper-label-element">
+                        {{ article.get_category_display }}
+                    </div>
+                    <div class="article-upper-label-element">
+                        <i class="bi bi-clock"></i>
+                        {{ article.created_at | date:"Y-m-d" }}
+                    </div>
+                </div>
+                <div class="article-label article-downer-label">
+                    {{ article.title }}
+                </div>
+                <a href="{% url 'articles:detail' article.pk %}" style="display: none;"></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div style="margin: 20px auto; max-width: 80%;">
+        <div class="article-list-name">
+            お気に入り登録した記事
+        </div>
+        <div class="article-list">
+            {% for article in favorited_article %}
+            <div class="article">
+                <img src="{{ article.header_img_url.url }}" alt="">
+                <div class="article-label article-upper-label">
+                    <div class="article-upper-label-element">
+                        {{ article.get_category_display }}
+                    </div>
+                    <div class="article-upper-label-element">
+                        <i class="bi bi-clock"></i>
+                        {{ article.created_at | date:"Y-m-d" }}
+                    </div>
+                </div>
+                <div class="article-label article-downer-label">
+                    {{ article.title }}
+                </div>
+                <a href="{% url 'articles:detail' article.pk %}" style="display: none;"></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- <div class="content-container"> -->
+        {% if user.is_authenticated %}
+        <div class="article-edit-icon">
+            <a href="{% url 'articles:edit' %}"><i class="bi bi-pencil-square"></i></a>
+        </div>
+        {% endif %}
+    <!-- </div> -->
+
+    <script>
+        const articleList = document.querySelectorAll('.article-list .article');
+        articleList.forEach(article => {
+            article.addEventListener('click', () => {
+                article.querySelector('a').click();
+            });
+        });
+    </script>
+    
+
+{% endblock %}
