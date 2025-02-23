@@ -1,3 +1,7 @@
+.article-list-name{
+    font-size: 25px;
+}
+
 .article-list {
     display: flex;
     flex-direction: row;
@@ -17,10 +21,6 @@
     background: transparent;
     width: 6px;
     border-radius: 5px;
-}
-
-.article-list .article-list-name{
-    font-size: 25px;
 }
 
 .article-list .article {

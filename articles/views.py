@@ -4,6 +4,8 @@ from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article, Favorite
 from django.http import JsonResponse, HttpResponse
+from django.utils import timezone
+from datetime import timedelta
 
 
 # Create your views here.
@@ -43,7 +45,22 @@ class ArticleDetailView(DetailView):
 class ArticleListView(ListView):
     model = Article
     template_name = 'articles/articles_list.html'
+    ordering = ['-created_at']
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
+        # 1週間以内に作成された記事を取得
+        one_week_ago = timezone.now() - timedelta(days=7)
+        context['articles_ordered_by_viewed_count'] = Article.objects.filter(created_at__gte=one_week_ago).order_by('-viewed_count')[:5]
+
+        # お気に入り記事を取得
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            favorited_article = Favorite.objects.filter(user=user).values('article_id')
+            context["favorited_article"] = Article.objects.filter(article_id__in=favorited_article)
+
+        return context
 
 # お気に入り登録用API
 def registerFavorite(request, article_id):
