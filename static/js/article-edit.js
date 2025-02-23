@@ -1,6 +1,7 @@
 const dropArea = document.querySelector('.drop-area');
 const fileInput = document.getElementById('id_header_img_url');
 const elements = document.getElementsByClassName('markdownx');
+const path = window.location.pathname;
 
 // dropArea関連の関数（ここから）
 // 添付した画像ファイルを表示する関数
@@ -29,46 +30,52 @@ function handleFile(imgFIle) {
     dropArea.querySelector('#id_header_img_url').style.display = 'none';
 }
 
-// エクスプローラーでのファイル選択時の処理
-fileInput.addEventListener('change', (e) => {
-    // 記事編集画面でのみ処理を実行
-    if (window.location.pathname == '/articles/edit/') {
-        const imgFile = e.target.files[0];
-        if (imgFile && imgFile.type.startsWith('image/')) {
-            handleFile(imgFile);
-        } else {
-            fileInput.value = '';
-            alert('画像ファイルを選択してください');
+
+// 記事編集画面でのみaddEventListenerを実行
+if (path.includes('/articles/edit/')) {
+
+    // エクスプローラーでのファイル選択時の処理
+    fileInput.addEventListener('change', (e) => {
+        // 記事編集画面でのみ処理を実行
+        if (window.location.pathname == '/articles/edit/') {
+            const imgFile = e.target.files[0];
+            if (imgFile && imgFile.type.startsWith('image/')) {
+                handleFile(imgFile);
+            } else {
+                fileInput.value = '';
+                alert('画像ファイルを選択してください');
+            }
         }
-    }
-});
+    });
 
-// ドラッグ&ドロップ時の処理
-dropArea.addEventListener('drop', (e) => {
-    if (window.location.pathname == '/articles/edit/') {
+    // ドラッグ&ドロップ時の処理
+    dropArea.addEventListener('drop', (e) => {
+        if (window.location.pathname == '/articles/edit/') {
 
-        // input要素にファイルをセットするためのDataTransferオブジェクトを作成
-        const imgFile = e.dataTransfer.files[0];
-        const dataTransfer = new DataTransfer();
+            // input要素にファイルをセットするためのDataTransferオブジェクトを作成
+            const imgFile = e.dataTransfer.files[0];
+            const dataTransfer = new DataTransfer();
 
-        // 選択したファイルが画像ファイルかどうかを判定
-        if (imgFile && imgFile.type.startsWith('image/')) {
-            // input要素にファイルをセット
-            dataTransfer.items.add(imgFile);
-            fileInput.files = dataTransfer.files;
-            handleFile(imgFile);
-        } else {
-            alert('画像ファイルを選択してください');
+            // 選択したファイルが画像ファイルかどうかを判定
+            if (imgFile && imgFile.type.startsWith('image/')) {
+                // input要素にファイルをセット
+                dataTransfer.items.add(imgFile);
+                fileInput.files = dataTransfer.files;
+                handleFile(imgFile);
+            } else {
+                alert('画像ファイルを選択してください');
+            }
         }
-    }
-});
+    });
 
-// ドロップエリアのクリック時の処理
-dropArea.addEventListener('click', () => {
-    if (window.location.pathname == '/articles/edit/') {
-        fileInput.click();
-    }
-});
+    // ドロップエリアのクリック時の処理
+    dropArea.addEventListener('click', () => {
+        if (window.location.pathname == '/articles/edit/') {
+            fileInput.click();
+        }
+    });
+}
+
 
 // 記事本文の記載するフィールドとプレビューフィールドを出し分ける関数
 function changeDisplayStatus(status) {

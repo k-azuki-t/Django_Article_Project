@@ -5,11 +5,7 @@
     height: 100%;
 }
 .drop-area {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 30px;
     background-color: rgb(202, 202, 202);
-    border: none;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -130,7 +126,40 @@
     /* border-color: rgb(95, 95, 95); */
     /* border-style: solid; */
     padding: 20px;
+    font-size: 20px !important;
 }
 .markdownx textarea {
     font-size: 20px;
 }
+
+
+/* プレビュー時の不自然な文字の大きさを修正 */
+.markdownx .markdownx-preview h1 {
+    font-size: 2em !important;
+    font-weight: bold !important;
+}
+.markdownx .markdownx-preview h2 {
+    font-size: 1.5em !important;
+    font-weight: bold !important;
+}
+.markdownx .markdownx-preview h3 {
+    font-size: 1.17em !important;
+    font-weight: bold !important;
+}
+.markdownx .markdownx-preview h4 {
+    font-size: 1em !important;
+    font-weight: bold !important;
+}
+.markdownx .markdownx-preview h5 {
+    font-size: .9em !important;
+    font-weight: bold !important;
+}
+.markdownx .markdownx-preview h6 {
+    font-size: .8em !important;
+    font-weight: bold !important;
+}
+
+/* .markdownx .markdownx-preview * {
+    line-height: 0.2 !important;
+} */
+

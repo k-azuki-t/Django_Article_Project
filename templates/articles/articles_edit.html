@@ -12,7 +12,7 @@
 
     <form method="post" enctype="multipart/form-data" class="article-edit-form" action="{% url 'articles:edit' %}">
         {% csrf_token %}
-        <div class="drop-area">
+        <div class="drop-area article-header">
             <div class="article-icon">
                 <i class="bi bi-image"></i>
             </div>
