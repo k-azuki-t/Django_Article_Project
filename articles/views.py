@@ -44,7 +44,7 @@ class ArticleDetailView(DetailView):
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'articles/articles_list.html'
+    template_name = 'articles/articles_list copy.html'
     ordering = ['-created_at']
     
     def get_context_data(self, **kwargs):
