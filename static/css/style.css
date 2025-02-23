@@ -361,3 +361,11 @@ body {
 /* coomon style end */
 
 /* small parts */
+
+
+.article-header {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 30px;
+    border: none;
+}
