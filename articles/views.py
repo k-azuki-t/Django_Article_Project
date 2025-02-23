@@ -1,20 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article, Favorite
 from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from django.core.files.storage import default_storage
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
-
-class ArticleTopView(TemplateView):
-    template_name = 'articles/articles_top.html'
-
 
 class ArticleEditView(CreateView):
     model = Article
@@ -48,6 +40,11 @@ class ArticleDetailView(DetailView):
         return context
 
 
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'articles/articles_list.html'
+
+
 # お気に入り登録用API
 def registerFavorite(request, article_id):
     if not request.user.is_authenticated:
@@ -79,13 +76,3 @@ def addViewedCount(request, article_id):
         return HttpResponse(status=200)
     
     return JsonResponse({'redirect_url': '/'}, status=400)
-
-# @csrf_exempt
-# def upload_image(request):
-#     if request.method == 'POST' and request.FILES['header_img_url']:
-#         file = request.FILES['header_img_url']
-#         file_name = default_storage.save(f'header_img/{file.name}', file)
-#         file_url = default_storage.url(file_name)
-#         return JsonResponse({'file_url': file_url})
-
-#     return JsonResponse({'error': 'Invalid request'}, status=400)
