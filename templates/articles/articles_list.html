@@ -8,82 +8,47 @@
         記事一覧
     </div>
 
-    <div style="margin: 20px auto; max-width: 80%;">
-        <div class="article-list-name">
-            最新の記事
-        </div>
-        <div class="article-list">
-            {% for article in object_list %}
-            <div class="article">
-                <img src="{{ article.header_img_url.url }}" alt="">
-                <div class="article-label article-upper-label">
-                    <div class="article-upper-label-element">
-                        {{ article.get_category_display }}
-                    </div>
-                    <div class="article-upper-label-element">
-                        <i class="bi bi-clock"></i>
-                        {{ article.created_at | date:"Y-m-d" }}
-                    </div>
-                </div>
-                <div class="article-label article-downer-label">
-                    {{ article.title }}
-                </div>
-                <a href="{% url 'articles:detail' article.pk %}" style="display: none;"></a>
-            </div>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="キーワードで検索" value="{{ request.GET.q }}">
+        <select name="category">
+            <option value="">すべてのカテゴリ</option>
+            {% for code, label in categories %}
+            <option value="{{ code }}" {% if request.GET.category == code %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
-        </div>
-    </div>
+            <!-- 他のカテゴリも追加 -->
+        </select>
+        <input type="checkbox" name="favorite" {% if request.GET.favorite %}checked{% endif %}>お気に入り
+        <button type="submit"><i class="bi bi-search"></i>search</button>
+    </form>
 
-    <div style="margin: 20px auto; max-width: 80%;">
-        <div class="article-list-name">
-            最近よく見られている記事
-        </div>
-        <div class="article-list">
-            {% for article in articles_ordered_by_viewed_count %}
-            <div class="article">
-                <img src="{{ article.header_img_url.url }}" alt="">
-                <div class="article-label article-upper-label">
-                    <div class="article-upper-label-element">
-                        {{ article.get_category_display }}
+    <div style="margin: 20px auto; width: 80%;">
+        {% for article in object_list %}
+            <div style="width: 100%; aspect-ratio: 20 / 3; display: flex; flex-direction: row; margin: 20px 0; font-size: clamp(5px, 1.2vw, 3rem); background-color: aliceblue; cursor: pointer;" onclick="moveToDetailPage('{{article.pk}}')">
+                <div style="width: 30%;">
+                    <img src="{{ article.header_img_url.url }}" alt="" style="object-fit: cover; width: 100%; height:100%;">
+                </div>
+                <div style="display: flex; flex-direction: column; width: 70%;">
+                    <div style="height: 70%; display: flex; align-items: center; padding-left: 1.5vw; font-size: 1.5vw;">
+                        {{ article.title|truncatewords:25 }}
                     </div>
-                    <div class="article-upper-label-element">
-                        <i class="bi bi-clock"></i>
-                        {{ article.created_at | date:"Y-m-d" }}
+                    <div style="height: 30%; display: flex; flex-direction: row; justify-content: end">
+                        <div style="padding: 10px; display: flex; align-items: center;">
+                            <i class="bi bi-box" style="padding-right: 0.2vw;"></i>
+                            {{ article.get_category_display }}
+                        </div>
+                        <div style="padding: 10px; display: flex; align-items: center;">
+                            <i class="bi bi-clock" style="padding-right: 0.2vw;"></i>
+                            {{ article.created_at | date:"Y-m-d" }}
+                        </div>
+                        <div style="padding: 10px; display: flex; align-items: center;">
+                            <i class="bi bi-eye" style="padding-right: 0.2vw;"></i>
+                            {{ article.viewed_count }} views
+                        </div>
                     </div>
                 </div>
-                <div class="article-label article-downer-label">
-                    {{ article.title }}
-                </div>
-                <a href="{% url 'articles:detail' article.pk %}" style="display: none;"></a>
+                <a href="{% url 'articles:detail' article.pk %}" style="display: none;" id="{{article.pk}}"></a>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <div style="margin: 20px auto; max-width: 80%;">
-        <div class="article-list-name">
-            お気に入り登録した記事
-        </div>
-        <div class="article-list">
-            {% for article in favorited_article %}
-            <div class="article">
-                <img src="{{ article.header_img_url.url }}" alt="">
-                <div class="article-label article-upper-label">
-                    <div class="article-upper-label-element">
-                        {{ article.get_category_display }}
-                    </div>
-                    <div class="article-upper-label-element">
-                        <i class="bi bi-clock"></i>
-                        {{ article.created_at | date:"Y-m-d" }}
-                    </div>
-                </div>
-                <div class="article-label article-downer-label">
-                    {{ article.title }}
-                </div>
-                <a href="{% url 'articles:detail' article.pk %}" style="display: none;"></a>
-            </div>
-            {% endfor %}
-        </div>
+        {% endfor %}
     </div>
 
     <!-- <div class="content-container"> -->
@@ -95,12 +60,10 @@
     <!-- </div> -->
 
     <script>
-        const articleList = document.querySelectorAll('.article-list .article');
-        articleList.forEach(article => {
-            article.addEventListener('click', () => {
-                article.querySelector('a').click();
-            });
-        });
+        function moveToDetailPage(articleID) {
+            const article = document.getElementById(articleID);
+            article.click();
+        }
     </script>
     
 
