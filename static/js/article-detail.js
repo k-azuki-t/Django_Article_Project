@@ -20,11 +20,11 @@ async function registerFavorite() {
         const isFavorited = responseData['is_favorited'];
 
         if (isFavorited) {
-            favoriteButton.classList.add('bi-suit-heart-fill');
             favoriteButton.classList.remove('bi-suit-heart');
+            favoriteButton.classList.add('bi-suit-heart-fill');
         } else {
-            favoriteButton.classList.add('bi-suit-heart');
             favoriteButton.classList.remove('bi-suit-heart-fill');
+            favoriteButton.classList.add('bi-suit-heart');
         }
     } else {
         window.location.href = responseData['redirect_url'];
