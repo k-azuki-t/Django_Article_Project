@@ -10,15 +10,10 @@
     align-items: center;
     justify-content: space-evenly;
 }
-.admin-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .admin-icon img {
     border-radius: 50%;
-    width: clamp(20px, 10vw, 200px);
-    height: clamp(20px, 10vw, 200px);
+    width: clamp(80px, 10vw, 200px);
+    height: clamp(80px, 10vw, 200px);
 }
 .admin-name {
     margin: 0 auto;
@@ -27,18 +22,16 @@
     color: #575757;
 }
 .icons-with-link {
-    margin-top: 30px;
     width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    /* transform: translateX(21%); めっちゃごまかしてる */
 }
 .icons-with-link div {
     margin: 0 auto;
 }
 .icons-with-link i {
-    font-size: 50px;
+    font-size: clamp(40px, 3.5vw, 150px);
     color: #575757;
     transition: all 0.2s ease;
     display: inline-block;
@@ -46,4 +39,17 @@
 .icons-with-link i:hover {
     transform: rotate(15deg);
 }
-/* about.html end */
+
+
+@media screen and (max-width:900px) {
+    .icons {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: center; */
+        height: 200px;
+    }
+    .icons-with-link {
+        width: 100% !important;
+    }
+}
