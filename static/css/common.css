@@ -1,0 +1,41 @@
+/* 複数のページで共通して使用する要素のスタイル */
+/* common style */
+.title {
+    /* % や vhで指定すると、スマホ等のデバイスでアクセスした際に不自然になるためpxで指定 */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: clamp(20px, 2.5vw, 30px);
+    text-align: center;
+    color: #575757;
+}
+
+
+.error-message {
+    color: red;
+    font-size: 15px;
+    height: 20%;
+    font-weight: bold;
+    background-color: #e0f82a;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    width: 20%;
+}
+
+.button {
+    font-size: 30px;
+    height: 50px;
+    border-radius: 25px;
+    font-weight: bold; 
+    font-family: 'M PLUS Rounded 1c', sans-serif; 
+}
+/* coomon style end */
+
+/* small parts */
+.article-header {
+    width: 100%;
+    /* height: 300px; */
+    aspect-ratio: 3 / 1;
+    margin-bottom: 30px;
+    border: none;
+}

@@ -1,3 +1,4 @@
+// ページに応じてnavbarのボタンをアクティブにする処理
 addEventListener('DOMContentLoaded', function() {
     const path = window.location.pathname;
     let navbarButton = '';
@@ -15,5 +16,4 @@ addEventListener('DOMContentLoaded', function() {
     }
 
     navbarButton.classList.add('active');
-    console.log(navbarButton);
 })

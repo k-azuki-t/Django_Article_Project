@@ -23,11 +23,11 @@ body {
     flex-direction: row;
 }
 
-/* @media screen and (max-width:900px) {
+@media screen and (max-width:900px) {
     .navbar {
         display: none !important;
     }
-} */
+}
 
 .navbar {
     color: white;
@@ -129,6 +129,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    position: relative; /* エラーメッセージ用 */
 }
 .main-content::-webkit-scrollbar {
     width: 8px; /* 横スクロールバーの場合は height に設定 */
