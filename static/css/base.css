@@ -23,12 +23,6 @@ body {
     flex-direction: row;
 }
 
-@media screen and (max-width:900px) {
-    .navbar {
-        display: none !important;
-    }
-}
-
 .navbar {
     color: white;
     width: 300px; /* ユーザビリティの観点から横幅のみ固定 */
@@ -144,3 +138,10 @@ body {
     border-radius: 5px;
 }
 /* base.html end */
+
+
+@media screen and (max-width:900px) {
+    .navbar {
+        display: none !important;
+    }
+}

@@ -46,65 +46,6 @@
 
 
 /* accounts/profile.html */
-.account-control-pannel {
-    width: 80%;
-    height: 365px;
-    margin: 40px auto;
-    border-radius: 100px;
-    border: #747474 5px solid;
-    background-color: #fffefe;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.account-info {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.account-info .account-icon i {
-    font-size: 70px;
-}
-.account-info .account-name {
-    font-size: 25px;
-    font-weight: bold;
-    color: #575757;
-}
-.account-info .account-mail {
-    font-size: 15px;
-    font-weight: bold;
-    color: #575757;
-}
-
-.account-control-buttons {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    align-items: center;
-}
-.account-control-buttons div {
-    /* align-items: center;
-    display: flex; */
-    margin: 15px 0;
-}
-.account-control-buttons form {
-    width: 100%;
-    /* margin: 10px auto; */
-}
-.account-control-buttons button{
-    margin: auto;
-    width: 70%;
-    height: 36px;
-    text-align: center;
-    border-radius: 18px;
-    cursor: pointer;
-    font-size: 20px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: bold;
-}
-/* accounts/profile.html end */
 
 
 /* login.html */

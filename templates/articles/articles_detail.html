@@ -19,7 +19,7 @@
         {{ article.get_markdownx_content|safe }}
     </div>
 
-    <div class="favorite-icon-container" style="align-items: center; display: flex; width: 80%; justify-content: center; margin: 30px auto; border-top: 3px solid #979797; flex-direction: column; padding: 50px;">
+    <div class="favorite-icon-container" style="align-items: center; display: flex; width: 80%; justify-content: center; margin: 30px auto; border-top: 3px solid #979797; flex-direction: column; padding: 50px 0;">
         {% if is_favorited %}
         <i class="bi bi-suit-heart-fill" style="color: rgb(236, 114, 114); font-size: 60px;" onclick="registerFavorite();"></i>
         {% else %}
