@@ -10,6 +10,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/article-top.css' %}">
     <link rel="stylesheet" href="{% static 'css/article-edit.css' %}">
     <link rel="stylesheet" href="{% static 'css/article-detail.css' %}">
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
     <script src="{% static 'markdownx/js/markdownx.js' %}"></script>
     <script src="{% static 'js/article-detail.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
     <!-- and it's easy to individually load additional languages -->
@@ -45,28 +47,28 @@
             <div class="navbar-body">
 
                 <form action="{% url 'articles:top' %}" method="get">
-                    <div class="navbar-content">
+                    <div class="navbar-content" id="articles">
                         <i class="bi bi-file-text"></i>
                         <button>記事・ブログ</button>
                     </div>
                 </form>
     
                 <form action="{% url 'product:top' %}" method="get">
-                    <div class="navbar-content">
+                    <div class="navbar-content" id="product">
                         <i class="bi bi-grid"></i>
                         <button>プロダクト紹介</button>
                     </div>
                 </form>
 
                 <form action="{% url 'about:this_site' %}" method="get">
-                    <div class="navbar-content">
+                    <div class="navbar-content" id="about-this-site">
                         <i class="bi bi-patch-question"></i>
                         <button>当サイトについて</button>
                     </div>
                 </form>
 
                 <form action="{% url 'about:kurage' %}" method="get">
-                    <div class="navbar-content">
+                    <div class="navbar-content" id="about-kurage">
                         <i class="bi bi-file-earmark-person"></i>
                         <button>「くらげ」について</button>
                     </div>
@@ -76,7 +78,7 @@
 
             <div class="navbar-footer">
                 <form action="{% url 'accounts:profile' %}" method="get">
-                    <div class="navbar-content">
+                    <div class="navbar-content" id="accounts">
                         {% if user.is_authenticated %}
                             <i class="bi bi-person-check"></i>
                         {% else %}

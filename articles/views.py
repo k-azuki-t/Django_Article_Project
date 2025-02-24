@@ -66,7 +66,7 @@ class ArticleListView(ListView):
     
     # 検索機能
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().order_by('-article_id')
         user = self.request.user
         query = self.request.GET.get('q')  # クエリパラメータから検索ワードを取得
         category = self.request.GET.get('category')  # クエリパラメータからカテゴリを取得
