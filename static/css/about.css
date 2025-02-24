@@ -3,8 +3,7 @@
     width: 80%;
     height: 250px;
     margin: 40px auto;
-    border-radius: 100px;
-    border: #747474 5px solid;
+    border-radius: 10px;
     background-color: #fffefe;
     display: flex;
     flex-direction: row;
@@ -18,8 +17,8 @@
 }
 .admin-icon img {
     border-radius: 50%;
-    width: 10vw;
-    height: 10vw;
+    width: clamp(20px, 10vw, 200px);
+    height: clamp(20px, 10vw, 200px);
 }
 .admin-name {
     margin: 0 auto;

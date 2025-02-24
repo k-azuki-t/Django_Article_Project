@@ -45,34 +45,34 @@
             <form action="{% url 'accounts:profile_change' %}" method="get">
                 <!-- {% csrf_token %} -->
                 <div class="account-control-button">
-                    <button>ユーザー情報変更</button>
+                    <button><i class="bi bi-gear"></i>ユーザー情報変更</button>
                 </div>
             </form>
 
             <form action="{% url 'accounts:logout' %}" method="post">
                 {% csrf_token %}
                 <div>
-                    <button>ログアウト</button>
+                    <button><i class="bi bi-door-open"></i>ログアウト</button>
                 </div>
             </form>
 
             <form action="">
                 {% csrf_token %}
                 <div>
-                    <button>アカウント削除</button>
+                    <button><i class="bi bi-person-x"></i>アカウント削除</button>
                 </div>
             </form>
             {% else %}
             <form action="{% url 'accounts:login' %}">
                 <div class="account-control-button">
-                    <button>ログイン</button>
+                    <button><i class="bi bi-gear"></i>ログイン</button>
                 </div>
             </form>
 
             <form action="{% url 'accounts:signup' %}">
 
                 <div>
-                    <button>アカウント登録</button>
+                    <button><i class="bi bi-person-plus"></i>アカウント登録</button>
                 </div>
             </form>
             {% endif %}
