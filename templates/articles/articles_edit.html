@@ -38,9 +38,18 @@
 
         <div class="article-item">
             <div class="article-edit-button-containor">
-                <button id="edit" class="article-edit-button" onclick="changeDisplayStatus('edit'); event.preventDefault()"><i class="bi bi-pencil-square"></i>edit</button>
-                <button id="preview" class="article-edit-button" onclick="changeDisplayStatus('preview'); event.preventDefault()"><i class="bi bi-eye-fill"></i>preview</button>
-                <button class="article-edit-button submit-button"><i class="bi bi-send"></i>Post</button>
+                <button id="edit" class="button article-edit-button" onclick="changeDisplayStatus('edit'); event.preventDefault()">
+                    <i class="bi bi-pencil-square"></i>
+                    <span>EDIT</span>
+                </button>
+                <button id="preview" class="button article-edit-button" onclick="changeDisplayStatus('preview'); event.preventDefault()">
+                    <i class="bi bi-eye-fill"></i>
+                    <span>PREVIEW</span>
+                </button>
+                <button class="button article-edit-button post-data-button">
+                    <i class="bi bi-send"></i>
+                    <span>POST</span>
+                </button>
             </div>
             {{ form.content }}
         </div>

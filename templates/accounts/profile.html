@@ -44,7 +44,7 @@
             <form action="{% url 'accounts:profile_change' %}" method="get">
                 <!-- {% csrf_token %} -->
                 <div>
-                    <button>
+                    <button class="button">
                         <i class="bi bi-gear"></i>
                         <span class="button-name">ユーザー情報変更</span>
                     </button>
@@ -54,7 +54,7 @@
             <form action="{% url 'accounts:logout' %}" method="post">
                 {% csrf_token %}
                 <div>
-                    <button>
+                    <button class="button">
                         <i class="bi bi-door-open"></i>
                         <span class="button-name">ログアウト</span>
                     </button>
@@ -64,7 +64,7 @@
             <form action="">
                 {% csrf_token %}
                 <div>
-                    <button>
+                    <button class="button">
                         <i class="bi bi-person-x"></i>
                         <span class="button-name">アカウント削除</span>
                     </button>
@@ -73,7 +73,7 @@
             {% else %}
             <form action="{% url 'accounts:login' %}">
                 <div>
-                    <button>
+                    <button class="button">
                         <i class="bi bi-door-closed"></i>
                         <span class="button-name">ログイン</span>
                     </button>
@@ -83,7 +83,7 @@
             <form action="{% url 'accounts:signup' %}">
 
                 <div>
-                    <button>
+                    <button class="button">
                         <i class="bi bi-person-plus"></i>
                         <span class="button-name">アカウント登録</span>
                     </button>

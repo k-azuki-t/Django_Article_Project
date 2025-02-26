@@ -44,12 +44,6 @@
 .account-form button {
     margin: 40px auto; /* combination with parent-element's flex-direction & align-items, this button  */
     width: 50%;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    height: 50px;
-    border-radius: 25px;
-    cursor: pointer;
 }
 
 
@@ -104,15 +98,6 @@
 }
 .account-control-buttons button{
     width: 80%;
-    height: 40px;
-    text-align: center;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: clamp(15px, 2.5vw, 20px);
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: bold;
-    border: none;
-    background-color: #d5d5d5;
     margin: 0 auto;
 }
 .account-control-buttons .button-name {

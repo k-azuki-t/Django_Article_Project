@@ -26,12 +26,20 @@
     background-color: #fdc763 !important;
 }
 
-.button {
-    font-size: 30px;
-    height: 50px;
-    border-radius: 25px;
-    font-weight: bold; 
-    font-family: 'M PLUS Rounded 1c', sans-serif; 
+
+.button { /* width・margin は別途指定 */
+    font-size: clamp(15px, 2vw, 20px);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #d5d5d5;
+}
+.post-data-button {
+    background-color: rgb(184, 184, 184);
 }
 /* coomon style end */
 
