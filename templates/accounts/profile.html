@@ -74,7 +74,7 @@
             <form action="{% url 'accounts:login' %}">
                 <div>
                     <button>
-                        <i class="bi bi-gear"></i>
+                        <i class="bi bi-door-closed"></i>
                         <span class="button-name">ログイン</span>
                     </button>
                 </div>
@@ -103,8 +103,12 @@
         </div>
     </div>
 
-    {% for message in messages %}
-      {{ message }}
-    {% endfor %}
+    {% if messages %}
+    <div class="message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
 {% endblock %}

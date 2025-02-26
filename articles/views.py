@@ -52,16 +52,6 @@ class ArticleListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Article._meta.get_field('category').choices
 
-        # # 1週間以内に作成された記事を取得
-        # one_week_ago = timezone.now() - timedelta(days=7)
-        # context['articles_ordered_by_viewed_count'] = Article.objects.filter(created_at__gte=one_week_ago).order_by('-viewed_count')[:5]
-
-        # # お気に入り記事を取得
-        # if self.request.user.is_authenticated:
-        #     user = self.request.user
-        #     favorited_article = Favorite.objects.filter(user=user).values('article_id')
-        #     context["favorited_article"] = Article.objects.filter(article_id__in=favorited_article)
-
         return context
     
     # 検索機能
@@ -70,18 +60,22 @@ class ArticleListView(ListView):
         user = self.request.user
         query = self.request.GET.get('q')  # クエリパラメータから検索ワードを取得
         category = self.request.GET.get('category')  # クエリパラメータからカテゴリを取得
-        favorite = self.request.GET.get('favorite')  # クエリパラメータからお気に入り記事を取得
-        favorited_article = Favorite.objects.filter(user=user).values('article_id')
+        favorite = self.request.GET.get('favorite')
 
-        # 検索ワードまたはカテゴリが指定されている場合、フィルタリング
-        if query or category or favorite:
+        if query:
             queryset = queryset.filter(
-                Q(content__icontains=query) &  # content に部分一致するもの
-                Q(category__icontains=category) &  # category に部分一致するもの
-                Q(article_id__in=favorited_article)  # お気に入り記事のみ
+                Q(content__icontains=query) |
+                Q(title__icontains=query)
             )
+        if category:
+            queryset = queryset.filter(category=category)
+        if favorite:
+            favorited_article = Favorite.objects.filter(user=user).values('article_id')
+            queryset = queryset.filter(article_id__in=favorited_article)
 
         return queryset
+
+
 
 # お気に入り登録用API
 def registerFavorite(request, article_id):

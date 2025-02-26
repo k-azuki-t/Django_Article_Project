@@ -34,6 +34,11 @@ class CustomLoginView(LoginView):
 class CustomLogutView(LogoutView):
     template_name = 'accounts/profile.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['messages'] = 'ログアウトしました。'
+        return context
+
 
 # ユーザ情報変更ビュー
 class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):

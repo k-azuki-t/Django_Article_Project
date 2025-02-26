@@ -43,6 +43,13 @@ class CustomUserChangeForm(UserChangeForm):
         'email': forms.EmailInput(),
         }
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        saved_email = ServiceUser.objects.get(user_id=self.instance.user_id).email
+        if ServiceUser.objects.filter(email=email).exists() and email != saved_email:
+            raise ValidationError('このメールアドレスはすでに登録されています。')
+        return email
+
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     class Meta:
