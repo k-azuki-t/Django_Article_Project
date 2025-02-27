@@ -22,24 +22,20 @@
     flex-direction: column;
 }
 .account-form .input-title {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: clamp(20px, 2vw, 25px);
+    /* font-weight: bold; */
     width: 100%;
     color: #575757;
 }
 .account-form .input-element {
-    margin-top: 20px;
+    margin:40px 0;
 }
 .account-form input {
     width: 100%;
     height: 30px;
     margin: 10px auto;
-    font-size: 20px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: bold;
+    font-size: clamp(15px, 2vw, 20px);
     text-align: center;
-    border-radius: 15px;
-    border: 1px solid #575757;
 }
 .account-form button {
     margin: 40px auto; /* combination with parent-element's flex-direction & align-items, this button  */

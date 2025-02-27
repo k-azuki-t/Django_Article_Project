@@ -102,11 +102,12 @@ body {
 }
 /* 開いているページに対応するボタンの色を変更 */
 .navbar-content.active {
-    background-color: #ffffff;
-    color: black;
+    /* background-color: #ffffff;
+    color: black; */
+    color: aquamarine;
 }
 .navbar-content.active button {
-    color: black;
+    color: aquamarine;
 }
 
 .navbar-footer {

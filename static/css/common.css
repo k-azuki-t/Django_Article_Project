@@ -4,12 +4,13 @@
     /* % や vhで指定すると、スマホ等のデバイスでアクセスした際に不自然になるためpxで指定 */
     margin-top: 40px;
     margin-bottom: 20px;
-    font-size: clamp(20px, 2.5vw, 30px);
+    font-size: clamp(20px, 2.5vw, 35px);
     text-align: center;
     color: #575757;
 }
 
 
+/* メッセージ系 */
 .message {
     text-align: center;
     position: absolute;
@@ -21,12 +22,11 @@
     background-color: white;
     color: rgb(77, 76, 76);
 }
-
 .error-message {
     background-color: #fdc763 !important;
 }
 
-
+/* ボタン系 */
 .button { /* width・margin は別途指定 */
     font-size: clamp(15px, 2vw, 20px);
     font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -41,9 +41,18 @@
 .post-data-button {
     background-color: rgb(184, 184, 184);
 }
+
+input, select { /* width・margin・height は別途指定 */
+    color: #575757;
+    font-weight: bold;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    border: none;
+    border-bottom: 3px solid #575757;
+    background-color: transparent;
+    outline: none;
+}
 /* coomon style end */
 
-/* small parts */
 .article-header {
     width: 100%;
     /* height: 300px; */

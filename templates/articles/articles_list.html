@@ -18,7 +18,7 @@
             <!-- 他のカテゴリも追加 -->
         </select>
         <input type="checkbox" name="favorite" {% if request.GET.favorite %}checked{% endif %} {% if not user.is_authenticated %} disabled {% endif %}>お気に入り
-        <button type="submit"><i class="bi bi-search"></i>search</button>
+        <button type="submit" class="button post-data-button"><i class="bi bi-search"></i>search</button>
     </form>
 
     <div style="margin: 20px auto; width: 80%;">
