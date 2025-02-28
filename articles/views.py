@@ -71,7 +71,10 @@ class ArticleListView(ListView):
             queryset = queryset.filter(category=category)
         if favorite:
             favorited_article = Favorite.objects.filter(user=user).values('article_id')
-            queryset = queryset.filter(article_id__in=favorited_article)
+            if favorite == 'true':
+                queryset = queryset.filter(article_id__in=favorited_article)
+            elif favorite == 'false':
+                queryset = queryset.exclude(article_id__in=favorited_article)
 
         return queryset
 
