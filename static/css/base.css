@@ -3,6 +3,7 @@ body {
     font-size: 18px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: bold;
+    color: #404040;
     background-color: rgb(220, 220, 220);
     margin: 0;
     height: 100vh;
@@ -16,7 +17,7 @@ body {
 
 
 /* side-navbar start */
-.container {
+.base-container {
     height: 100vh;
     width: 100vw;
     display: flex; /* 参考：https://qiita.com/sinke_123/items/1c2765662e84c37e1562 */

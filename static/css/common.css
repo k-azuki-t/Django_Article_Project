@@ -9,6 +9,19 @@
     color: #575757;
 }
 
+/* コンテナ系 */
+.container-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.container-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.item-container {
+    background-color: aliceblue;
+    border-radius: 10px;
+}
 
 /* メッセージ系 */
 .message {
@@ -43,6 +56,7 @@
     color: rgb(255, 255, 255);
 }
 
+/* フォーム系 */
 input, select { /* width・margin・height は別途指定 */
     color: #575757;
     font-weight: bold;
@@ -60,4 +74,30 @@ input, select { /* width・margin・height は別途指定 */
     aspect-ratio: 3 / 1;
     margin-bottom: 30px;
     border: none;
+}
+
+/* 細かいパーツ系（width・margin・padding） */
+.width-100 {
+    width: 100% !important;
+}
+.width-80 {
+    width: 80% !important;
+}
+.width-70 {
+    width: 70% !important;
+}
+.width-50 {
+    width: 50% !important;
+}
+.width-30 {
+    width: 30% !important;
+}
+
+.margin-vertical-20 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.margin-horizontal-auto {
+    margin-left: auto;
+    margin-right: auto;
 }
