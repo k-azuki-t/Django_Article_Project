@@ -2,28 +2,31 @@
 
 {% block content %}
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->
-    <div style="width: 80%; margin: 0 auto;">
-        <div id="article-id" style="display: none;">{{ article.pk }}</div>
-        <div class="article-header" style="margin-top: 50px;">
-            <img src="{{ article.header_img_url.url }}" alt="" style="object-fit: cover; width: 100%; height:100%;">
+    <div class="width-80 margin-horizontal-auto">
+        <div id="article-id">{{ article.pk }}</div>
+        <div class="article-header margin-vertical-50">
+            <img class="article-header-img" src="{{ article.header_img_url.url }}" alt="">
         </div>
-        <h1 style="text-align: center;">{{ article.title }}</h1>
-        <h3 style="text-align: center;">{{ article.get_category_display }}</h3>
-        <p style="text-align: right; display: block; margin-left: auto;">
-            creataed:  {{ article.created_at }}
-            <br>
-            updated:  {{ article.updated_at }}
-            <br>
-            {{ article.viewed_count}} views
-        </p>
+        <h1 class="text-align-center">{{ article.title }}</h1>
+        <h3 class="text-align-center">{{ article.get_category_display }}</h3>
+        <div class="width-100 container-flex-column">
+            <div class="article-sub-info margin-horizontal-left-auto">
+                <i class="bi bi-clock"></i>
+                <span>: {{ article.created_at | date:"Y-m-d" }}</span>
+            </div>
+            <div class="article-sub-info margin-horizontal-left-auto">
+                <i class="bi bi-eye"></i>
+                <span>: {{ article.viewed_count}} views</span>
+            </div>
+        </div>
         {{ article.get_markdownx_content|safe }}
     </div>
 
-    <div class="favorite-icon-container" style="align-items: center; display: flex; width: 80%; justify-content: center; margin: 30px auto; border-top: 3px solid #979797; flex-direction: column; padding: 50px 0;">
+    <div class="favorite-icon-container width-80 container-flex-column margin-horizontal-auto margin-vertical-20">
         {% if is_favorited %}
-        <i class="bi bi-suit-heart-fill" style="color: rgb(236, 114, 114); font-size: 60px;" onclick="registerFavorite();"></i>
+        <i class="bi bi-suit-heart-fill" onclick="registerFavorite();"></i>
         {% else %}
-        <i class="bi bi-suit-heart" style="color: rgb(236, 114, 114); font-size: 60px;" onclick="registerFavorite();"></i>
+        <i class="bi bi-suit-heart" onclick="registerFavorite();"></i>
         {% endif %}
         <span style="display: block;">お気に入り登録</span>
     </div>

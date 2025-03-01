@@ -9,7 +9,6 @@
     </div>
 
     <form method="get" action="" class="search-form width-80 margin-horizontal-auto">
-        {% csrf_token %}
         <div class="container-flex-row search-form-input-container width-100">
             <div class="container-flex-column width-80">
                 <div class="width-100 margin-vertical-20">
@@ -46,7 +45,7 @@
         {% for article in object_list %}
             <div class="width-100 margin-vertical-20 margin-horizontal-auto container-flex-row item-container article-info-container" onclick="moveToDetailPage('{{article.pk}}')">
                 <div class="width-30">
-                    <img src="{{ article.header_img_url.url }}" alt="">
+                    <img class="article-header-img" src="{{ article.header_img_url.url }}" alt="">
                 </div>
                 <div class="container-flex-column width-70">
                     <div class="article-title-container container-flex-column">

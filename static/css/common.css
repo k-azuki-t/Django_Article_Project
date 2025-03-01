@@ -1,5 +1,6 @@
 /* 複数のページで共通して使用する要素のスタイル */
-/* common style */
+
+/* 各ページのタイトル */
 .title {
     /* % や vhで指定すると、スマホ等のデバイスでアクセスした際に不自然になるためpxで指定 */
     margin-top: 40px;
@@ -66,14 +67,20 @@ input, select { /* width・margin・height は別途指定 */
     background-color: transparent;
     outline: none;
 }
-/* coomon style end */
 
+
+/* 記事ヘッダ画像系 */
 .article-header {
     width: 100%;
     /* height: 300px; */
     aspect-ratio: 3 / 1;
     margin-bottom: 30px;
     border: none;
+}
+.article-header-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* 細かいパーツ系（width・margin・padding） */
@@ -97,7 +104,18 @@ input, select { /* width・margin・height は別途指定 */
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.margin-vertical-50 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 .margin-horizontal-auto {
     margin-left: auto;
     margin-right: auto;
+}
+.margin-horizontal-left-auto {
+    margin-left: auto;
+}
+
+.text-align-center {
+    text-align: center;
 }

@@ -18,10 +18,7 @@ function handleFile(imgFIle) {
         const img = document.createElement('img');
         img.src = e.target.result;
         img.alt = 'Uploaded Image';
-        img.style.objectFit = 'cover';
-        img.style.width = '100%';
-        img.style.height = '100%';
-        dropArea.appendChild(img);
+        img.setAttribute('class', 'article-header-img');
         dropArea.querySelector('.img-form-message').style.display = 'none';
     }
 
