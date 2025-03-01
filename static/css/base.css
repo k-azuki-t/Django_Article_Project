@@ -1,6 +1,6 @@
 /* base.html style */
 body {
-    font-size: clamp(15px, 2vw, 20px);
+    font-size: clamp(13px, 2vw, 20px);
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: bold;
     color: #404040;

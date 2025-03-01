@@ -19,6 +19,7 @@ function handleFile(imgFIle) {
         img.src = e.target.result;
         img.alt = 'Uploaded Image';
         img.setAttribute('class', 'article-header-img');
+        dropArea.appendChild(img);
         dropArea.querySelector('.img-form-message').style.display = 'none';
     }
 
