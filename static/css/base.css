@@ -2,7 +2,7 @@
 body {
     font-size: clamp(13px, 1.8vw, 20px);
     font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #404040;
     background-color: rgb(220, 220, 220);
     margin: 0;

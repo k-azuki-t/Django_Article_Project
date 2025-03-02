@@ -37,9 +37,11 @@
     justify-content: center;
     padding-left: 1.5vw;
     font-size: clamp(14px, 1.5vw, 25px);
+    font-weight: bold;
 }
 .article-sub-info-container {
     height: 30%;
+    font-weight: bold;
     justify-content: end !important;
 }
 .article-sub-info-container i {

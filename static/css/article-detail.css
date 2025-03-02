@@ -15,6 +15,7 @@ p img {
 }
 
 .article-sub-info {
+    font-weight: bold;
     width: clamp(130px, 20%, 200px);
 }
 

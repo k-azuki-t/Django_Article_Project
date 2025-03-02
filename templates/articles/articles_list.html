@@ -28,7 +28,7 @@
                     <div class="width-50">
                         <i class="bi bi-heart"></i>
                         <select name="favorite" {% if not user.is_authenticated %} disabled {% endif %}>
-                            <option value="">全ての記事</option>
+                            <option value="">すべての記事</option>
                             <option value="true" {% if request.GET.favorite == 'true' %}selected{% endif %}>お気に入りのみ</option>
                             <option value="false" {% if request.GET.favorite == 'false' %}selected{% endif %}>お気に入り以外</option>
                         </select>

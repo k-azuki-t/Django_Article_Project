@@ -39,6 +39,16 @@
 .icons-with-link i:hover {
     transform: rotate(15deg);
 }
+.list-no-marker {
+    list-style-type: none;
+}
+
+.carrer-list {
+    border-left: solid 2px rgb(93, 93, 93)
+}
+.carrer-list ul {
+    margin: 0;
+}
 
 
 @media screen and (max-width:700px) {
