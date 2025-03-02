@@ -1,8 +1,7 @@
 /* about_kurage.html */
 .icons {
     width: 80%;
-    height: 250px;
-    margin: 40px auto;
+    height: 1000px;
     border-radius: 10px;
     background-color: #fffefe;
     display: flex;
@@ -12,6 +11,7 @@
 }
 .admin-icon img {
     border-radius: 50%;
+    display: block;
     width: clamp(80px, 10vw, 200px);
     height: clamp(80px, 10vw, 200px);
 }
