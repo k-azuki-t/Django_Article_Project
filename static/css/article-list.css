@@ -41,8 +41,9 @@
 }
 .article-sub-info-container {
     height: 30%;
-    /* font-weight: bold; */
+    font-weight: bold;
     justify-content: end !important;
+    font-size: clamp(11px, 1.1vw, 28px);
 }
 .article-sub-info-container i {
     padding-right: 0.2vw;
