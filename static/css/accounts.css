@@ -1,0 +1,113 @@
+/* favorite article, recent article etc... */
+.articles {
+    width: 80%;
+    margin: 0 auto;
+}
+.category-title {
+    font-weight: bold;
+    color: #575757;
+    font-size: 25px;
+}
+
+.account-form {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* vertical */
+}
+.account-form form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.account-form .input-title {
+    font-size: clamp(20px, 2vw, 25px);
+    /* font-weight: bold; */
+    width: 100%;
+    color: #575757;
+}
+.account-form .input-element {
+    margin:40px 0;
+}
+.account-form input {
+    width: 100%;
+    height: 30px;
+    margin: 10px auto;
+    font-size: clamp(15px, 2vw, 20px);
+    text-align: center;
+}
+.account-form button {
+    margin: 40px auto; /* combination with parent-element's flex-direction & align-items, this button  */
+    width: 50%;
+}
+
+
+/* accounts/profile.html */
+.account-control-pannel {
+    width: 80%;
+    height: 380px;
+    margin: 40px auto;
+    border-radius: 10px;
+    background-color: #fffefe;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-info {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.account-info .account-icon i {
+    font-size: 70px;
+}
+.account-info .account-name {
+    font-size: 25px;
+    font-weight: bold;
+    color: #575757;
+}
+.account-info .account-mail {
+    font-size: 15px;
+    font-weight: bold;
+    color: #575757;
+}
+
+.account-control-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+}
+.account-control-buttons div {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 15px 0;
+}
+.account-control-buttons form {
+    width: 100%;
+    /* margin: 10px auto; */
+}
+.account-control-buttons button{
+    width: 80%;
+    margin: 0 auto;
+}
+.account-control-buttons .button-name {
+    width: 80%;
+    display: inline-block;
+    /* margin: 10px auto; */
+}
+@media screen and (max-width:900px) {
+    .account-control-pannel {
+        flex-direction: column !important;
+        justify-content: center;
+    }
+    .account-control-buttons {
+        width: 80%;
+    }
+}
+/* accounts/profile.html end */

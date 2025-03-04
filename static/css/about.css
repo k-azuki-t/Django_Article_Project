@@ -1,0 +1,65 @@
+/* about_kurage.html */
+.icons {
+    width: 80%;
+    height: 1000px;
+    border-radius: 10px;
+    background-color: #fffefe;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.admin-icon img {
+    border-radius: 50%;
+    display: block;
+    width: clamp(80px, 10vw, 200px);
+    height: clamp(80px, 10vw, 200px);
+}
+.admin-name {
+    margin: 0 auto;
+    font-size: 25px;
+    font-weight: bold;
+    color: #575757;
+}
+.icons-with-link {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.icons-with-link div {
+    margin: 0 auto;
+}
+.icons-with-link i {
+    font-size: clamp(40px, 3.5vw, 150px);
+    color: #575757;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+.icons-with-link i:hover {
+    transform: rotate(15deg);
+}
+.list-no-marker {
+    list-style-type: none;
+}
+
+.carrer-list {
+    border-left: solid 2px rgb(93, 93, 93)
+}
+.carrer-list ul {
+    margin: 0;
+}
+
+
+@media screen and (max-width:700px) {
+    .icons {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: center; */
+        height: 200px;
+    }
+    .icons-with-link {
+        width: 100% !important;
+    }
+}

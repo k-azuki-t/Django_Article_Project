@@ -8,45 +8,65 @@
         記事一覧
     </div>
 
-    <form method="get" action="">
-        <input type="text" name="q" placeholder="キーワードで検索" value="{{ request.GET.q }}">
-        <select name="category">
-            <option value="">すべてのカテゴリ</option>
-            {% for code, label in categories %}
-            <option value="{{ code }}" {% if request.GET.category == code %}selected{% endif %}>{{ label }}</option>
-            {% endfor %}
-            <!-- 他のカテゴリも追加 -->
-        </select>
-        <input type="checkbox" name="favorite" {% if request.GET.favorite %}checked{% endif %}>お気に入り
-        <button type="submit"><i class="bi bi-search"></i>search</button>
+    <form method="get" action="" class="search-form width-80 margin-horizontal-auto">
+        <div class="container-flex-row search-form-input-container width-100">
+            <div class="container-flex-column width-80">
+                <div class="width-100 margin-vertical-20">
+                    <i class="bi bi-chat-square-text"></i>
+                    <input type="text" name="q" placeholder="キーワードで検索..." value="{{ request.GET.q }}">
+                </div>
+                <div class="container-flex-row width-100 margin-vertical-20">
+                    <div class="width-50">
+                        <i class="bi bi-box"></i>
+                        <select name="category">
+                            <option value="">すべてのカテゴリ</option>
+                            {% for code, label in categories %}
+                            <option value="{{ code }}" {% if request.GET.category == code %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="width-50">
+                        <i class="bi bi-heart"></i>
+                        <select name="favorite" {% if not user.is_authenticated %} disabled {% endif %}>
+                            <option value="">すべての記事</option>
+                            <option value="true" {% if request.GET.favorite == 'true' %}selected{% endif %}>お気に入りのみ</option>
+                            <option value="false" {% if request.GET.favorite == 'false' %}selected{% endif %}>お気に入り以外</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="button post-data-button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
     </form>
 
-    <div style="margin: 20px auto; width: 80%;">
+    <div class="margin-vertical-20 margin-horizontal-auto width-80">
         {% for article in object_list %}
-            <div style="width: 100%; aspect-ratio: 20 / 3; display: flex; flex-direction: row; margin: 20px 0; font-size: clamp(5px, 1.2vw, 3rem); background-color: aliceblue; cursor: pointer;" onclick="moveToDetailPage('{{article.pk}}')">
-                <div style="width: 30%;">
-                    <img src="{{ article.header_img_url.url }}" alt="" style="object-fit: cover; width: 100%; height:100%;">
+            <div class="width-100 margin-vertical-20 margin-horizontal-auto container-flex-row item-container article-info-container" onclick="moveToDetailPage('{{article.pk}}')">
+                <div class="width-30">
+                    <img class="article-header-img" src="{{ article.header_img_url.url }}" alt="">
                 </div>
-                <div style="display: flex; flex-direction: column; width: 70%;">
-                    <div style="height: 70%; display: flex; align-items: center; padding-left: 1.5vw; font-size: 1.5vw;">
+                <div class="container-flex-column width-70">
+                    <div class="article-title-container container-flex-column">
                         {{ article.title|truncatewords:25 }}
                     </div>
-                    <div style="height: 30%; display: flex; flex-direction: row; justify-content: end">
-                        <div style="padding: 10px; display: flex; align-items: center;">
-                            <i class="bi bi-box" style="padding-right: 0.2vw;"></i>
+                    <div class="container-flex-row article-sub-info-container">
+                        <div class="container-flex-row">
+                            <i class="bi bi-box"></i>
                             {{ article.get_category_display }}
                         </div>
-                        <div style="padding: 10px; display: flex; align-items: center;">
-                            <i class="bi bi-clock" style="padding-right: 0.2vw;"></i>
+                        <div class="container-flex-row">
+                            <i class="bi bi-clock"></i>
                             {{ article.created_at | date:"Y-m-d" }}
                         </div>
-                        <div style="padding: 10px; display: flex; align-items: center;">
-                            <i class="bi bi-eye" style="padding-right: 0.2vw;"></i>
+                        <div class="container-flex-row">
+                            <i class="bi bi-eye"></i>
                             {{ article.viewed_count }} views
                         </div>
                     </div>
                 </div>
-                <a href="{% url 'articles:detail' article.pk %}" style="display: none;" id="{{article.pk}}"></a>
+                <a href="{% url 'articles:detail' article.pk %}" id="{{article.pk}}"></a>
             </div>
         {% endfor %}
     </div>

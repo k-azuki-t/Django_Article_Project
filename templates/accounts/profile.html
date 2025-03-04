@@ -29,7 +29,6 @@
             </div>
 
             <div class="account-mail">
-                mail: 
                 {% if user.is_authenticated %}
                     {{ user.email }}
                 {% else %}
@@ -44,35 +43,50 @@
             {% if user.is_authenticated %}
             <form action="{% url 'accounts:profile_change' %}" method="get">
                 <!-- {% csrf_token %} -->
-                <div class="account-control-button">
-                    <button>ユーザー情報変更</button>
+                <div>
+                    <button class="button">
+                        <i class="bi bi-gear"></i>
+                        <span class="button-name">ユーザー情報変更</span>
+                    </button>
                 </div>
             </form>
 
             <form action="{% url 'accounts:logout' %}" method="post">
                 {% csrf_token %}
                 <div>
-                    <button>ログアウト</button>
+                    <button class="button">
+                        <i class="bi bi-door-open"></i>
+                        <span class="button-name">ログアウト</span>
+                    </button>
                 </div>
             </form>
 
             <form action="">
                 {% csrf_token %}
                 <div>
-                    <button>アカウント削除</button>
+                    <button class="button">
+                        <i class="bi bi-person-x"></i>
+                        <span class="button-name">アカウント削除</span>
+                    </button>
                 </div>
             </form>
             {% else %}
             <form action="{% url 'accounts:login' %}">
-                <div class="account-control-button">
-                    <button>ログイン</button>
+                <div>
+                    <button class="button">
+                        <i class="bi bi-door-closed"></i>
+                        <span class="button-name">ログイン</span>
+                    </button>
                 </div>
             </form>
 
             <form action="{% url 'accounts:signup' %}">
 
                 <div>
-                    <button>アカウント登録</button>
+                    <button class="button">
+                        <i class="bi bi-person-plus"></i>
+                        <span class="button-name">アカウント登録</span>
+                    </button>
                 </div>
             </form>
             {% endif %}
@@ -89,8 +103,12 @@
         </div>
     </div>
 
-    {% for message in messages %}
-      {{ message }}
-    {% endfor %}
+    {% if messages %}
+    <div class="message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
 {% endblock %}

@@ -27,25 +27,24 @@
             </div>
         </div>
         
-        <button type="submit">変更</button>
+        <button type="submit" class="button post-data-button">変更</button>
 
     </form>
 </div>
 
 {% if form.non_field_errors %}
-    <div class="error-message">
+    <div class="error-message message">
         予期せぬエラーが発生しました。
         お手数ですが、管理人までお問い合わせください。
     </div>
 {% elif form.name.errors %}
-    <div class="error-message">
+    <div class="error-message message">
         ユーザー名変更に失敗しました。
         お手数ですが、管理人までお問い合わせください。
-    </div class="error-message">
+    </div class="error-message message">
 {% elif form.email.errors %}
-    <div class="error-message">
+    <div class="error-message message">
         {{ form.email.errors }}
-        入力されたメールアドレスは既に登録されています。
     </div>
 {% endif %}
 

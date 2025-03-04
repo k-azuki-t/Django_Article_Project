@@ -1,0 +1,149 @@
+/* base.html style */
+body {
+    font-size: clamp(13px, 1.8vw, 20px);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    /* font-weight: bold; */
+    color: #404040;
+    background-color: rgb(220, 220, 220);
+    margin: 0;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow-y: none; /* navbarにposition: fixed を適用したくない関係で非表示 */
+}
+
+
+/* side-navbar start */
+.base-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex; /* 参考：https://qiita.com/sinke_123/items/1c2765662e84c37e1562 */
+    flex-direction: row;
+}
+
+.navbar {
+    color: white;
+    width: 300px; /* ユーザビリティの観点から横幅のみ固定 */
+    height: 100vh;
+    max-height: 100vh;
+    min-height: 100vh;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navbar form {
+    width: 100%;
+}
+
+.navbar-header {
+    width: 100%;
+    background-color: #575757;
+    position: relative;
+    text-align: center;
+    padding: 15px 0px;
+}
+.navbar-header button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.navbar-header svg {
+    transition: all 0.3s ease;
+}
+.navbar-header button:hover svg {
+    transform: rotate(15deg);
+}
+
+.navbar-body {
+    width: 100%;
+}
+.navbar-content {
+    width: 100%;
+    position: relative;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navbar-content:hover {
+    background-color: #575757;
+}
+.navbar-content i {
+    position: absolute; /* アイコンにカーソルを当ててクリックしても画面遷移できるよう絶対位置を指定 */
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10%;
+    font-size: 22px;
+    transition: all 0.2s ease;
+}
+.navbar-content:hover i {
+    transform: translateY(-50%) rotate(15deg);
+}
+.navbar-content button {
+    color: white;
+    font-size: 15px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    padding: 9%;
+    width: 100%;
+    cursor: pointer; /* if you write this style on the parent element, a cursor don't change on this child element */
+    text-indent: 10%; /* 文字を右に10px寄せる */
+    transition: all 0.2s ease;
+}
+.navbar-content:hover button {
+    text-indent: 25px;
+}
+/* 開いているページに対応するボタンの色を変更 */
+.navbar-content.active {
+    /* background-color: #ffffff;
+    color: black; */
+    color: aquamarine;
+}
+.navbar-content.active button {
+    color: aquamarine;
+}
+
+.navbar-footer {
+    background-color: #575757;
+    margin-top: auto;
+    width: 100%;
+}
+/* side-navbar end */
+
+.main-content {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative; /* エラーメッセージ用 */
+}
+.main-content::-webkit-scrollbar {
+    width: 8px; /* 横スクロールバーの場合は height に設定 */
+}
+.main-content::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 5px;
+}
+.main-content::-webkit-scrollbar-track {
+    background: transparent;
+    width: 6px;
+    border-radius: 5px;
+}
+/* base.html end */
+
+
+@media screen and (max-width:900px) {
+    .navbar {
+        display: none !important;
+    }
+}

@@ -3,12 +3,26 @@ p {
     width: 100%;
 }
 p img {
-    margin:0 auto;
+    margin: 0 auto;
     max-width: 100%;
+}
+
+.favorite-icon-container {
+    align-items: center;
+    justify-content: center;
+    border-top: 3px solid #979797;
+    padding: 50px 0;
+}
+
+.article-sub-info {
+    font-weight: bold;
+    width: clamp(130px, 20%, 200px);
 }
 
 .bi-suit-heart-fill, .bi-suit-heart {
     cursor: pointer;
+    color: rgb(236, 114, 114);
+    font-size: 60px;
 }
 .bi-suit-heart-fill:active {
     animation: heart 0.5s forwards;
@@ -29,4 +43,8 @@ p img {
     100% {
         transform: scale(1);
     }
+}
+
+#article-id {
+    display: none;
 }

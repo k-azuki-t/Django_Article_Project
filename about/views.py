@@ -8,3 +8,9 @@ class AboutKurageView(TemplateView):
 
 class AboutThisSiteView(TemplateView):
     template_name = 'about/about_this_site.html'
+
+class AboutPrivacyPolicyView(TemplateView):
+    template_name = 'about/about_privacy_policy.html'
+
+class AboutTermsOfUseView(TemplateView):
+    template_name = 'about/about_terms_of_use.html'
