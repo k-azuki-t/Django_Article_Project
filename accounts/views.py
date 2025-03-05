@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import *
@@ -61,17 +61,23 @@ class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 
 # パスワード変更ビュー
-class CustomPasswordChangeView(LoginRequiredMixin, UpdateView):
+class CustomPasswordChangeView(PasswordChangeView):
     model = ServiceUser
     template_name = 'accounts/password_change.html'
-    form_class = CustomPasswordChangeForm
+    # form_class = PasswordChangeForm
     success_url = reverse_lazy('accounts:profile')
     success_message = "パスワード変更が完了しました！"
 
     def get_object(self):
         return self.request.user
+    
+    # def get_form_kwargs(self):
+    #     """フォームに user を渡す"""
+    #     kwargs = super().get_form_kwargs()
+    #     kwargs['user'] = self.request.user  # user をフォームに追加
+    #     return kwargs
 
-    def get_initial(self):
-        initial = super().get_initial()
-        initial['password'] = self.request.user.password
-        return initial
+    # def get_initial(self):
+    #     initial = super().get_initial()
+    #     initial['password'] = self.request.user.password
+    #     return initial

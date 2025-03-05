@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import ServiceUser
 from django.core.exceptions import ValidationError
 
@@ -63,16 +63,20 @@ class CustomUserChangeForm(UserChangeForm):
         return email
 
 
-class CustomPasswordChangeForm(PasswordChangeForm):
-    class Meta:
-        model = ServiceUser
-        fields = ['password']  # 必要なフィールドを指定
-        widgets = {
-        'password': forms.PasswordInput(),
-        }
+# class CustomPasswordChangeForm(PasswordChangeForm):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
 
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        if len(password) < 8:
-            raise ValidationError('パスワードは8文字以上で設定してください。')
-        return password
+    # class Meta:
+    #     model = ServiceUser
+        # fields = ['password']  # 必要なフィールドを指定
+        # widgets = {
+        # 'password': forms.PasswordInput(),
+        # }
+        
+
+    # def clean_password(self):
+    #     password = self.cleaned_data.get('password')
+    #     if len(password) < 8:
+    #         raise ValidationError('パスワードは8文字以上で設定してください。')
+    #     return password

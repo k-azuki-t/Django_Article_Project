@@ -30,6 +30,9 @@
         <button type="submit" class="button post-data-button">変更</button>
 
     </form>
+
+    <a href="{% url 'accounts:password_change' %}">パスワード変更はこちら</a>
+
 </div>
 
 {% if form.non_field_errors %}
