@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.decorators import method_decorator
 from .forms import *
 from .models import ServiceUser
 
@@ -14,8 +16,8 @@ class ProfileView(TemplateView):
 
 
 # アカウント登録ビュー
-class SignUpView(CreateView):
-    template_name = 'accounts/signup.html'
+class RegistrationView(CreateView):
+    template_name = 'accounts/registration.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('accounts:login')
     success_message = "アカウント登録が完了しました！"
@@ -66,7 +68,7 @@ class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'accounts/password_change.html'
     # form_class = PasswordChangeForm
     success_url = reverse_lazy('accounts:profile')
-    success_message = "パスワード変更が完了しました！"
+    success_message = 'パスワード変更が完了しました！'
 
     def get_object(self):
         return self.request.user
@@ -81,3 +83,13 @@ class CustomPasswordChangeView(PasswordChangeView):
     #     initial = super().get_initial()
     #     initial['password'] = self.request.user.password
     #     return initial
+
+@method_decorator(login_required, name="dispatch")
+class CustomDeleteView(DeleteView):
+    model = ServiceUser
+    template_name = 'accounts/withdraw.html'
+    success_url = reverse_lazy('accounts:profile')
+    success_message = '退会処理が完了しました。またのご利用お待ちしています。'
+
+    def get_object(self):
+        return self.request.user

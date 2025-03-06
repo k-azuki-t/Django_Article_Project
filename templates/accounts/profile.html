@@ -61,12 +61,12 @@
                 </div>
             </form>
 
-            <form action="">
+            <form action="{% url 'accounts:withdraw' %}">
                 {% csrf_token %}
                 <div>
                     <button class="button">
                         <i class="bi bi-person-x"></i>
-                        <span class="button-name">アカウント削除</span>
+                        <span class="button-name">退会</span>
                     </button>
                 </div>
             </form>
