@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -14,7 +15,7 @@ class ProfileView(TemplateView):
 
 
 # アカウント登録ビュー
-class RegistrationView(CreateView):
+class RegistrationView(SuccessMessageMixin, CreateView):
     template_name = 'accounts/registration.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('accounts:login')
@@ -26,18 +27,19 @@ class RegistrationView(CreateView):
 
 
 # ログインビュー
-class CustomLoginView(LoginView):
+class CustomLoginView(SuccessMessageMixin, LoginView):
     template_name = 'accounts/login.html'
+    success_message = 'ログインしました！'
 
 
 # ログアウトビュー
 class CustomLogutView(LogoutView):
     template_name = 'accounts/profile.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['messages'] = 'ログアウトしました。'
-        return context
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "ログアウトしました!")
+        return super().post(request, *args, **kwargs)
+
 
 
 # ユーザ情報変更ビュー
@@ -61,7 +63,7 @@ class CustomUserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 
 # パスワード変更ビュー
-class CustomPasswordChangeView(PasswordChangeView):
+class CustomPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
     model = ServiceUser
     template_name = 'accounts/password_change.html'
     # form_class = PasswordChangeForm
@@ -86,7 +88,10 @@ class CustomDeleteView(LoginRequiredMixin, DeleteView):
     model = ServiceUser
     template_name = 'accounts/withdraw.html'
     success_url = reverse_lazy('accounts:profile')
-    success_message = '退会処理が完了しました。またのご利用お待ちしています。'
 
     def get_object(self):
         return self.request.user
+    
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "退会処理が完了しました。<br>またのご利用お待ちしています!")
+        return super().post(request, *args, **kwargs)
