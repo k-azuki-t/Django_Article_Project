@@ -4,9 +4,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.decorators import method_decorator
 from .forms import *
 from .models import ServiceUser
 
@@ -84,8 +82,7 @@ class CustomPasswordChangeView(PasswordChangeView):
     #     initial['password'] = self.request.user.password
     #     return initial
 
-@method_decorator(login_required, name="dispatch")
-class CustomDeleteView(DeleteView):
+class CustomDeleteView(LoginRequiredMixin, DeleteView):
     model = ServiceUser
     template_name = 'accounts/withdraw.html'
     success_url = reverse_lazy('accounts:profile')
