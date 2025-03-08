@@ -35,21 +35,30 @@
 
 </div>
 
-{% if form.non_field_errors %}
-    <div class="error-message message">
-        予期せぬエラーが発生しました。
-        お手数ですが、管理人までお問い合わせください。
-    </div>
-{% elif form.name.errors %}
-    <div class="error-message message">
-        ユーザー名変更に失敗しました。
-        お手数ですが、管理人までお問い合わせください。
-    </div class="error-message message">
-{% elif form.email.errors %}
-    <div class="error-message message">
-        {{ form.email.errors }}
-    </div>
-{% endif %}
+<div class="width-100 container-flex-column message-container">
+    {% if form.errors %}
+    <div class="item-container message error-message">
 
+        {% if form.non_field_errors or form.name.errors %}
+        <div class="width-80 text-align-center">
+            予期せぬエラーが発生しました。
+            お手数ですが、管理人までお問い合わせください。
+        </div>
+        {% endif %}
+
+        {% for error in form.name.errors %}
+        <div class="width-80 text-align-center">
+            {{ error }}     
+        </div>
+        {% endfor %}
+
+        {% for error in form.email.errors %}
+        <div class="width-80 text-align-center">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
 
 {% endblock %}

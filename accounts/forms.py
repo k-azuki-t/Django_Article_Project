@@ -1,10 +1,19 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import ServiceUser
-from django.core.exceptions import ValidationError
 
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth import password_validation
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django import forms
+from .models import ServiceUser
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    error_messages = {
+        "invalid_login": _(
+            "正しい%(username)sとパスワードを入力してください。 "
+        ),
+        "inactive": _("This account is inactive."),
+    }
 
 
 class CustomUserCreationForm(UserCreationForm):

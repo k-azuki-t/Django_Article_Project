@@ -10,65 +10,33 @@
     <form method="post">
         
         {% csrf_token %}
-
-        <!-- <div class="input-elements"> -->
-            <div class="input-element">
-                <div class="input-title">
-                    ユーザー名
-                </div>
-                {{ form.name }}
+        <div class="input-element">
+            <div class="input-title">
+                ユーザー名
             </div>
-    
-            <div class="input-element">
-                <div class="input-title">
-                    メールアドレス
-                </div>
-                {{ form.email }}
-            </div>
-    
-            <div class="input-element">
-                <div class="input-title">
-                    パスワード
-                </div>
-                {{ form.password1 }}
-            </div>
-    
-            <div class="input-element">
-                <div class="input-title">
-                    パスワード（確認用）
-                </div>
-                {{ form.password2 }}
-            </div>
-        <!-- </div> -->
-
-        {% if form.errors %}
-        <div class="error-message">
-            {% if form.name.errors %}
-            <div>
-                ユーザー名登録に失敗しました。
-                お手数ですが、管理人までお問い合わせください。
-            </div>
-            {% endif %}
-
-            {% for error in form.email.errors %}
-            <div>
-                {{ error }}
-            </div>
-            {% endfor %}
-
-            {% for error in form.password1.errors %}
-            <div>
-                {{ error }}     
-            </div>
-            {% endfor %}
-
-            {% for error in form.password2.errors %}
-            <div>
-                {{ error }}
-            </div>
-            {% endfor %}
+            {{ form.name }}
         </div>
-        {% endif %}
+
+        <div class="input-element">
+            <div class="input-title">
+                メールアドレス
+            </div>
+            {{ form.email }}
+        </div>
+
+        <div class="input-element">
+            <div class="input-title">
+                パスワード
+            </div>
+            {{ form.password1 }}
+        </div>
+
+        <div class="input-element">
+            <div class="input-title">
+                パスワード（確認用）
+            </div>
+            {{ form.password2 }}
+        </div>
 
         <div>
             Your password can’t be too similar to your other personal information.
@@ -80,6 +48,37 @@
         <button type="submit" class="button post-data-button">登録</button>
 
     </form>
+</div>
+
+<div class="width-100 container-flex-column message-container">
+    {% if form.errors %}
+        <div class="item-container message error-message">
+            {% if form.name.errors %}
+            <div class="width-80 text-align-center">
+                ユーザー名登録に失敗しました。
+                お手数ですが、管理人までお問い合わせください。
+            </div>
+            {% endif %}
+
+            {% for error in form.email.errors %}
+            <div class="width-80 text-align-center">
+                {{ error }}
+            </div>
+            {% endfor %}
+
+            {% for error in form.password1.errors %}
+            <div class="width-80 text-align-center">
+                {{ error }}     
+            </div>
+            {% endfor %}
+
+            {% for error in form.password2.errors %}
+            <div class="width-80 text-align-center">
+                {{ error }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}

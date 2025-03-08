@@ -30,18 +30,42 @@
         <button type="submit" class="button post-data-button">ログイン</button>
 
     </form>
+
 </div>
 
-{% if form.non_field_errors %}
-<div class="error-message">
-    <div>
-        メールアドレス または パスワード が間違っています
-    </div>
-</div>
-{% endif %}
+<div class="width-100 container-flex-column message-container">
+    {% if form.errors %}
+        <div class="item-container message error-message">
+            <div style="position: absolute; width: 30px; height: 30px; border-radius: 50%; top: 10%; right: 5%; background-color: aliceblue;"></div>
+        {% for error in form.username.errors %}
+            <div class="width-80 text-align-center">
+                {{ error }}
+            </div>
+        {% endfor %}
+        {% for error in form.password.errors %}
+            <div class="width-80 text-align-center">
+                {{ error }}
+            </div>
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="width-80 text-align-center">
+                {{ error|linebreaksbr }}
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
 
-{% for message in messages %}
-      {{ message }}
-{% endfor %}
+    <!-- アカウント登録用 -->
+    {% if messages %}
+        <div class="item-container message" style="position: relative;">
+            <div style="position: absolute; width: 5%; border-radius: 100%; margin-left: auto; background-color: aliceblue;"></div>
+            {% for message in messages %}
+                <div class="width-80 text-align-center">
+                    {{ message|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 
 {% endblock %}

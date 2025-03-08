@@ -29,6 +29,7 @@ class RegistrationView(SuccessMessageMixin, CreateView):
 # ログインビュー
 class CustomLoginView(SuccessMessageMixin, LoginView):
     template_name = 'accounts/login.html'
+    form_class = CustomAuthenticationForm
     success_message = 'ログインしました！'
 
 
@@ -73,16 +74,6 @@ class CustomPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
     def get_object(self):
         return self.request.user
     
-    # def get_form_kwargs(self):
-    #     """フォームに user を渡す"""
-    #     kwargs = super().get_form_kwargs()
-    #     kwargs['user'] = self.request.user  # user をフォームに追加
-    #     return kwargs
-
-    # def get_initial(self):
-    #     initial = super().get_initial()
-    #     initial['password'] = self.request.user.password
-    #     return initial
 
 class CustomDeleteView(LoginRequiredMixin, DeleteView):
     model = ServiceUser

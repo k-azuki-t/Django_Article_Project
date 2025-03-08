@@ -42,6 +42,9 @@
     width: 50%;
 }
 
+.message-container {
+    align-items: center;
+}
 
 /* accounts/profile.html */
 .account-control-pannel {
