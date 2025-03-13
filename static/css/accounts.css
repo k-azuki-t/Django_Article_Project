@@ -17,15 +17,16 @@
     align-items: center; /* vertical */
 }
 .account-form form {
-    width: 40%;
+    width: clamp(40%, 500px, 80%);
     display: flex;
     flex-direction: column;
 }
 .account-form .input-title {
     font-size: clamp(20px, 2vw, 25px);
-    /* font-weight: bold; */
+    font-weight: bold;
     width: 100%;
     color: #575757;
+    margin-bottom: 10px;
 }
 .account-form .input-element {
     margin:40px 0;
@@ -42,6 +43,9 @@
     width: 50%;
 }
 
+.message-container {
+    align-items: center;
+}
 
 /* accounts/profile.html */
 .account-control-pannel {
@@ -95,6 +99,7 @@
 .account-control-buttons button{
     width: 80%;
     margin: 0 auto;
+    color: #404040;
 }
 .account-control-buttons .button-name {
     width: 80%;
@@ -111,3 +116,22 @@
     }
 }
 /* accounts/profile.html end */
+
+.circle-container {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+}
+.time-circle {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: 3.5s dash linear forwards;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+@keyframes dash{
+  to{
+    stroke-dashoffset: 0;
+  }
+}
