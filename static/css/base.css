@@ -83,7 +83,7 @@ body {
     transition: all 0.2s ease;
 }
 .navbar-content:hover i {
-    transform: translateY(-50%) rotate(15deg);
+    left: 11%;
 }
 .navbar-content button {
     color: white;
@@ -105,16 +105,20 @@ body {
 .navbar-content.active {
     /* background-color: #ffffff;
     color: black; */
-    color: aquamarine;
+    color: aquamarine !important;
 }
 .navbar-content.active button {
-    color: aquamarine;
+    color: aquamarine !important;
 }
 
 .navbar-footer {
     background-color: #575757;
     margin-top: auto;
     width: 100%;
+}
+.navbar-footer .navbar-content:hover {
+    background-color: rgb(154, 154, 154);
+    color: #404040;
 }
 /* side-navbar end */
 

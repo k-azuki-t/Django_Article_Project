@@ -99,6 +99,7 @@
 .account-control-buttons button{
     width: 80%;
     margin: 0 auto;
+    color: #404040;
 }
 .account-control-buttons .button-name {
     width: 80%;

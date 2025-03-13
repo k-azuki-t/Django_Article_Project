@@ -100,6 +100,7 @@
 }
 .button:hover {
     background-color: #909090;
+    color: rgb(255, 255, 255);
 }
 .post-data-button {
     background-color: rgb(71, 71, 71);
