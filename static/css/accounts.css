@@ -23,9 +23,10 @@
 }
 .account-form .input-title {
     font-size: clamp(20px, 2vw, 25px);
-    /* font-weight: bold; */
+    font-weight: bold;
     width: 100%;
     color: #575757;
+    margin-bottom: 10px;
 }
 .account-form .input-element {
     margin:40px 0;

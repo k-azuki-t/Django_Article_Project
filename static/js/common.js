@@ -1,4 +1,5 @@
-addEventListener('DOMContentLoaded', event => {
+// メッセージをDOM上から消す処理
+addEventListener('DOMContentLoaded', () => {
 
     const message = document.querySelector('.message');
     console.log(message)
