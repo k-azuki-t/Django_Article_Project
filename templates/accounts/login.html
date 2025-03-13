@@ -36,7 +36,11 @@
 <div class="width-100 container-flex-column message-container">
     {% if form.errors %}
         <div class="item-container message error-message">
-            <div style="position: absolute; width: 30px; height: 30px; border-radius: 50%; top: 10%; right: 5%; background-color: aliceblue;"></div>
+            <div class="circle-container">
+                <svg viewBox="0 0 50 50" width="50px" height="50px">
+                    <circle cx="25" cy="25" r="15" fill="transparent" stroke="#fff" stroke-width="6" class="time-circle"></circle>
+                </svg>
+            </div>
         {% for error in form.username.errors %}
             <div class="width-80 text-align-center">
                 {{ error }}
@@ -58,7 +62,11 @@
     <!-- アカウント登録用 -->
     {% if messages %}
         <div class="item-container message" style="position: relative;">
-            <div style="position: absolute; width: 5%; border-radius: 100%; margin-left: auto; background-color: aliceblue;"></div>
+            <div class="circle-container">
+                <svg viewBox="0 0 50 50" width="50px" height="50px">
+                    <circle cx="25" cy="25" r="15" fill="transparent" stroke="#fff" stroke-width="6" class="time-circle"></circle>
+                </svg>
+            </div>
             {% for message in messages %}
                 <div class="width-80 text-align-center">
                     {{ message|safe }}

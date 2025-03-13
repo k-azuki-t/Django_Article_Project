@@ -47,6 +47,13 @@
 <div class="width-100 container-flex-column message-container">
     {% if form.errors %}
         <div class="item-container message error-message">
+
+            <div class="circle-container">
+                <svg viewBox="0 0 50 50" width="50px" height="50px">
+                    <circle cx="25" cy="25" r="15" fill="transparent" stroke="#fff" stroke-width="6" class="time-circle"></circle>
+                </svg>
+            </div>
+
             {% if form.name.errors %}
             <div class="width-80 text-align-center">
                 ユーザー名登録に失敗しました。
