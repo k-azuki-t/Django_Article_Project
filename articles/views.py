@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from .forms import ContentForm
 from django.urls import reverse_lazy
@@ -69,7 +69,7 @@ class ArticleListView(ListView):
             )
         if category:
             queryset = queryset.filter(category=category)
-        if favorite:
+        if favorite and user.id != None:
             favorited_article = Favorite.objects.filter(user=user).values('article_id')
             if favorite == 'true':
                 queryset = queryset.filter(article_id__in=favorited_article)
