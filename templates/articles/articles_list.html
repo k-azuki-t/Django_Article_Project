@@ -100,13 +100,11 @@
         </div>
     </div>
 
-    <!-- <div class="content-container"> -->
-        {% if user.is_authenticated %}
-        <div class="article-edit-icon">
-            <a href="{% url 'articles:edit' %}"><i class="bi bi-pencil-square"></i></a>
-        </div>
-        {% endif %}
-    <!-- </div> -->
+    {% if user.is_creator %}
+    <div class="article-edit-icon">
+        <a href="{% url 'articles:edit' %}"><i class="bi bi-pencil-square"></i></a>
+    </div>
+    {% endif %}
 
     <script>
         function moveToDetailPage(articleID) {

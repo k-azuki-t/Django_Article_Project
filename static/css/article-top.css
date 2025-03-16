@@ -1,14 +1,15 @@
-/* .content-container {
-    display: flex;
-    height: 100%;
-    width: 100%;
-} */
 .article-edit-icon {
     position: fixed;
-    margin-left: 75%;
-    margin-top: 40%;
+    left: 90%;
+    top: 80%;
 }
 .article-edit-icon i {
     font-size: 50px;
     color: black;
+}
+
+@media screen and (max-width:900px) {
+    .article-edit-icon {
+        display: none;
+    }
 }
