@@ -8,29 +8,46 @@ from django.utils import timezone
 from datetime import timedelta
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 # Create your views here.
 
-class ArticleEditView(CreateView):
+class ArticleEditView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Article
     template_name = 'articles/articles_edit.html'
     form_class = ContentForm
     success_url = reverse_lazy('articles:top')
 
+    def test_func(self):
+        user = self.request.user
+        return user.is_creator
+
+    def handle_no_permission(self):
+        return redirect('articles:top')
+
     # フォームの初期化時に author を設定
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)
-        # フォームの初期化時に author を設定
         form.instance.author = self.request.user
         return form
     
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
     template_name = 'articles/articles_update.html'
     form_class = ContentForm
     success_url = reverse_lazy('articles:top')
+
+    def test_func(self):
+        user = self.request.user
+        article = self.get_object()
+        is_author_of_this_article = user == article.author
+
+        return is_author_of_this_article
+
+    def handle_no_permission(self):
+        return redirect('articles:top')
 
 
 class ArticleDetailView(DetailView):
@@ -44,6 +61,7 @@ class ArticleDetailView(DetailView):
             article = self.get_object()  # 表示対象の記事
             is_favorited = Favorite.objects.filter(user=user, article=article).exists()
             is_author_of_this_article = user == article.author
+
             context["is_favorited"] = is_favorited
             context["is_author_of_this_article"] = is_author_of_this_article
         else:
