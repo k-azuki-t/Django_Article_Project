@@ -7,6 +7,7 @@ from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from datetime import timedelta
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -61,6 +62,7 @@ class ArticleListView(ListView):
         query = self.request.GET.get('q')  # クエリパラメータから検索ワードを取得
         category = self.request.GET.get('category')  # クエリパラメータからカテゴリを取得
         favorite = self.request.GET.get('favorite')
+        page = self.request.GET.get('page', '1')
 
         if query:
             queryset = queryset.filter(
@@ -69,14 +71,17 @@ class ArticleListView(ListView):
             )
         if category:
             queryset = queryset.filter(category=category)
-        if favorite and user.id != None:
+        if favorite and user.user_id != None:
             favorited_article = Favorite.objects.filter(user=user).values('article_id')
             if favorite == 'true':
                 queryset = queryset.filter(article_id__in=favorited_article)
             elif favorite == 'false':
                 queryset = queryset.exclude(article_id__in=favorited_article)
 
-        return queryset
+        queryset = Paginator(queryset, 15)
+        display_articles = queryset.page(int(page))
+
+        return display_articles
 
 
 
