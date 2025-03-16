@@ -103,7 +103,7 @@ class ArticleListView(ListView):
             elif favorite == 'false':
                 queryset = queryset.exclude(article_id__in=favorited_article)
 
-        queryset = Paginator(queryset, 15)
+        queryset = Paginator(queryset, 10)
         display_articles = queryset.page(int(page))
 
         return display_articles

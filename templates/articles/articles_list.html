@@ -21,7 +21,7 @@
                         <select name="category">
                             <option value="">すべてのカテゴリ</option>
                             {% for code, label in categories %}
-                            <option value="{{ code }}" {% if request.GET.category == code %}selected{% endif %}>{{ label }}</option>
+                            <option value="{{ code }}" {% if request.GET.category == code %} selected {% endif %}>{{ label }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -29,8 +29,8 @@
                         <i class="bi bi-heart"></i>
                         <select name="favorite" {% if not user.is_authenticated %} disabled {% endif %}>
                             <option value="">すべての記事</option>
-                            <option value="true" {% if request.GET.favorite == 'true' and user.is_authenticated %}selected{% endif %}>お気に入りのみ</option>
-                            <option value="false" {% if request.GET.favorite == 'false' and user.is_authenticated %}selected{% endif %}>お気に入り以外</option>
+                            <option value="true" {% if request.GET.favorite == 'true' and user.is_authenticated %} selected {% endif %}>お気に入りのみ</option>
+                            <option value="false" {% if request.GET.favorite == 'false' and user.is_authenticated %} selected {% endif %}>お気に入り以外</option>
                         </select>
                     </div>
                 </div>
@@ -71,6 +71,7 @@
         {% endfor %}
     </div>
 
+    {% if object_list.paginator.num_pages != 1 %}
     <div class="margin-vertical-20 margin-horizontal-auto width-80 container-flex-row paginator-container">
 
         <div class="margin-horizontal-20">
@@ -99,6 +100,7 @@
             </a>
         </div>
     </div>
+    {% endif %}
 
     {% if user.is_creator %}
     <div class="article-edit-icon">
