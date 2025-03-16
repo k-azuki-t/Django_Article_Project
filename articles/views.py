@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article, Favorite
@@ -25,6 +25,27 @@ class ArticleEditView(CreateView):
         form.instance.author = self.request.user
         return form
     
+
+class ArticleUpdateView(UpdateView):
+    model = Article
+    template_name = 'articles/articles_update.html'
+    form_class = ContentForm
+    success_url = reverse_lazy('articles:top')
+    # success_message = "アカウント情報の変更が完了しました！"
+
+    # Generic detail view CustomUserUpdateView must be called with either an object pk or a slug in the URLconf.
+    # def get_object(self):
+    #     article = Article.objects.get(pk=self.pk)
+    #     return article
+    
+    # def get_initial(self):
+    #     """フォームの初期値を設定"""
+    #     initial = super().get_initial()
+    #     initial['title'] = self.request.user.name
+    #     initial['content'] = self.request.user.email
+    #     initial['category'] = 
+    #     initial['header_img_url']
+    #     return initial
 
 class ArticleDetailView(DetailView):
     model=Article

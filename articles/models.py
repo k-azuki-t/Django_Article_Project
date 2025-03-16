@@ -22,7 +22,7 @@ class Article(models.Model):
     title          = models.CharField(verbose_name='タイトル', max_length=200)
     category       = models.CharField(verbose_name='カテゴリ', max_length=200, choices=CATEGORY_CHOICES, default='TECH')
     content        = MarkdownxField(verbose_name='コンテンツ')
-    header_img_url = models.FileField(verbose_name='ヘッダー画像格納先', upload_to='header_img/')
+    header_img_url = models.FileField(verbose_name='ヘッダー画像格納先', upload_to='header_img/', blank=True)
     viewed_count   = models.IntegerField(verbose_name='ビュー回数', default=0)
     created_at     = models.DateField(verbose_name='作成日', auto_now_add=True)
     updated_at     = models.DateField(verbose_name='更新日', auto_now=True)
