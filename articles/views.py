@@ -31,21 +31,7 @@ class ArticleUpdateView(UpdateView):
     template_name = 'articles/articles_update.html'
     form_class = ContentForm
     success_url = reverse_lazy('articles:top')
-    # success_message = "アカウント情報の変更が完了しました！"
 
-    # Generic detail view CustomUserUpdateView must be called with either an object pk or a slug in the URLconf.
-    # def get_object(self):
-    #     article = Article.objects.get(pk=self.pk)
-    #     return article
-    
-    # def get_initial(self):
-    #     """フォームの初期値を設定"""
-    #     initial = super().get_initial()
-    #     initial['title'] = self.request.user.name
-    #     initial['content'] = self.request.user.email
-    #     initial['category'] = 
-    #     initial['header_img_url']
-    #     return initial
 
 class ArticleDetailView(DetailView):
     model=Article
@@ -56,10 +42,10 @@ class ArticleDetailView(DetailView):
         if self.request.user.is_authenticated:
             user = self.request.user
             article = self.get_object()  # 表示対象の記事
-            # お気に入り登録されているかをチェック
             is_favorited = Favorite.objects.filter(user=user, article=article).exists()
-            # コンテキストに追加
+            is_author_of_this_article = user == article.author
             context["is_favorited"] = is_favorited
+            context["is_author_of_this_article"] = is_author_of_this_article
         else:
             context["is_favorited"] = False
         return context
