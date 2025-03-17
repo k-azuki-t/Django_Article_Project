@@ -54,7 +54,7 @@
     align-items: center;
 }
 .paginator-container {
-    font-size: clamp(15px, 2.0vw, 20px);
+    font-size: clamp(15px, 3.0vw, 20px);
     font-weight: bold;
     align-items: center;
     justify-content: center;
