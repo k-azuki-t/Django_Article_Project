@@ -34,6 +34,9 @@ class Article(models.Model):
     
     def get_markdownx_content(self):
         return mark_safe(markdownify(self.content))
+    
+    def __str__(self):
+        return self.title
 
 
 class Favorite(models.Model):
