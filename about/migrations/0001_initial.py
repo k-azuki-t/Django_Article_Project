@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='mySkill',
+            name='MySkill',
             fields=[
                 ('skill_id', models.IntegerField(auto_created=True, primary_key=True, serialize=False, verbose_name='プロダクトID')),
                 ('name', models.CharField(max_length=150, verbose_name='スキル名')),

@@ -29,7 +29,7 @@ class MyCareer(models.Model):
         return self.name
 
 
-class mySkill(models.Model):
+class MySkill(models.Model):
     skill_id         = models.AutoField(verbose_name='プロダクトID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='スキル名', max_length=150, null=False)
     category          = models.TextField(verbose_name='スキルカテゴリ', null=False, choices=SKILL_CATEGORY_CHOICES)
@@ -41,6 +41,7 @@ class mySkill(models.Model):
     
     def __str__(self):
         return self.name
+
 
 
 class InterestedDomain(models.Model):

@@ -46,12 +46,12 @@ class Migration(migrations.Migration):
             field=models.TextField(null=True, verbose_name='キャリア内容5'),
         ),
         migrations.AlterField(
-            model_name='myskill',
+            model_name='MySkill',
             name='category',
             field=models.TextField(choices=[('FRONTEND', 'フロントエンド'), ('BACKEND', 'バックエンド'), ('OS/DB', 'OS・DB'), ('INFRASTRUCTURE', 'インフラ'), ('OTHER', 'その他')], verbose_name='スキルカテゴリ'),
         ),
         migrations.AlterField(
-            model_name='myskill',
+            model_name='MySkill',
             name='skill_id',
             field=models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='プロダクトID'),
         ),

@@ -7,8 +7,8 @@ from .models import *
 class myCareerAdmin(admin.ModelAdmin):
     list_display = ('carrer_id', 'name', 'career_started_at', 'career_ended_at',)
 
-@admin.register(mySkill)
-class mySkillAdmin(admin.ModelAdmin):
+@admin.register(MySkill)
+class MySkillAdmin(admin.ModelAdmin):
     list_display = ('skill_id', 'name', 'category',)
 
 @admin.register(InterestedDomain)
