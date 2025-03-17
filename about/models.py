@@ -1,5 +1,13 @@
 from django.db import models
 
+SKILL_CATEGORY_CHOICES = [
+    ('FRONTEND', 'フロントエンド'),
+    ('BACKEND', 'バックエンド'),
+    ('OS/DB', 'OS・DB'),
+    ('INFRASTRUCTURE', 'インフラ'),
+    ('OTHER', 'その他'),
+]
+
 # Create your models here.
 class MyCareer(models.Model):
     carrer_id         = models.IntegerField(verbose_name='プロダクトID', primary_key=True, auto_created=True)
@@ -21,7 +29,7 @@ class MyCareer(models.Model):
 class mySkill(models.Model):
     skill_id         = models.IntegerField(verbose_name='プロダクトID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='スキル名', max_length=150, null=False)
-    category          = models.TextField(verbose_name='スキルカテゴリ', null=False)
+    category          = models.TextField(verbose_name='スキルカテゴリ', null=False, choices=SKILL_CATEGORY_CHOICES)
     created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
