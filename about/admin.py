@@ -15,7 +15,10 @@ class MySkillAdmin(admin.ModelAdmin):
 class InterestedDomainAdmin(admin.ModelAdmin):
     list_display = ('domain_id', 'name',)
 
-Capabilities
 @admin.register(Capabilities)
 class CapabilitiesAdmin(admin.ModelAdmin):
     list_display = ('capability_id', 'name',)
+
+@admin.register(SkillCategory)
+class SkillCategory(admin.ModelAdmin):
+    list_display = ('skill_category_id', 'name',)

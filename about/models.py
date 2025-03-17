@@ -1,13 +1,5 @@
 from django.db import models
 
-SKILL_CATEGORY_CHOICES = [
-    ('FRONTEND', 'フロントエンド'),
-    ('BACKEND', 'バックエンド'),
-    ('OS/DB', 'OS・DB'),
-    ('INFRASTRUCTURE', 'インフラ'),
-    ('OTHER', 'その他'),
-]
-
 # Create your models here.
 class MyCareer(models.Model):
     carrer_id         = models.AutoField(verbose_name='プロダクトID', primary_key=True, auto_created=True)
@@ -29,10 +21,23 @@ class MyCareer(models.Model):
         return self.name
 
 
+class SkillCategory(models.Model):
+    skill_category_id = models.AutoField(verbose_name='スキルカテゴリ名', primary_key=True, auto_created=True)
+    name              = models.CharField(verbose_name='スキルカテゴリ名', max_length=150, null=False)
+    created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
+
+    class Meta:
+        verbose_name='スキルカテゴリ'
+        verbose_name_plural = 'スキルカテゴリ'
+    
+    def __str__(self):
+        return self.name
+
+
 class MySkill(models.Model):
-    skill_id         = models.AutoField(verbose_name='プロダクトID', primary_key=True, auto_created=True)
+    skill_id         = models.AutoField(verbose_name='スキルID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='スキル名', max_length=150, null=False)
-    category          = models.TextField(verbose_name='スキルカテゴリ', null=False, choices=SKILL_CATEGORY_CHOICES)
+    category          = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='category')
     created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
@@ -41,7 +46,6 @@ class MySkill(models.Model):
     
     def __str__(self):
         return self.name
-
 
 
 class InterestedDomain(models.Model):
