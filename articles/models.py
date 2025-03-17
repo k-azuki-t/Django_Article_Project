@@ -27,7 +27,6 @@ class Article(models.Model):
     created_at     = models.DateField(verbose_name='作成日', auto_now_add=True)
     updated_at     = models.DateField(verbose_name='更新日', auto_now=True)
     is_draft       = models.BooleanField(verbose_name='下書きフラグ', default=False)
-    # is_deleted     = models.BooleanField(verbose_name='削除フラグ')
 
     class Meta:
         verbose_name = '記事マスタ'
@@ -35,26 +34,6 @@ class Article(models.Model):
     
     def get_markdownx_content(self):
         return mark_safe(markdownify(self.content))
-
-
-class UploadedFileUrl(models.Model):
-    file_id = models.IntegerField(verbose_name='ファイルID', primary_key=True, auto_created=True)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='uploaded_file_url')
-    url     = models.FileField(verbose_name='ファイル格納先', unique=True, null=False)
-
-    class Meta:
-        verbose_name = 'アップロードファイル格納先マスタ'
-        verbose_name_plural = 'アップロードファイル格納先マスタ'
-
-
-class ArticleTag(models.Model):
-    tag_id  = models.IntegerField(verbose_name='タグID', primary_key=True, auto_created=True)
-    article = models.ManyToManyField(Article, related_name='article_tag')
-    name    = models.CharField(verbose_name='タグ名称', max_length=50)
-
-    class Meta:
-        verbose_name = '記事タグマスタ'
-        verbose_name_plural = '記事タグマスタ'
 
 
 class Favorite(models.Model):
