@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from .forms import ContentForm
 from django.urls import reverse_lazy
-from .models import Article, Favorite
+from .models import Article, Favorite, ArticleCategory
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from datetime import timedelta
@@ -76,7 +76,7 @@ class ArticleListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Article._meta.get_field('category').choices
+        context['categories'] = ArticleCategory.objects.all()
 
         return context
     
