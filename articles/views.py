@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DetailView, ListView
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from .forms import ContentForm
 from django.urls import reverse_lazy
 from .models import Article, Favorite
@@ -7,23 +7,48 @@ from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from datetime import timedelta
 from django.db.models import Q
+from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 # Create your views here.
 
-class ArticleEditView(CreateView):
+class ArticleEditView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Article
     template_name = 'articles/articles_edit.html'
     form_class = ContentForm
     success_url = reverse_lazy('articles:top')
 
+    def test_func(self):
+        user = self.request.user
+        return user.is_creator
+
+    def handle_no_permission(self):
+        return redirect('articles:top')
+
     # フォームの初期化時に author を設定
     def get_form(self, *args, **kwargs):
         form = super().get_form(*args, **kwargs)
-        # フォームの初期化時に author を設定
         form.instance.author = self.request.user
         return form
     
+
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Article
+    template_name = 'articles/articles_update.html'
+    form_class = ContentForm
+    success_url = reverse_lazy('articles:top')
+
+    def test_func(self):
+        user = self.request.user
+        article = self.get_object()
+        is_author_of_this_article = user == article.author
+
+        return is_author_of_this_article
+
+    def handle_no_permission(self):
+        return redirect('articles:top')
+
 
 class ArticleDetailView(DetailView):
     model=Article
@@ -34,10 +59,11 @@ class ArticleDetailView(DetailView):
         if self.request.user.is_authenticated:
             user = self.request.user
             article = self.get_object()  # 表示対象の記事
-            # お気に入り登録されているかをチェック
             is_favorited = Favorite.objects.filter(user=user, article=article).exists()
-            # コンテキストに追加
+            is_author_of_this_article = user == article.author
+
             context["is_favorited"] = is_favorited
+            context["is_author_of_this_article"] = is_author_of_this_article
         else:
             context["is_favorited"] = False
         return context
@@ -61,6 +87,7 @@ class ArticleListView(ListView):
         query = self.request.GET.get('q')  # クエリパラメータから検索ワードを取得
         category = self.request.GET.get('category')  # クエリパラメータからカテゴリを取得
         favorite = self.request.GET.get('favorite')
+        page = self.request.GET.get('page', '1')
 
         if query:
             queryset = queryset.filter(
@@ -69,14 +96,17 @@ class ArticleListView(ListView):
             )
         if category:
             queryset = queryset.filter(category=category)
-        if favorite:
+        if favorite and user.user_id != None:
             favorited_article = Favorite.objects.filter(user=user).values('article_id')
             if favorite == 'true':
                 queryset = queryset.filter(article_id__in=favorited_article)
             elif favorite == 'false':
                 queryset = queryset.exclude(article_id__in=favorited_article)
 
-        return queryset
+        queryset = Paginator(queryset, 10)
+        display_articles = queryset.page(int(page))
+
+        return display_articles
 
 
 

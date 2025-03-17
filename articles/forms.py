@@ -22,11 +22,11 @@ class ContentForm(forms.ModelForm, LoginRequiredMixin):
             'header_img_url': 'ヘッダー画像',
         }
     
-    def clean_header_img_url(self):
-        header_img_url = self.cleaned_data.get('header_img_url')
-        if not header_img_url:
-            raise forms.ValidationError('ヘッダー画像をアップロードしてください。')
-        return header_img_url
+    # def clean_header_img_url(self):
+    #     header_img_url = self.cleaned_data.get('header_img_url')
+    #     if not header_img_url:
+    #         raise forms.ValidationError('ヘッダー画像をアップロードしてください。')
+    #     return header_img_url
 
     #【kurage_check】form_validの役割
     #【kurage_check】viewのform_validメソッドは、フォームのバリデーションが成功した場合に呼び出されます。

@@ -30,6 +30,12 @@
         {% endif %}
         <span style="display: block;">お気に入り登録</span>
     </div>
+
+    {% if is_author_of_this_article %}
+    <div class="article-edit-icon">
+        <a href="{% url 'articles:update' article.pk %}"><i class="bi bi-pencil-square"></i></a>
+    </div>
+    {% endif %}    
     
 
 {% endblock %}

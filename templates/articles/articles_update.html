@@ -7,19 +7,20 @@
     
 
     <div class="title">
-        記事新規作成
+        記事編集
     </div>
 
-    <form method="post" enctype="multipart/form-data" class="article-edit-form" action="{% url 'articles:edit' %}">
+    <form method="post" enctype="multipart/form-data" class="article-edit-form" action="{% url 'articles:update' form.instance.pk %}">
         {% csrf_token %}
         <div class="drop-area article-header">
-            <div class="article-icon">
+            <div class="article-icon" style="display: none;">
                 <i class="bi bi-image"></i>
             </div>
-            <div class="img-form-message">
+            <div class="img-form-message" style="display: none;">
                 ヘッダー画像をアップロード
             </div>
             {{ form.header_img_url }}
+            <img src="{{ form.instance.header_img_url.url }}" class="article-header-img">
         </div>
 
         <div class="text-item-containor"  style="display: flex;">
@@ -54,9 +55,6 @@
             {{ form.content }}
         </div>
 
-        <!-- <div class="submit-button-container">
-            <button type="submit" class="button">作成</button>
-        </div> -->
     </form>
 
 {% endblock %}

@@ -122,6 +122,14 @@ input, select { /* width・margin・height は別途指定 */
     outline: none;
 }
 
+/* リンク系 */
+a {
+    text-decoration: none;
+}
+.unable-link {
+    opacity: 0;
+    pointer-events: none;
+}
 
 /* 記事ヘッダ画像系 */
 .article-header {

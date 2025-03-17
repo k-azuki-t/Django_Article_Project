@@ -35,42 +35,35 @@ if (path.includes('/articles/edit/')) {
     // エクスプローラーでのファイル選択時の処理
     fileInput.addEventListener('change', (e) => {
         // 記事編集画面でのみ処理を実行
-        if (window.location.pathname == '/articles/edit/') {
-            const imgFile = e.target.files[0];
-            if (imgFile && imgFile.type.startsWith('image/')) {
-                handleFile(imgFile);
-            } else {
-                fileInput.value = '';
-                alert('画像ファイルを選択してください');
-            }
+        const imgFile = e.target.files[0];
+        if (imgFile && imgFile.type.startsWith('image/')) {
+            handleFile(imgFile);
+        } else {
+            fileInput.value = '';
+            alert('画像ファイルを選択してください');
         }
     });
 
     // ドラッグ&ドロップ時の処理
     dropArea.addEventListener('drop', (e) => {
-        if (window.location.pathname == '/articles/edit/') {
+        // input要素にファイルをセットするためのDataTransferオブジェクトを作成
+        const imgFile = e.dataTransfer.files[0];
+        const dataTransfer = new DataTransfer();
 
-            // input要素にファイルをセットするためのDataTransferオブジェクトを作成
-            const imgFile = e.dataTransfer.files[0];
-            const dataTransfer = new DataTransfer();
-
-            // 選択したファイルが画像ファイルかどうかを判定
-            if (imgFile && imgFile.type.startsWith('image/')) {
-                // input要素にファイルをセット
-                dataTransfer.items.add(imgFile);
-                fileInput.files = dataTransfer.files;
-                handleFile(imgFile);
-            } else {
-                alert('画像ファイルを選択してください');
-            }
+        // 選択したファイルが画像ファイルかどうかを判定
+        if (imgFile && imgFile.type.startsWith('image/')) {
+            // input要素にファイルをセット
+            dataTransfer.items.add(imgFile);
+            fileInput.files = dataTransfer.files;
+            handleFile(imgFile);
+        } else {
+            alert('画像ファイルを選択してください');
         }
     });
 
     // ドロップエリアのクリック時の処理
     dropArea.addEventListener('click', () => {
-        if (window.location.pathname == '/articles/edit/') {
-            fileInput.click();
-        }
+        fileInput.click();
     });
 }
 
@@ -78,8 +71,10 @@ if (path.includes('/articles/edit/')) {
 // 記事本文の記載するフィールドとプレビューフィールドを出し分ける関数
 function changeDisplayStatus(status) {
 
+    console.log('start')
+
     // 記事編集画面でのみ実行されるよう指定
-    if (window.location.pathname !== '/articles/edit/' ) {
+    if (!window.location.pathname.includes('/articles/edit/')) {
         return;
     }
 
@@ -106,7 +101,15 @@ function changeDisplayStatus(status) {
 }
 
 // 初期状態は記事を記載する領域を出すように指定
-document.addEventListener("DOMContentLoaded", changeDisplayStatus('edit'));
+// 記事新規作成画面でのみ、画像アップロードを必須化
+document.addEventListener("DOMContentLoaded", () => {
+    if (path==='/articles/edit/') {
+        fileInput.required = true;
+    } else if (path.includes('/articles/edit/')) {
+        fileInput.style.display = 'none';
+    }
+    changeDisplayStatus('edit')
+});
 // dropArea関連の関数（ここまで）
 
 
