@@ -136,8 +136,8 @@ def registerFavorite(request, article_id):
 def addViewedCount(request, article_id):
     if request.method == 'POST':
         article = Article.objects.get(article_id=article_id)
-        article.viewed_count += 1
-        article.save()
+        article.viewed_count.viewed_count += 1
+        article.viewed_count.save()
         return HttpResponse(status=200)
     
     return JsonResponse({'redirect_url': '/'}, status=400)
