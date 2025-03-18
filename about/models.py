@@ -1,6 +1,20 @@
 from django.db import models
 
 # Create your models here.
+class ReleaseNote(models.Model):
+    release_note_id = models.AutoField(verbose_name='リリースノートID', primary_key=True, auto_created=True)
+    version         = models.CharField(verbose_name='バージョン', max_length=150, null=False)
+    content         = models.TextField(verbose_name='アップデート内容', null=False)
+    created_at      = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
+
+    class Meta:
+        verbose_name='リリースノートマスタ'
+        verbose_name_plural = 'リリースノートマスタ'
+    
+    def __str__(self):
+        return self.version
+
+
 class MyCareer(models.Model):
     carrer_id         = models.AutoField(verbose_name='プロダクトID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='キャリア名', max_length=150, null=False)
@@ -27,8 +41,8 @@ class SkillCategory(models.Model):
     created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
-        verbose_name='スキルカテゴリ'
-        verbose_name_plural = 'スキルカテゴリ'
+        verbose_name='スキルカテゴリマスタ'
+        verbose_name_plural = 'スキルカテゴリマスタ'
     
     def __str__(self):
         return self.name

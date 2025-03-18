@@ -14,7 +14,7 @@ class ArticleCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('article_id', 'author', 'title', 'category', 'viewed_count',)
+    list_display = ('article_id', 'author', 'title', 'category', 'viewed_count', 'created_at', 'updated_at',)
 
 @admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):

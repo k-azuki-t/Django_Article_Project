@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
+@admin.register(ReleaseNote)
+class ReleaseNoteAdmin(admin.ModelAdmin):
+    list_display = ('release_note_id', 'version', 'content', 'created_at',)
 
 @admin.register(MyCareer)
 class myCareerAdmin(admin.ModelAdmin):
