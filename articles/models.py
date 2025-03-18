@@ -8,7 +8,7 @@ from accounts.models import *
 class ArticleCategory(models.Model):
     article_category_id = models.AutoField(verbose_name='記事カテゴリID', primary_key=True, auto_created=True)
     name                = models.CharField(verbose_name='記事カテゴリ名', max_length=200, null=False)
-    created_at          = models.DateField(verbose_name='作成日', auto_now_add=True)
+    created_at          = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name = '記事カテゴリマスタ'
@@ -38,8 +38,8 @@ class Article(models.Model):
     content        = MarkdownxField(verbose_name='コンテンツ')
     header_img_url = models.FileField(verbose_name='ヘッダー画像格納先', upload_to='header_img/', blank=True)
     viewed_count   = models.ForeignKey(ViewedCount, on_delete=models.CASCADE, related_name='articles')
-    created_at     = models.DateField(verbose_name='作成日', auto_now_add=True)
-    updated_at     = models.DateField(verbose_name='更新日', auto_now=True)
+    created_at     = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
+    updated_at     = models.DateTimeField(verbose_name='更新日', auto_now=True)
     is_draft       = models.BooleanField(verbose_name='下書きフラグ', default=False)
 
     class Meta:
@@ -56,7 +56,7 @@ class Article(models.Model):
 class Favorite(models.Model):
     user         = models.ForeignKey(ServiceUser, on_delete=models.CASCADE, related_name='favorite')
     article      = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='favorite')
-    favorited_at = models.DateField(verbose_name='お気に入り登録日', auto_now_add=True)
+    favorited_at = models.DateTimeField(verbose_name='お気に入り登録日', auto_now_add=True)
 
     class Meta:
         verbose_name = 'お気に入りマスタ'

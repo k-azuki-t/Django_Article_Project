@@ -7,7 +7,7 @@ class Product(models.Model):
     content        = models.TextField(verbose_name='コンテンツ', null=False)
     header_img_url = models.ImageField(verbose_name='ヘッダー画像格納先', upload_to='product_images/', null=False)
     acccess_url    = models.CharField(verbose_name='プロダクト名', max_length=150, null=False)
-    created_at     = models.DateField(verbose_name='登録日', auto_now_add=True, null=False)
+    created_at     = models.DateTimeField(verbose_name='登録日', auto_now_add=True, null=False)
 
     class Meta:
         verbose_name='プロダクトマスタ'

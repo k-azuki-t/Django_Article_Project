@@ -9,9 +9,9 @@ class MyCareer(models.Model):
     content3          = models.TextField(verbose_name='キャリア内容3', null=True, blank=True)
     content4          = models.TextField(verbose_name='キャリア内容4', null=True, blank=True)
     content5          = models.TextField(verbose_name='キャリア内容5', null=True, blank=True)
-    career_started_at = models.DateField(verbose_name='キャリア開始日', null=False)
-    career_ended_at   = models.DateField(verbose_name='キャリア終了日', null=True, blank=True)
-    created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
+    career_started_at = models.DateTimeField(verbose_name='キャリア開始日', null=False)
+    career_ended_at   = models.DateTimeField(verbose_name='キャリア終了日', null=True, blank=True)
+    created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name='キャリアマスタ'
@@ -24,7 +24,7 @@ class MyCareer(models.Model):
 class SkillCategory(models.Model):
     skill_category_id = models.AutoField(verbose_name='スキルカテゴリ名', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='スキルカテゴリ名', max_length=150, null=False)
-    created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
+    created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name='スキルカテゴリ'
@@ -38,7 +38,7 @@ class MySkill(models.Model):
     skill_id         = models.AutoField(verbose_name='スキルID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='スキル名', max_length=150, null=False)
     category          = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='category')
-    created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
+    created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name='スキルマスタ'
@@ -51,7 +51,7 @@ class MySkill(models.Model):
 class InterestedDomain(models.Model):
     domain_id         = models.AutoField(verbose_name='ドメインID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='興味のある領域', max_length=150, null=False)
-    created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
+    created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name='ドメインマスタ'
@@ -64,7 +64,7 @@ class InterestedDomain(models.Model):
 class Capabilities(models.Model):
     capability_id     = models.AutoField(verbose_name='資格ID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='資格名', max_length=150, null=False)
-    created_at        = models.DateField(verbose_name='作成日', auto_now_add=True)
+    created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name='資格マスタ'
