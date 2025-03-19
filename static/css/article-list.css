@@ -10,6 +10,9 @@
 .search-form-input-container input {
     width: 89% !important;
 }
+.date-input-container input {
+    width: 80% !important;
+}
 .search-form-input-container i {
     font-size: clamp(15px, 2vw, 25px);
 }

@@ -5,10 +5,14 @@ from django.urls import reverse_lazy
 from .models import Article, Favorite, ArticleCategory
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
-from datetime import timedelta
+from datetime import datetime, timedelta
+from django.utils.timezone import make_aware
+# from dateutil.relativedelta import relativedelta
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+import pytz
+from dateutil.relativedelta import relativedelta
 
 
 # Create your views here.
@@ -87,8 +91,11 @@ class ArticleListView(ListView):
         query = self.request.GET.get('q')  # クエリパラメータから検索ワードを取得
         category = self.request.GET.get('category')  # クエリパラメータからカテゴリを取得
         favorite = self.request.GET.get('favorite')
+        created_in = self.request.GET.get('created_in')
+        view_count_sort = self.request.GET.get('view_count_sort')
         page = self.request.GET.get('page', '1')
 
+        # WHERE句追加
         if query:
             queryset = queryset.filter(
                 Q(content__icontains=query) |
@@ -102,12 +109,23 @@ class ArticleListView(ListView):
                 queryset = queryset.filter(article_id__in=favorited_article)
             elif favorite == 'false':
                 queryset = queryset.exclude(article_id__in=favorited_article)
+        if created_in:
+            search_from = datetime.strptime(created_in, "%Y-%m").replace(day=1)
+            search_from = timezone.make_aware(search_from, pytz.UTC)
+            search_to = search_from + relativedelta(months=1)
+            queryset = queryset.filter(created_at__gte=search_from, created_at__lt=search_to)
+        if view_count_sort:
+            if view_count_sort == 'asc':
+                queryset = queryset.order_by('viewed_count__viewed_count')
+            elif view_count_sort == 'desc':
+                print('desc')
+                queryset = queryset.order_by('-viewed_count__viewed_count')
 
+        print(queryset.query)
         queryset = Paginator(queryset, 10)
         display_articles = queryset.page(int(page))
 
         return display_articles
-
 
 
 # お気に入り登録用API
