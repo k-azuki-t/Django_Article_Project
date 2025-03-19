@@ -89,12 +89,12 @@
     <div class="margin-vertical-20 margin-horizontal-auto width-80 container-flex-row paginator-container">
 
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_previous %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page=1" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_previous %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page=1" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-double-left"></i>
             </a>
         </div>
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_previous %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page={{ object_list.previous_page_number }}" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_previous %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page={{ object_list.previous_page_number }}" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-left"></i>
             </a>
         </div>
@@ -104,12 +104,12 @@
         </div>
 
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_next %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page={{ object_list.next_page_number }}" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_next %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page={{ object_list.next_page_number }}" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-right"></i>
             </a>
         </div>
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_next %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page={{ object_list.paginator.num_pages }}" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_next %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page={{ object_list.paginator.num_pages }}" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-double-right"></i>
             </a>
         </div>
