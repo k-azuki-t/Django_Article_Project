@@ -13,7 +13,7 @@
             <div class="container-flex-column width-80">
                 <div class="width-100 margin-vertical-20">
                     <i class="bi bi-chat-square-text"></i>
-                    <input type="text" name="q" placeholder="キーワードで検索..." value="{{ request.GET.q }}">
+                    <input type="text" name="q" placeholder="キーワードで検索..." value="">
                 </div>
                 <div class="container-flex-row width-100 margin-vertical-20">
                     <div class="width-50">
@@ -31,6 +31,20 @@
                             <option value="">すべての記事</option>
                             <option value="true" {% if request.GET.favorite == 'true' and user.is_authenticated %} selected {% endif %}>お気に入りのみ</option>
                             <option value="false" {% if request.GET.favorite == 'false' and user.is_authenticated %} selected {% endif %}>お気に入り以外</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="container-flex-row width-100 margin-vertical-20 date-input-container">
+                    <div class="width-50">
+                        <i class="bi bi-clock"></i>
+                        <input type="month" name="created_in" value="{{ request.GET.created_in }}">
+                    </div>
+                    <div class="width-50">
+                        <i class="bi bi-eye"></i>
+                        <select name="view_count_sort">
+                            <option value="">---</option>
+                            <option value="asc" {% if request.GET.view_count_sort == 'asc' %} selected {% endif %} >昇順</option>
+                            <option value="desc" {% if request.GET.view_count_sort == 'desc' %} selected {% endif %} >降順</option>
                         </select>
                     </div>
                 </div>
@@ -57,8 +71,8 @@
                             {{ article.category }}
                         </div>
                         <div class="container-flex-row">
-                            <i class="bi bi-clock-history"></i>
-                            {{ article.updated_at | date:"Y-m-d" }}
+                            <i class="bi bi-clock"></i>
+                            {{ article.created_at | date:"Y-m-d" }}
                         </div>
                         <div class="container-flex-row">
                             <i class="bi bi-eye"></i>
@@ -75,12 +89,12 @@
     <div class="margin-vertical-20 margin-horizontal-auto width-80 container-flex-row paginator-container">
 
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_previous %} href="?q={{ request.GET.q }}&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page=1" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_previous %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page=1" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-double-left"></i>
             </a>
         </div>
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_previous %} href="?q={{ request.GET.q }}&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page={{ object_list.previous_page_number }}" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_previous %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page={{ object_list.previous_page_number }}" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-left"></i>
             </a>
         </div>
@@ -90,12 +104,12 @@
         </div>
 
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_next %} href="?q={{ request.GET.q }}&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page={{ object_list.next_page_number }}" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_next %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page={{ object_list.next_page_number }}" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-right"></i>
             </a>
         </div>
         <div class="margin-horizontal-20">
-            <a {% if object_list.has_next %} href="?q={{ request.GET.q }}&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&page={{ object_list.paginator.num_pages }}" {% else %} class="unable-link" {% endif %}>
+            <a {% if object_list.has_next %} href="?q=&category={{ request.GET.category }}&favorite={{ request.GET.favorite }}&created_in={{ request.GET.created_in }}&view_count_sort={{ request.GET.view_count_sort }}&page={{ object_list.paginator.num_pages }}" {% else %} class="unable-link" {% endif %}>
                 <i class="bi bi-chevron-double-right"></i>
             </a>
         </div>
