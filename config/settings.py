@@ -160,3 +160,13 @@ MARKDOWNX_IMAGE_MAX_SIZE = {
     'size': (600, 400),
     'quality': 90
 }
+
+# HTTPSの設定
+SECURE_SSL_REDIRECT   = True if DEBUG == False else False
+SESSION_COOKIE_SECURE = True if DEBUG == False else False
+CSRF_COOKIE_SECURE    = True if DEBUG == False else False
+
+# セッションの設定
+SESSION_COOKIE_AGE = 3600
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

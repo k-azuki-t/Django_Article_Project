@@ -121,7 +121,6 @@ class ArticleListView(ListView):
                 print('desc')
                 queryset = queryset.order_by('-viewed_count__viewed_count')
 
-        print(queryset.query)
         queryset = Paginator(queryset, 10)
         display_articles = queryset.page(int(page))
 

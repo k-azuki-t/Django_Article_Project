@@ -13,7 +13,7 @@
             <div class="container-flex-column width-80">
                 <div class="width-100 margin-vertical-20">
                     <i class="bi bi-chat-square-text"></i>
-                    <input type="text" name="q" placeholder="キーワードで検索..." value="">
+                    <input type="text" name="q" placeholder="キーワードで検索..." value="{{ request.GET.q }}">
                 </div>
                 <div class="container-flex-row width-100 margin-vertical-20">
                     <div class="width-50">
