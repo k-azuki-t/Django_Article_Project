@@ -1,0 +1,21 @@
+.product-info-container {
+    cursor: pointer;
+    transition: 0.3s;
+}
+.product-info-container:hover {
+    transform: translateY(-10px);
+}
+
+.product-img-container {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(236, 236, 236);
+    border-radius: 10px 10px 0 0;
+}
+.product-img-container img {
+    width: auto;
+    height: 80%;
+    object-fit: cover;
+}
