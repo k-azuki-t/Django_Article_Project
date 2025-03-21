@@ -8,8 +8,13 @@
         当サイトについて
     </div>
 
-    <div class="width-80 margin-horizontal-auto item-container padding-vertical-20 margin-vertical-20">
-        <div class="sub-title width-80 margin-horizontal-auto">当サイトの目的</div>
+    <div class="width-80 margin-horizontal-auto item-container margin-vertical-20">
+        <div class="sub-title width-100 margin-horizontal-auto padding-vertical-20">
+            <div class="width-80 margin-horizontal-auto">
+                <i class="bi bi-aspect-ratio"></i>
+                当サイトの目的
+            </div>
+        </div>
         <div class="width-80 margin-horizontal-auto">
             <p>くらげの学習内容のアウトプットによる知識定着と情報提供を目的としています。</p>
             <p>その他、当サイトには「くらげはどんな人物で、何に取り組んでいて何が出来るのか」を<br>
@@ -17,8 +22,13 @@
         </div>
     </div>
 
-    <div class="width-80 margin-horizontal-auto margin-vertical-20 item-container padding-vertical-20">
-        <div class="sub-title width-80 margin-horizontal-auto">プライバシーポリシーと利用規約</div>
+    <div class="width-80 margin-horizontal-auto margin-vertical-20 item-container">
+        <div class="sub-title width-100 margin-horizontal-auto padding-vertical-20">
+            <div class="width-80 margin-horizontal-auto">
+                <i class="bi bi-key"></i>
+                プライバシーポリシーと利用規約
+            </div>
+        </div>
         <div class="width-80 margin-horizontal-auto">
             <p>プライバシーポリシーおよび利用規約は、以下からご確認ください。</p>
             <div class="container-flex-row margin-vertical-50">
@@ -36,11 +46,21 @@
         </div>
     </div>
 
-    <div class="width-80 margin-horizontal-auto margin-vertical-20 item-container padding-vertical-20">
-        <div class="sub-title width-80 margin-horizontal-auto">リリースノート</div>
+    <div class="width-80 margin-horizontal-auto margin-vertical-20 item-container">
+        <div class="sub-title width-100 margin-horizontal-auto padding-vertical-20">
+            <div class="width-80 margin-horizontal-auto">
+                <i class="bi bi-tools"></i>
+                リリースノート
+            </div>
+        </div>
         <div class="width-80 margin-horizontal-auto">
-            <p>プライバシーポリシーおよび利用規約は、以下からご確認ください。</p>
-            <div class="container-flex-row margin-vertical-50">
+            <div class="container-flex-row margin-vertical-20">
+                {% for release_note in release_notes %}
+                    <div class="width-100 margin-bottom-20">
+                        <h3>v{{ release_note.version }}</h3>
+                        <div class="width-100">{{ release_note.new_feature }}</div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

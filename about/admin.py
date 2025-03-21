@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 @admin.register(ReleaseNote)
 class ReleaseNoteAdmin(admin.ModelAdmin):
-    list_display = ('release_note_id', 'version', 'overview', 'new_feature', 'improvement', 'bug_fix', 'created_at')
+    list_display = ('release_note_id', 'version', 'new_feature', 'improvement', 'created_at')
 
 @admin.register(MyCareer)
 class myCareerAdmin(admin.ModelAdmin):

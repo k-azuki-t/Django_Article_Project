@@ -4,6 +4,7 @@
     height: 1000px;
     border-radius: 10px;
     background-color: #fffefe;
+    background-image: linear-gradient(214deg, rgb(204, 246, 246), rgb(255, 212, 232));
     display: flex;
     flex-direction: row;
     align-items: center;
