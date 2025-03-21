@@ -4,7 +4,10 @@ from django.db import models
 class ReleaseNote(models.Model):
     release_note_id = models.AutoField(verbose_name='リリースノートID', primary_key=True, auto_created=True)
     version         = models.CharField(verbose_name='バージョン', max_length=150, null=False)
-    content         = models.TextField(verbose_name='アップデート内容', null=False)
+    overview        = models.TextField(verbose_name='概要', null=False)
+    new_feature     = models.TextField(verbose_name='新機能', null=True, blank=True)
+    improvement     = models.TextField(verbose_name='改善', null=True, blank=True)
+    bug_fix         = models.TextField(verbose_name='バグ修正', null=True, blank=True)
     created_at      = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
