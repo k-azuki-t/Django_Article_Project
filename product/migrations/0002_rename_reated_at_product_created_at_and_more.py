@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='product',
-            name='acccess_url',
+            name='access_url',
             field=models.CharField(default=1, max_length=150, verbose_name='プロダクト名'),
             preserve_default=False,
         ),

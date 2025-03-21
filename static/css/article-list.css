@@ -3,7 +3,7 @@
     align-items: center;
 }
 .search-form-input-container input, .search-form-input-container select {
-    font-size: clamp(12px, 2vw, 20px);
+    font-size: clamp(10px, 1.0vw, 20px);
     text-align: center;
     width: 80%;
 }
@@ -21,8 +21,8 @@
 }
 
 .article-info-container {
-    height: 150px;
-    font-size: clamp(8px, 1.2vw, 20px);
+    height: 120px;
+    font-size: clamp(8px, 1.0vw, 20px);
     cursor: pointer;
     transition: 0.3s;
 }
@@ -40,14 +40,14 @@
     padding: 5px;
     justify-content: center;
     padding-left: 1.5vw;
-    font-size: clamp(13px, 1.4vw, 25px);
+    font-size: clamp(12px, 1.2vw, 25px);
     font-weight: bold;
 }
 .article-sub-info-container {
     height: 30%;
     font-weight: bold;
     justify-content: end !important;
-    font-size: clamp(11px, 1.1vw, 28px);
+    font-size: clamp(10px, 1.0vw, 28px);
 }
 .article-sub-info-container i {
     padding-right: 0.2vw;

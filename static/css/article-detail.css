@@ -12,11 +12,19 @@ p img {
     justify-content: center;
     border-top: 3px solid #979797;
     padding: 50px 0;
+    font-weight: bold;
 }
 
 .article-sub-info {
     font-weight: bold;
-    width: clamp(130px, 20%, 200px);
+    width: 150px;
+    /* width: clamp(130px, 20%, 200px); */
+}
+@media screen and (max-width:900px) {
+    .article-sub-info {
+        width: 100px;
+    }
+    
 }
 
 .bi-suit-heart-fill, .bi-suit-heart {
