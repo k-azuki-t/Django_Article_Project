@@ -149,6 +149,9 @@ a {
 .width-100 {
     width: 100% !important;
 }
+.width-90 {
+    width: 90% !important;
+}
 .width-80 {
     width: 80% !important;
 }
@@ -201,4 +204,5 @@ a {
 /* タグ系 */
 a {
     color: #404040;
+    text-decoration: underline;
 }

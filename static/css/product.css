@@ -7,11 +7,11 @@
 }
 
 .product-img-container {
-    height: 250px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(151, 151, 151);
     border-radius: 10px 10px 0 0;
 }
 .product-img-container img {

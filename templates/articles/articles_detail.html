@@ -7,26 +7,34 @@
         <div class="article-header margin-vertical-50">
             <img class="article-header-img" src="{{ article.header_img_url.url }}" alt="">
         </div>
-        <h2 class="text-align-center">{{ article.title }}</h2>
-        <h3 class="text-align-center">{{ article.category }}</h3>
-        <div class="width-100 container-flex-column">
-            <div class="article-sub-info margin-horizontal-left-auto">
-                <i class="bi bi-clock"></i>
-                <span>: {{ article.created_at | date:"Y-m-d" }}</span>
-            </div>
-            <div class="article-sub-info margin-horizontal-left-auto">
-                <i class="bi bi-clock-history"></i>
-                <span>: {{ article.updated_at | date:"Y-m-d" }}</span>
-            </div>
-            <div class="article-sub-info margin-horizontal-left-auto">
-                <i class="bi bi-eye"></i>
-                <span>: {{ article.viewed_count}} views</span>
+        <div class="item-container container-flex-row">
+            <div class="margin-vertical-20 width-90 margin-horizontal-auto">
+                <h2 class="text-align-center">{{ article.title }}</h2>
+                <h3 class="text-align-center">{{ article.category }}</h3>
+                <div class="width-100 container-flex-column">
+                    <div class="article-sub-info margin-horizontal-left-auto">
+                        <i class="bi bi-clock"></i>
+                        <span>: {{ article.created_at | date:"Y-m-d" }}</span>
+                    </div>
+                    <div class="article-sub-info margin-horizontal-left-auto">
+                        <i class="bi bi-clock-history"></i>
+                        <span>: {{ article.updated_at | date:"Y-m-d" }}</span>
+                    </div>
+                    <div class="article-sub-info margin-horizontal-left-auto">
+                        <i class="bi bi-eye"></i>
+                        <span>: {{ article.viewed_count}} views</span>
+                    </div>
+                </div>
             </div>
         </div>
-        {{ article.get_markdownx_content|safe }}
+        <div class="item-container container-flex-row margin-vertical-50">
+            <div class="margin-vertical-20 width-90 margin-horizontal-auto">
+                {{ article.get_markdownx_content|safe }}
+            </div>
+        </div>
     </div>
 
-    <div class="favorite-icon-container width-80 container-flex-column margin-horizontal-auto margin-vertical-20">
+    <div class="favorite-icon-container width-90 container-flex-column margin-horizontal-auto margin-vertical-20">
         {% if is_favorited %}
         <i class="bi bi-suit-heart-fill" onclick="registerFavorite();"></i>
         {% else %}
