@@ -4,7 +4,8 @@ body {
     font-size: 15px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     color: #404040;
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(236, 236, 236);
+    background-image: linear-gradient(142deg, rgba(235, 255, 255, 1), rgba(245, 231, 238, 1) 49%, rgba(233, 232, 232, 1));
     margin: 0;
     height: 100vh;
     max-height: 100vh;
