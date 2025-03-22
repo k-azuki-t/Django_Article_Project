@@ -8,10 +8,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import *
 from .models import ServiceUser
+from articles.models import Article, Favorite
 
 # Create your views here.
 class ProfileView(TemplateView):
     template_name = 'accounts/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            favorited_article = Favorite.objects.filter(user=user).values('article_id')
+            new_favorite_articles = Article.objects.filter(article_id__in=favorited_article).order_by('-created_at')[:5]
+            context['new_favorite_articles'] = new_favorite_articles
+        return context
+
 
 
 # アカウント登録ビュー

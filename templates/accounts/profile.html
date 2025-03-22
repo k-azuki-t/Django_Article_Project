@@ -93,13 +93,42 @@
     </div>
 </div>
 
-<div class="articles">
-    <div class="category-title">
-        お気に入りの記事
-        {% if not user.is_authenticated %}
-            <span>ログインして、お気に入り機能を使ってみよう！</span>
-        {% endif %}
-    </div>
+<div class="margin-vertical-20 margin-horizontal-auto width-80">
+    <h2>最近お気に入り登録した記事</h2>
+    {% if user.is_authenticated %}
+    {% for article in new_favorite_articles %}
+        <div class="width-100 margin-vertical-20 margin-horizontal-auto container-flex-row item-container article-info-container" onclick="moveToDetailPage('{{article.pk}}')">
+            <div class="width-30">
+                <img class="article-header-img" src="{{ article.header_img_url.url }}" alt="">
+            </div>
+            <div class="container-flex-column width-70">
+                <div class="article-title-container container-flex-column">
+                    {{ article.title|truncatewords:25 }}
+                </div>
+                <div class="container-flex-row article-sub-info-container">
+                    <div class="container-flex-row">
+                        <i class="bi bi-box"></i>
+                        {{ article.category }}
+                    </div>
+                    <div class="container-flex-row">
+                        <i class="bi bi-clock"></i>
+                        {{ article.created_at | date:"Y-m-d" }}
+                    </div>
+                    <div class="container-flex-row">
+                        <i class="bi bi-eye"></i>
+                        {{ article.viewed_count }} views
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'articles:detail' article.pk %}" id="{{article.pk}}"></a>
+        </div>
+    {% endfor %}
+    {% else %}
+    <div class="width-100 margin-vertical-50 text-align-center">
+        <div class="margin-vertical-20">
+            <h3>お気に入り登録を使用するには、ログインが必要です。</h3>
+        </div>
+    {% endif %}
 </div>
 
 <div class="width-100 container-flex-column message-container">

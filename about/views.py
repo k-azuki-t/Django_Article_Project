@@ -11,7 +11,7 @@ class AboutKurageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['my_skills'] = MySkill.objects.all()
         context['skill_categories'] = SkillCategory.objects.all()
-        context['my_careers'] = MyCareer.objects.all()
+        context['my_careers'] = MyCareer.objects.all().order_by('career_started_at')
         context['interested_domains'] = InterestedDomain.objects.all()
         context['capabilities'] = Capabilities.objects.all()
         return context
