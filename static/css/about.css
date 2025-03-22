@@ -4,7 +4,7 @@
     height: 1000px;
     border-radius: 10px;
     background-color: #fffefe;
-    background-image: linear-gradient(214deg, rgb(204, 246, 246), rgb(255, 212, 232));
+    background-image: linear-gradient(214deg, rgb(229, 255, 255), rgb(255, 222, 237));
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -63,4 +63,9 @@
     .icons-with-link {
         width: 100% !important;
     }
+}
+
+/* about_this_site */
+.release-note-container {
+    border-bottom: #cecece solid 2px;
 }

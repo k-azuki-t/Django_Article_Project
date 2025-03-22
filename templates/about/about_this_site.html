@@ -15,7 +15,7 @@
                 当サイトの目的
             </div>
         </div>
-        <div class="width-80 margin-horizontal-auto">
+        <div class="width-80 margin-horizontal-auto margin-vertical-20">
             <p>くらげの学習内容のアウトプットによる知識定着と情報提供を目的としています。</p>
             <p>その他、当サイトには「くらげはどんな人物で、何に取り組んでいて何が出来るのか」を<br>
                 知っていただくポートフォリオとしての役割も持たせています。</p>
@@ -29,9 +29,9 @@
                 プライバシーポリシーと利用規約
             </div>
         </div>
-        <div class="width-80 margin-horizontal-auto">
+        <div class="width-80 margin-horizontal-auto margin-vertical-20">
             <p>プライバシーポリシーおよび利用規約は、以下からご確認ください。</p>
-            <div class="container-flex-row margin-vertical-50">
+            <div class="container-flex-row margin-vertical-20">
                 <div class="width-50 text-align-center">
                     <a href="{% url 'about:privacy_policy' %}">
                         プライバシーポリシー
@@ -54,11 +54,30 @@
             </div>
         </div>
         <div class="width-80 margin-horizontal-auto">
-            <div class="container-flex-row margin-vertical-20">
+            <div class="container-flex-column margin-vertical-20">
                 {% for release_note in release_notes %}
-                    <div class="width-100 margin-bottom-20">
-                        <h3>v{{ release_note.version }}</h3>
-                        <div class="width-100">{{ release_note.new_feature }}</div>
+                    <div class="width-100 margin-bottom-20 release-note-container">
+                        <h3>v{{ release_note.version }} / {{ release_note.created_at | date:"Y-m-d" }}</h3>
+                        <div class="width-100">
+                            <h4>New Feature</h4>
+                            <div>
+                                {% if release_note.new_feature %}
+                                    {{ release_note.new_feature }}
+                                {% else %}
+                                    ---
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="width-100 margin-bottom-20">
+                            <h4>Improvement</h4>
+                            <div>
+                                {% if release_note.improvement %}
+                                    {{ release_note.improvement }}
+                                {% else %}
+                                    ---
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
