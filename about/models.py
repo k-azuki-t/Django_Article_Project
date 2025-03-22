@@ -80,6 +80,7 @@ class InterestedDomain(models.Model):
 class Capabilities(models.Model):
     capability_id     = models.AutoField(verbose_name='資格ID', primary_key=True, auto_created=True)
     name              = models.CharField(verbose_name='資格名', max_length=150, null=False)
+    got_at            = models.DateTimeField(verbose_name='取得日', null=False, blank=False)
     created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:

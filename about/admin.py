@@ -20,7 +20,7 @@ class InterestedDomainAdmin(admin.ModelAdmin):
 
 @admin.register(Capabilities)
 class CapabilitiesAdmin(admin.ModelAdmin):
-    list_display = ('capability_id', 'name',)
+    list_display = ('capability_id', 'name', 'got_at',)
 
 @admin.register(SkillCategory)
 class SkillCategory(admin.ModelAdmin):

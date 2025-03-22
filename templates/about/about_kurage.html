@@ -97,7 +97,7 @@
                     <h2><i class="bi bi-person-vcard"></i></i> 資格一覧</h2>
                     <div class="width-100">
                         {% for capability in capabilities %}
-                        <li>{{ capability.name }} ({{ capability.get_capability_at | date:"Y-m-d" }}取得)</li>
+                        <li>{{ capability.name }} ({{ capability.got_at | date:"Y-m-d" }} 取得)</li>
                         {% endfor %}
                     </div>
                 </div>
