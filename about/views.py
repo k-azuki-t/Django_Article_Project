@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
-from .models import ReleaseNote, MySkill, MyCareer, InterestedDomain, Capabilities
+from .models import ReleaseNote, MySkill, MyCareer, InterestedDomain, Capabilities, SkillCategory
 
 # Create your views here.
 
@@ -10,6 +10,7 @@ class AboutKurageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['my_skills'] = MySkill.objects.all()
+        context['skill_categories'] = SkillCategory.objects.all()
         context['my_careers'] = MyCareer.objects.all()
         context['interested_domains'] = InterestedDomain.objects.all()
         context['capabilities'] = Capabilities.objects.all()

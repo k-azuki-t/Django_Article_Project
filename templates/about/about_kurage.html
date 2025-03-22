@@ -59,68 +59,76 @@
         </div>
         <div class="width-80 margin-horizontal-auto">
             <div>
-                <p>&#128129;一般情報</p>
+                <h2>&#128129;一般情報</h2>
                 <li>1999年生まれ。</li>
                 <li>広島生まれの広島育ち。現在は神奈川のどこかでひっそりと生活中。</li>
                 <li>よく料理をします。（美味しいかどうかは不明）</li>
                 <li>海と鳥、美味しいご飯と岡田斗司夫さんが好きです。</li>
             </div>
 
-            <div class="container-flex-row margin-vertical-20">
-                <div class="width-50">
-                    <p>&#128187;触れた技術</p>
-                    <div>
-                        <span class="margin-vertical-20">フロントエンド</span>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
-                    </div>
-                    <div class="margin-vertical-20">
-                        <span>バックエンド</span>
-                        <li>Java</li>
-                        <li>Python (Django)</li>
-                    </div>
-                    <div class="margin-vertical-20">
-                        <span>OS・DB</span>
-                        <li>Linux</li>
-                        <li>DB2</li>
-                        <li>PostgreSQL</li>
+            <div class="container-flex-row margin-vertical-20" style="border-top: 2px solid rgb(221, 221, 221);">
+                <div class="width-100">
+                    <h2>&#128187;触れた技術</h2>
+                    <div class="width-100">
+                        {% for category in skill_categories %}
+                        <h3>{{ category.name }}</h3>
+                        <div class="container-flex-row" style="justify-content: center;">
+                            {% for skill in my_skills %}
+                            {% if skill.category == category %}
+                            <div class="skill-icon-container">
+                                <img src="{{ skill.skill_icon.url }}" alt="{{ skill.name }}">
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="width-50">
+                <!-- <div class="width-50">
                     <p>&#11088;興味のある領域</p>
                     <li>IT関連</li>
                     <li>デザイン</li>
                     <li>マーケティング</li>
                     <li>心理学</li>
                     <li>行動経済学</li>
-                </div>
+                </div> -->
             </div>
 
-            <div >
-                <p>&#128084;経歴</p>
+            <div style="border-top: 2px solid rgb(221, 221, 221);">
+                <h2>&#128084;経歴</h2>
                 <div class="carrer-list"">
                     <li class="list-no-marker margin-horizontal-20 margin-vertical-20">2024年03月
                         <ul>
                             <li class="list-no-marker">薬学部博士前期課程中退&#129760;</li>
                         </ul>
                     </li>
-                    <li class="list-no-marker margin-horizontal-20 margin-vertical-20">2024年02月 ~ 2024年09月
+                    {% for career in my_careers %}
+                    <li class="list-no-marker margin-horizontal-20 margin-vertical-20">
+                        {{ career.career_started_at | date:"Y年m月" }} ~ {{ career.career_ended_at | date:"Y年m月" }}
                         <ul>
-                            <li style="list-style-type: none;">ITベンチャー企業に勤務</li>
+                            <li style="list-style-type: none;">{{ career.name }}</li>
                             <ul>
-                                <li>カスタマーサクセス・ヘルプデスク・データ移行作業</li>
+                                <li>{{ career.content1 }}</li>
+
+                                {% if career.content2 %}
+                                <li>{{ career.content2 }}</li>
+                                {% endif %}
+
+                                {% if career.content3 %}
+                                <li>{{ career.content3 }}</li>
+                                {% endif %}
+
+                                {% if career.content4 %}
+                                <li>{{ career.content4 }}</li>
+                                {% endif %}
+                                
+                                {% if career.content5 %}
+                                <li>{{ career.content5 }}</li>
+                                {% endif %}
                             </ul>
                         </ul>
                     </li>
-                    <li class="list-no-marker margin-horizontal-20 margin-vertical-20">2024年11月 ~ 現在
-                        <ul>
-                            <li style="list-style-type: none;">SES企業に勤務</li>
-                            <ul>
-                                <li>Djangoでフロントエンド・バックエンド開発 / タスク管理</li>
-                            </ul>
-                        </ul>
-                    </li>
+                    {% endfor %}
                 </div>
             </div>
         </div>
