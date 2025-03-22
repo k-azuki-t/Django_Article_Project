@@ -50,10 +50,11 @@ class SkillCategory(models.Model):
 
 
 class MySkill(models.Model):
-    skill_id         = models.AutoField(verbose_name='スキルID', primary_key=True, auto_created=True)
-    name              = models.CharField(verbose_name='スキル名', max_length=150, null=False)
-    category          = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='category')
-    created_at        = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
+    skill_id   = models.AutoField(verbose_name='スキルID', primary_key=True, auto_created=True)
+    name       = models.CharField(verbose_name='スキル名', max_length=150, null=False)
+    category   = models.ForeignKey(SkillCategory, on_delete=models.CASCADE, related_name='category')
+    skill_icon = models.ImageField(verbose_name='スキルアイコン', upload_to='skill_icon/', null=False)
+    created_at = models.DateTimeField(verbose_name='作成日', auto_now_add=True)
 
     class Meta:
         verbose_name='スキルマスタ'
