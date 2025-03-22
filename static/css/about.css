@@ -44,11 +44,14 @@
     list-style-type: none;
 }
 
-.carrer-list {
+.career-list {
     border-left: solid 2px rgb(93, 93, 93)
 }
-.carrer-list ul {
+.career-list ul {
     margin: 0;
+}
+.career-title {
+    list-style-type: none;
 }
 
 .skill-icon-container {
@@ -60,6 +63,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.kurage-info-container {
+    border-top: 2px solid rgb(221, 221, 221);
 }
 
 

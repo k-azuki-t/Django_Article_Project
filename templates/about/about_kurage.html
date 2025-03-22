@@ -53,26 +53,30 @@
     <div class="width-80 margin-horizontal-auto item-container margin-vertical-20">
         <div class="sub-title width-100 margin-horizontal-auto padding-vertical-20">
             <div class="width-80 margin-horizontal-auto">
-                <i class="bi bi-file-person"></i>
+                <i class="bi bi-file-earmark-person"></i>
                 プロフィール
             </div>
         </div>
         <div class="width-80 margin-horizontal-auto">
             <div>
-                <h2>&#128129;一般情報</h2>
+                <h2><i class="bi bi-person-arms-up"></i> 一般情報</h2>
                 <li>1999年生まれ。</li>
                 <li>広島生まれの広島育ち。現在は神奈川のどこかでひっそりと生活中。</li>
                 <li>よく料理をします。（美味しいかどうかは不明）</li>
                 <li>海と鳥、美味しいご飯と岡田斗司夫さんが好きです。</li>
+                {% if interested_domains %}
+                <li>興味のある領域は{% for domain in interested_domains %}「{{domain}}」{% endfor %}です。</li>
+                {% endif %}
             </div>
 
-            <div class="container-flex-row margin-vertical-20" style="border-top: 2px solid rgb(221, 221, 221);">
+            {% if my_skills %}
+            <div class="container-flex-row margin-vertical-20 kurage-info-container">
                 <div class="width-100">
-                    <h2>&#128187;触れた技術</h2>
+                    <h2><i class="bi bi-front"></i> 触れた技術</h2>
                     <div class="width-100">
                         {% for category in skill_categories %}
                         <h3>{{ category.name }}</h3>
-                        <div class="container-flex-row" style="justify-content: center;">
+                        <div class="container-flex-row justify-center">
                             {% for skill in my_skills %}
                             {% if skill.category == category %}
                             <div class="skill-icon-container">
@@ -84,19 +88,26 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!-- <div class="width-50">
-                    <p>&#11088;興味のある領域</p>
-                    <li>IT関連</li>
-                    <li>デザイン</li>
-                    <li>マーケティング</li>
-                    <li>心理学</li>
-                    <li>行動経済学</li>
-                </div> -->
             </div>
-
-            <div style="border-top: 2px solid rgb(221, 221, 221);">
-                <h2>&#128084;経歴</h2>
-                <div class="carrer-list"">
+            {% endif %}
+            
+            {% if capabilities %}
+            <div class="container-flex-row margin-vertical-20 kurage-info-container">
+                <div class="width-100">
+                    <h2><i class="bi bi-person-vcard"></i></i> 資格一覧</h2>
+                    <div class="width-100">
+                        {% for capability in capabilities %}
+                        <li>{{ capability.name }} ({{ capability.get_capability_at | date:"Y-m-d" }}取得)</li>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if my_careers %}
+            <div class="kurage-info-container">
+                <h2><i class="bi bi-person-workspace"></i> 経歴</h2>
+                <div class="career-list">
                     <li class="list-no-marker margin-horizontal-20 margin-vertical-20">2024年03月
                         <ul>
                             <li class="list-no-marker">薬学部博士前期課程中退&#129760;</li>
@@ -106,7 +117,7 @@
                     <li class="list-no-marker margin-horizontal-20 margin-vertical-20">
                         {{ career.career_started_at | date:"Y年m月" }} ~ {{ career.career_ended_at | date:"Y年m月" }}
                         <ul>
-                            <li style="list-style-type: none;">{{ career.name }}</li>
+                            <li class="career-title">{{ career.name }}</li>
                             <ul>
                                 <li>{{ career.content1 }}</li>
 
@@ -121,7 +132,7 @@
                                 {% if career.content4 %}
                                 <li>{{ career.content4 }}</li>
                                 {% endif %}
-                                
+
                                 {% if career.content5 %}
                                 <li>{{ career.content5 }}</li>
                                 {% endif %}
@@ -131,6 +142,8 @@
                     {% endfor %}
                 </div>
             </div>
+            {% endif %}
+
         </div>
     </div>
     
