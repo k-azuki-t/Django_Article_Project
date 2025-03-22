@@ -34,6 +34,12 @@
     background-color: white;
     border-radius: 10px;
 }
+.justify-center {
+    justify-content: center;
+}
+.align-center {
+    align-items: center;
+}
 
 /* メッセージ系 */
 .message {
