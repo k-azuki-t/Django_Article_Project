@@ -28,9 +28,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG', default=False)
+DEBUG = env.bool('DEBUG_ENV')
+print(DEBUG)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -88,12 +89,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES={
     'default': {
-        'ENGINE': env.get_value('DATABASE_ENIGNE', default='django.db.backends.sqlite3'),
-        'NAME': env.get_value('DATABASE_NAME', default=os.path.join(BASE_DIR, 'db.sqlite3')),
-        'USER': env.get_value('DATABASE_USER', default='django_user'),
-        'PASSWORD': env.get_value('DATABASE_PASSWORD', default='password'),
-        'HOST': env.get_value('DATABASE_HOST', default='localhost'),
-        'PORT': env.get_value('DATABASE_PORT', default='5432'),
+        'ENGINE': env('DATABASE_ENGINE'),
+        'NAME': os.path.join(BASE_DIR, env('DATABASE_NAME')),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
@@ -162,9 +163,9 @@ MARKDOWNX_IMAGE_MAX_SIZE = {
 }
 
 # HTTPSの設定
-SECURE_SSL_REDIRECT   = True if DEBUG == False else False
-SESSION_COOKIE_SECURE = True if DEBUG == False else False
-CSRF_COOKIE_SECURE    = True if DEBUG == False else False
+# SECURE_SSL_REDIRECT   = True if DEBUG == False else False
+# SESSION_COOKIE_SECURE = True if DEBUG == False else False
+# CSRF_COOKIE_SECURE    = True if DEBUG == False else False
 
 # セッションの設定
 SESSION_COOKIE_AGE = 3600
