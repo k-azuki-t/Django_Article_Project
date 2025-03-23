@@ -32,7 +32,7 @@
     margin: 0 auto;
 }
 .icons-with-link i {
-    font-size: clamp(40px, 3.5vw, 150px);
+    font-size: clamp(30px, 3.5vw, 150px);
     color: #575757;
     transition: all 0.2s ease;
     display: inline-block;
@@ -55,8 +55,8 @@
 }
 
 .skill-icon-container {
-    width: 100px;
-    height: 100px;
+    width: clamp(40px, 6vw, 150px);
+    height: clamp(40px, 6vw, 150px);
     margin: 0 20px;
 }
 .skill-icon-container img {
@@ -70,12 +70,6 @@
 }
 
 
-@media screen and (max-width:900px) {
-    .skill-icon-container {
-        width: 50px;
-        height: 50px;
-    }
-}
 @media screen and (max-width:700px) {
     .icons {
         display: flex;
@@ -86,8 +80,7 @@
         width: 100% !important;
     }
     .skill-icon-container {
-        width: 30px;
-        height: 30px;
+        margin: 0 5px;
     }
 }
 
