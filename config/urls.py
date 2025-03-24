@@ -30,7 +30,6 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('articles/', include('articles.urls')),
     path('markdownx/', include('markdownx.urls')),
-    # re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATICFILES_DIRS[0]})
 ]
 
 # Add static file serving in debug mode
@@ -40,6 +39,5 @@ urlpatterns += static(
 )
 
 if not settings.DEBUG:
-    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += [re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATICFILES_DIRS[0]})]
     urlpatterns += [re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT})]

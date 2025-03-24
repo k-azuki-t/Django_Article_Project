@@ -30,21 +30,21 @@ function displayNavbar() {
             mainContent.style.display = 'none';
             navbar.classList.add('slideinLeft');
             navbar.style.display = 'flex';
-        }, 250);
+        }, 300);
     } else if (navbar.style.display === 'none') {
         mainContent.classList.replace('slideinRight', 'slideOutRight');
         setTimeout(() => {
             mainContent.style.display = 'none';
             navbar.classList.replace('slideOutLeft', 'slideinLeft');
             navbar.style.display = 'flex';
-        }, 250);
+        }, 300);
     } else {
         navbar.classList.replace('slideinLeft', 'slideOutLeft');
         setTimeout(() => {
             navbar.style.display = 'none';
             mainContent.style.display = 'flex';
             mainContent.classList.replace('slideOutRight', 'slideinRight');
-        }, 250);
+        }, 300);
     }
 }
 
