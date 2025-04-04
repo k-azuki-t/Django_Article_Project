@@ -135,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # 【確認】これは何？
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
@@ -147,6 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH_USER_MODEL
 AUTH_USER_MODEL = 'accounts.ServiceUser'
 
+# アップロードファイルの保存先
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -162,9 +163,14 @@ MARKDOWNX_IMAGE_MAX_SIZE = {
 }
 
 # HTTPSの設定
-# SECURE_SSL_REDIRECT   = True if DEBUG == False else False
-# SESSION_COOKIE_SECURE = True if DEBUG == False else False
-# CSRF_COOKIE_SECURE    = True if DEBUG == False else False
+SECURE_SSL_REDIRECT            = True     if DEBUG == False else False # HTTPアクセスが来たら、自動でHTTPSにリダイレクトする。
+SESSION_COOKIE_SECURE          = True     if DEBUG == False else False # セッションのCookieをHTTPSでのみ送信する。
+CSRF_COOKIE_SECURE             = True     if DEBUG == False else False # CSRFトークンのCookieをHTTPSでのみ送信する。
+SECURE_HSTS_SECONDS            = 31536000 if DEBUG == False else None  # HSTS設定（ブラウザにHTTPSを強制）
+SECURE_HSTS_PRELOAD            = True     if DEBUG == False else False # HSTSプリロードリストに登録するかどうか
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True     if DEBUG == False else False # HSTSをサブドメインにも適用するかどうか
+SECURE_BROWSER_XSS_FILTER      = True     if DEBUG == False else False # XSSフィルタを有効にするかどうか
+SECURE_CONTENT_TYPE_NOSNIFF    = True     if DEBUG == False else False # コンテンツタイプのスニッフィングを無効にするかどうか
 
 # セッションの設定
 SESSION_COOKIE_AGE = 3600
