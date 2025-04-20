@@ -181,6 +181,10 @@ a {
     margin-top: 50px;
     margin-bottom: 50px;
 }
+.margin-vertical-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
 .margin-bottom-20 {
     margin-bottom: 20px;
 }

@@ -15,7 +15,9 @@ addEventListener('DOMContentLoaded', function() {
         navbarButton = document.getElementById('accounts');
     }
 
-    navbarButton.classList.add('active');
+    if (navbarButton !== '') {
+        navbarButton.classList.add('active');;
+    }
 })
 
 // ナビバーの表示非表示を切り替える処理

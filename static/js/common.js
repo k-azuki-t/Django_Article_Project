@@ -2,7 +2,6 @@
 addEventListener('DOMContentLoaded', () => {
 
     const message = document.querySelector('.message');
-    console.log(message)
 
     if (message) {
         setTimeout(() => {

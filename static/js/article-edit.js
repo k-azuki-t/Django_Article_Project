@@ -71,8 +71,6 @@ if (path.includes('/articles/edit/')) {
 // 記事本文の記載するフィールドとプレビューフィールドを出し分ける関数
 function changeDisplayStatus(status) {
 
-    console.log('start')
-
     // 記事編集画面でのみ実行されるよう指定
     if (!window.location.pathname.includes('/articles/edit/')) {
         return;
