@@ -27,7 +27,8 @@ class CustomUserManager(BaseUserManager):
 
 
 class ServiceUser(AbstractBaseUser, PermissionsMixin):
-    user_id      = models.IntegerField(verbose_name='ユーザーID', primary_key=True, auto_created=True)
+    # user_id      = models.IntegerField(verbose_name='ユーザーID', primary_key=True, auto_created=True)
+    user_id      = models.AutoField(verbose_name='ユーザーID', primary_key=True)
     name         = models.CharField(verbose_name='ユーザー名', max_length=150)
     email        = models.EmailField(verbose_name='メールアドレス', unique=True, null=False, blank=False)
     password     = models.CharField(verbose_name='パスワード', max_length=128)
