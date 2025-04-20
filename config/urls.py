@@ -23,7 +23,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', include('top.urls')),
-    path('admin/', admin.site.urls),
+    path('superuser-kurage-only/', admin.site.urls),
     path('top/', include('top.urls')),
     path('about/', include('about.urls')),
     path('accounts/', include('accounts.urls')),
