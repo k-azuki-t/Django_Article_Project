@@ -70,22 +70,3 @@ class CustomUserChangeForm(UserChangeForm):
         if ServiceUser.objects.filter(email=email).exists() and email != saved_email:
             raise ValidationError('このメールアドレスはすでに登録されています。')
         return email
-
-
-# class CustomPasswordChangeForm(PasswordChangeForm):
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-
-    # class Meta:
-    #     model = ServiceUser
-        # fields = ['password']  # 必要なフィールドを指定
-        # widgets = {
-        # 'password': forms.PasswordInput(),
-        # }
-        
-
-    # def clean_password(self):
-    #     password = self.cleaned_data.get('password')
-    #     if len(password) < 8:
-    #         raise ValidationError('パスワードは8文字以上で設定してください。')
-    #     return password
