@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    {% block title %}
+    <title>くらげの独り言</title>
+    {% endblock %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token }}">
-    <title>くらげの独り言</title>
+    {% block ogp %}
+    <meta property="og:title" content="くらげの独り言">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/img/about-icons/admin-icon.jpg">
+    <meta property="og:site_name" content="くらげの独り言">
+    <meta property="og:description" content="くらげ個人の記事サイトです。">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="くらげの独り言" />
+    <meta name="twitter:description" content="くらげ個人の記事サイトです。" />
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/img/about-icons/admin-icon.jpg" />
+    <meta name="twitter:site" content="@k_azuki_24424">
+    {% endblock %}
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 

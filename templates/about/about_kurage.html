@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 
+{% block title %}
+    <title>「くらげ」について</title>
+{% endblock %}
+
+{% block ogp %}
+    <meta property="og:title" content="「くらげ」について">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/img/about-icons/admin-icon.jpg">
+    <meta property="og:site_name" content="くらげの独り言">
+    <meta property="og:description" content="管理人「くらげ」についてのご紹介です。">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="「くらげ」について" />
+    <meta name="twitter:description" content="管理人「くらげ」についてのご紹介です。" />
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/img/about-icons/admin-icon.jpg" />
+    <meta name="twitter:site" content="@k_azuki_24424">
+{% endblock %}
+
+
 {% block content %}
 
     {% load static %} <!-- neither you load static-tag in base.html, you must load static-tag here again -->

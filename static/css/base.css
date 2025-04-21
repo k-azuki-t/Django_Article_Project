@@ -111,10 +111,10 @@ body {
 .navbar-content.active {
     /* background-color: #ffffff;
     color: black; */
-    color: aquamarine !important;
+    color: rgb(233, 207, 255) !important;
 }
 .navbar-content.active button {
-    color: aquamarine !important;
+    color: rgb(233, 207, 255) !important;
 }
 
 .navbar-footer {

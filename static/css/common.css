@@ -53,8 +53,8 @@
     opacity: 0;
     margin-left: auto;
     font-weight: bold;
-    background-color: rgb(209, 252, 248);
-    border: 2px solid rgb(123, 254, 244);
+    background-color: rgb(216, 224, 251);
+    border: 2px solid rgb(142, 189, 255);
     color: rgb(77, 76, 76);
     animation-name: fadein;
     animation-duration: 4s;
