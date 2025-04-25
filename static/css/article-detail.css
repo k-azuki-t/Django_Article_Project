@@ -6,6 +6,22 @@ p img {
     margin: 0 auto;
     max-width: 100%;
 }
+table {
+    width: 100%;
+    text-align: center;
+}
+table thead {
+    background-color: #eceaff;
+}
+table tbody {
+    background-color: #f1f1f1;
+}
+code {
+    background-color: #f1f1f1;
+    margin: 0 2px;
+    padding: 0 5px;
+    font-weight: bold;
+}
 
 .favorite-icon-container {
     align-items: center;
